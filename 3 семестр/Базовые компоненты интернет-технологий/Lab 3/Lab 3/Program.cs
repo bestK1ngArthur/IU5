@@ -27,6 +27,7 @@ namespace Figures
 
             Console.WriteLine("\nArrayList - отсортированный");
             arrayList.Sort();
+
             foreach (var x in arrayList) Console.WriteLine(x);
 
             // List<Figure>
@@ -41,14 +42,44 @@ namespace Figures
 
             Console.WriteLine("\nList<AbstractFigure> - отсортированный");
             arrayList.Sort();
+
             foreach (var x in arrayList) Console.WriteLine(x);
 
-            // SparseMatrix<Figure>
+            // Matrix<Figure>
 
             Console.WriteLine("\nMatrix<AbstractFigure>");
             Matrix<AbstractFigure> matrix = new Matrix<AbstractFigure>(2, 2, 2, rect);
             Console.WriteLine(matrix.ToString());
 
+            // SimpleList<AbstractFigure>
+
+            Console.WriteLine("SimpleList<AbstractFigure>");
+            SimpleList<AbstractFigure> list = new SimpleList<AbstractFigure>();
+            list.Add(square);
+            list.Add(rect);
+            list.Add(circle);
+
+            foreach (var x in list) Console.WriteLine(x);
+
+            Console.WriteLine("\nSimpleList<AbstractFigure> - отсортированный");
+            list.Sort();
+
+            foreach (var x in list) Console.WriteLine(x);
+
+            // SimpleStack<AbstractFigure>
+
+            Console.WriteLine("\nSimpleStack<AbstractFigure>");
+            SimpleStack<AbstractFigure> stack = new SimpleStack<AbstractFigure>();
+            stack.Push(rect);
+            stack.Push(square);
+            stack.Push(circle);
+            
+            while (stack.Count > 0)
+            {
+                AbstractFigure f = stack.Pop();
+                Console.WriteLine(f);
+            }
+           
             Console.ReadKey();
 
         }

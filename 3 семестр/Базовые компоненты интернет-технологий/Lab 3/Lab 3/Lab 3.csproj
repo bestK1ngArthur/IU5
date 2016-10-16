@@ -51,6 +51,7 @@
     <Compile Include="Rect.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="SimpleList.cs" />
+    <Compile Include="SimpleStack.cs" />
     <Compile Include="Square.cs" />
   </ItemGroup>
   <ItemGroup>
