@@ -46,7 +46,7 @@ namespace Figures
             // SparseMatrix<Figure>
 
             Console.WriteLine("\nMatrix<AbstractFigure>");
-            Matrix<AbstractFigure> matrix = new Matrix<AbstractFigure>(2, 1, 1, rect);
+            Matrix<AbstractFigure> matrix = new Matrix<AbstractFigure>(2, 2, 2, rect);
             Console.WriteLine(matrix.ToString());
 
             Console.ReadKey();
