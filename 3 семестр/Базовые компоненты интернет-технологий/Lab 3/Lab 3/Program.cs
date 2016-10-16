@@ -43,6 +43,12 @@ namespace Figures
             arrayList.Sort();
             foreach (var x in arrayList) Console.WriteLine(x);
 
+            // SparseMatrix<Figure>
+
+            Console.WriteLine("\nMatrix<AbstractFigure>");
+            Matrix<AbstractFigure> matrix = new Matrix<AbstractFigure>(2, 1, 1, rect);
+            Console.WriteLine(matrix.ToString());
+
             Console.ReadKey();
 
         }

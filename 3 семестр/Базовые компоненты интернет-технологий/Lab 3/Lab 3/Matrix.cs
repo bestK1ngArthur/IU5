@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SparseMatrix
+namespace Figures
 {
     public class Matrix<T>
     {
@@ -20,8 +20,13 @@ namespace SparseMatrix
         /// <summary>         
         /// Количество элементов по вертикали (максимальное количество строк)         
         /// </summary>        
-        int maxY; 
- 
+        int maxY;
+
+        /// <summary>         
+        /// Количество элементов в глубину
+        /// </summary>        
+        int maxZ;
+
         /// <summary>         
         /// Пустой элемент, который возвращается если элемент с нужными координатами не был задан      
         /// </summary>         
@@ -30,21 +35,22 @@ namespace SparseMatrix
         /// <summary>    
         /// Конструктор  
         /// </summary> 
-        public Matrix(int px, int py, T nullElementParam) 
+        public Matrix(int px, int py, int pz, T nullElementParam) 
         {
             this.maxX = px;
             this.maxY = py;
+            this.maxZ = pz;
             this.nullElement = nullElementParam;
         } 
  
         /// <summary>
         /// Индексатор для доступа к данных
         /// </summary>
-        public T this[int x, int y]
+        public T this[int x, int y, int z]
         {
             get {
-                CheckBounds(x, y);
-                string key = DictKey(x, y);
+                CheckBounds(x, y, z);
+                string key = DictKey(x, y, z);
                 if (this._matrix.ContainsKey(key)) {
                     return this._matrix[key];
                 }
@@ -55,8 +61,8 @@ namespace SparseMatrix
             }
             set
             {
-                CheckBounds(x, y);
-                string key = DictKey(x, y);
+                CheckBounds(x, y, z);
+                string key = DictKey(x, y, z);
                 this._matrix.Add(key, value);
             }
         } 
@@ -64,18 +70,19 @@ namespace SparseMatrix
         /// <summary>
         /// Проверка границ
         /// </summary>
-        void CheckBounds(int x, int y)
+        void CheckBounds(int x, int y, int z)
         {
             if (x < 0 || x >= this.maxX) throw new Exception("x=" + x + " выходит за границы"); 
-            if (y< 0 || y >= this.maxY) throw new Exception("y=" + y + " выходит за границы");
+            if (y < 0 || y >= this.maxY) throw new Exception("y=" + y + " выходит за границы");
+            if (z < 0 || z >= this.maxZ) throw new Exception("z=" + z + " выходит за границы");
         }
 
         /// <summary>  
         /// Формирование ключа
         /// </summary>   
-        string DictKey(int x, int y)
+        string DictKey(int x, int y, int z)
         {
-            return x.ToString() + "_" + y.ToString();
+            return x.ToString() + "_" + y.ToString() + "_" + z.ToString();
         } 
 
         /// <summary> 
@@ -89,13 +96,19 @@ namespace SparseMatrix
 
             StringBuilder b = new StringBuilder(); 
  
-            for (int j = 0; j < this.maxY; j++)
+            for (int k = 0; k < this.maxY; k++)
             {
                 b.Append("[");
-                for (int i = 0; i< this.maxX; i++)
+                for (int j = 0; j< this.maxY; j++)
                 {
-                    if (i > 0) b.Append("\t");
-                    b.Append(this[i, j].ToString());
+                    if (j > 0) b.Append("\t");
+                    b.Append("[");
+                    for (int i = 0; i < this.maxX; i++)
+                    {
+                        b.Append(this[i, j, k].ToString());
+                        if (i != (this.maxX - 1)) b.Append(", ");
+                    }
+                    b.Append("]");
                 }
                 b.Append("]\n");
             } 
