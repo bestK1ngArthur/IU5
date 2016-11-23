@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab 4", "lab4\Lab 4.csproj", "{801477B1-82F6-49A1-A7B2-AFDE3D84430D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab 4-5", "lab4\Lab 4-5.csproj", "{801477B1-82F6-49A1-A7B2-AFDE3D84430D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
