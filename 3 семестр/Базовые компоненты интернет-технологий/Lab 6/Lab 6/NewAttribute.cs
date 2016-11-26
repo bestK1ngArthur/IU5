@@ -19,5 +19,5 @@ namespace Lab_6
         } 
 
     public string Description { get; set; }
-}
+    }
 }
