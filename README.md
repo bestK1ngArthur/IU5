@@ -1,11 +1,12 @@
 # Лабы для ИУ5
 ## Таймлайн
-* 2015 осень - [1 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/1%20семестр/Основы%20программирование%20(экзамен))
-* 2016 весна - [2 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/2%20семестр/Программирование%20на%20основе%20классов%20и%20шаблонов)
-* 2016 осень - [3 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/3%20семестр/Базовые%20компоненты%20интернет-технологий)
+* 2015 осень - [1 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/1%20семестр/)
+* 2016 весна - [2 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/2%20семестр/)
+* 2016 осень - [3 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/3%20семестр/)
+* 2017 весна - [4 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/4%20семестр/)
 
 ## #Todo
 - [x] Залить 3 семестр
 - [ ] Добавить остальные описания
-- [ ] Начать заливать 4 семестр
+- [x] Начать заливать 4 семестр
 - [ ] :+1:
