@@ -1,0 +1,75 @@
+Turbo Assembler	 Version 3.1	    03/11/17 21:03:18	    Page 1
+lab3.asm
+
+
+
+      1	0000			     MYCODE SEGMENT 'CODE'
+      2					 ASSUME	CS:MYCODE
+      3					 PUBLIC	LET1
+      4					 PUBLIC	LET2
+      5					 PUBLIC	LET3
+      6	0000  41		     LET1  DB 'A'
+      7	0001  42		     LET2  DB 'B'
+      8	0002  43		     LET3  DB 'C'
+      9	0003			     START:
+     10				     ; Загрузка	сегментного регистра данных DS
+     11	0003  0E			  PUSH CS
+     12	0004  1F			  POP  DS
+     13				     ; Вывод одного символа на экран
+     14	0005  B4 02			  MOV AH, 02
+     15	0007  2E: 8A 16	0000r		  MOV DL, LET1
+     16	000C  CD 21			  INT 21H
+     17				     ; Перевод на новую	строку
+     18	000E  B2 0A			  MOV DL, 10
+     19	0010  B4 02			  MOV AH, 02h
+     20	0012  CD 21			  INT 21H
+     21	0014  B2 0D			  MOV DL, 13
+     22	0016  B4 02			  MOV AH, 02h
+     23	0018  CD 21			   INT 21H
+     24
+     25	001A  B4 02			  MOV AH, 02
+     26	001C  2E: 8A 16	0001r		  MOV DL, LET2
+     27	0021  CD 21			  INT 21H
+     28
+     29	0023  B2 0A			  MOV DL, 10
+     30	0025  B4 02			  MOV AH, 02h
+     31	0027  CD 21			  INT 21H
+     32	0029  B2 0D			  MOV DL, 13
+     33	002B  B4 02			  MOV AH, 02h
+     34	002D  CD 21			   INT 21H
+     35
+     36	002F  B4 02			  MOV AH, 02
+     37	0031  2E: 8A 16	0002r		  MOV DL, LET3
+     38	0036  CD 21			  INT 21H
+     39
+     40				      ;	Выход из программы
+     41	0038  B0 00			  MOV AL, 0
+     42	003A  B4 4C			  MOV AH, 4CH
+     43	003C  CD 21			  INT 21H
+     44	003E			     MYCODE ENDS
+     45				     END START
+Turbo Assembler	 Version 3.1	    03/11/17 21:03:18	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "03/11/17"
+??FILENAME		Text   "lab3	"
+??TIME			Text   "21:03:18"
+??VERSION		Number 030A
+@CPU			Text   0101H
+@CURSEG			Text   MYCODE			   #1
+@FILENAME		Text   LAB3
+@WORDSIZE		Text   2			   #1
+LET1			Byte   MYCODE:0000		   3  #6  15
+LET2			Byte   MYCODE:0001		   4  #7  26
+LET3			Byte   MYCODE:0002		   5  #8  37
+START			Near   MYCODE:0003		   #9  45
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+MYCODE			16  003E Para	none	CODE	   #1  2
+
