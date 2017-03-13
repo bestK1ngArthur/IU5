@@ -1,4 +1,7 @@
 # Лабы для ИУ5
+
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+
 ## Таймлайн
 * 2015 осень - [1 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/1%20семестр/)
 * 2016 весна - [2 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/2%20семестр/)
