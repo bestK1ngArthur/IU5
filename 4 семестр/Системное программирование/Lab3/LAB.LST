@@ -1,0 +1,74 @@
+Turbo Assembler	 Version 3.1	    03/14/17 16:19:23	    Page 1
+lab.asm
+
+
+
+      1	0000			     MYCODE SEGMENT 'CODE'
+      2					 ASSUME	CS:MYCODE
+      3	0000			     START:
+      4				     ; Загрузка	сегментного регистра данных DS
+      5	0000  0E			  PUSH CS
+      6	0001  1F			  POP  DS
+      7				     ; Вывод символов и	перевод	строки
+      8	0002  B2 80			  MOV DL , 'А'
+      9	0004  E8 0024			  CALL PUTCH
+     10	0007  E8 0016			  CALL CLRF
+     11	000A  B2 81			  MOV DL , 'Б'
+     12	000C  E8 001C			  CALL PUTCH
+     13	000F  E8 000E			  CALL CLRF
+     14	0012  B2 82			  MOV DL , 'В'
+     15	0014  E8 0014			  CALL PUTCH
+     16				     ; Ожидание	завершения программы
+     17	0017  E8 0016			  CALL GETCH
+     18				     ; Вывод из	программы
+     19	001A  B0 00			  MOV AL , 0
+     20	001C  B4 4C			  MOV AH , 4CH
+     21	001E  CD 21			  INT 21H
+     22				     ; Процедуры:
+     23				     ; Перевод на новую	строку
+     24	0020			     CLRF PROC
+     25	0020  B2 0A			 MOV DL	, 10
+     26	0022  E8 0006			 CALL PUTCH
+     27	0025  B2 0D			 MOV DL	, 13
+     28	0027  E8 0001			 CALL PUTCH
+     29	002A  C3			 RET
+     30	002B			     CLRF ENDP
+     31				     ; Вывод одного символа на экран
+     32	002B			     PUTCH PROC
+     33	002B  B4 02			 MOV AH	, 02H
+     34	002D  CD 21			 INT 021H
+     35	002F  C3			 RETN
+     36	0030			     PUTCH ENDP
+     37				     ; Ввод символа с клавиатуры в AL
+     38	0030			     GETCH PROC
+     39	0030  B4 08			 MOV AH	, 08H
+     40	0032  CD 21			 INT 021H
+     41	0034  C3			 RET
+     42	0035			     GETCH ENDP
+     43	0035			     MYCODE ENDS
+     44				     END START
+Turbo Assembler	 Version 3.1	    03/14/17 16:19:23	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "03/14/17"
+??FILENAME		Text   "lab	"
+??TIME			Text   "16:19:22"
+??VERSION		Number 030A
+@CPU			Text   0101H
+@CURSEG			Text   MYCODE			   #1
+@FILENAME		Text   LAB
+@WORDSIZE		Text   2			   #1
+CLRF			Near   MYCODE:0020		   10  13  #24
+GETCH			Near   MYCODE:0030		   17  #38
+PUTCH			Near   MYCODE:002B		   9  12  15  26  28  #32
+START			Near   MYCODE:0000		   #3  44
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+MYCODE			16  0035 Para	none	CODE	   #1  2
+
