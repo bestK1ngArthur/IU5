@@ -86,55 +86,6 @@ let main argv =
     let carryFunSumTest = CarryFunWith3(2, 3, fun a b -> a+b)   
     printfn "XarryFunWith3(2, 3, fun a b -> a+b) = %i" carryFunSumTest
 
-    // Задание 6
-    printTask(6, "С использованием list comprehension для списка [1..10] верните список кортежей. Каждый кортеж содержит элемент списка, его квадрат и куб.")
-
-    let list = [for x in [1..10] do yield (x, x*x, x*x*x)]
-    printfn "%A" list
-
-    // Задание 7
-    printTask(7, "Напишите два варианта функции, которая принимает на вход список и возвращает квадраты его значений. Необходимо использовать свойства списка Head и Tail. Первый вариант функции использует оператор if, второй вариант использует сопоставление с образцом.")
-
-    let rec SquareList1(list: int list): int list = 
-        if list.IsEmpty then []
-        else (list.Head*list.Head)::SquareList1(list.Tail)
-    let squareList1Test = SquareList1([1..4])
-    printfn "SquareList1([1..4]) = %A" squareList1Test
-
-    let rec SquareList2 = function
-        | [] -> []
-        | x::xs -> x*x::SquareList2(xs)
-    let squareList2Test = SquareList2([1..4])
-    printfn "SquareList2([1..4]) = %A" squareList2Test
-
-    // Задание 8
-    printTask(8, "Последовательно примените к списку функции map, sort, filter (в любом порядке).")
-
-    let testList = [1..10]
-    printfn "testList = %A" testList
-
-    let mapList = List.map(fun x->x*x*x) testList
-    printfn "..map.. %A" mapList
-
-    let sortList = List.rev (List.sort mapList)
-    printfn "..sort.. %A" sortList
-
-    let filterList = List.filter(fun x->x % 2 = 0) sortList
-    printfn "..filter.. %A" filterList
-
-    // Задание 9
-    printTask(9, "Реализуйте предыдущий пункт с использованием оператора потока \'|>\'")
-
-    let newList = testList |> List.map(fun x->x*x*x) |> List.rev |> List.filter(fun x->x % 2 = 0)
-    printfn "..map..sort..filter.. %A" newList
-
-    // Задание 10
-    printTask(10, "Реализуйте предыдущий пункт с использованием оператора композиции функций \'>>\'")
-
-    let ListFunc = List.map(fun x->x*x*x) >> List.rev >> List.filter(fun x->x % 2 = 0)
-    let newList1 = ListFunc testList
-    printfn "..map..sort..filter.. %A" newList1
-
     //|> ignore - перенаправление потока с игнорирование результата вычисления 
     Console.ReadLine() |> ignore 
     0 // возвращение целочисленного кода выхода
