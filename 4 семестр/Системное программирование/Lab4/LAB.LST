@@ -1,0 +1,115 @@
+Turbo Assembler	 Version 3.1	    03/16/17 23:25:21	    Page 1
+lab.asm
+
+
+
+      1				     ;	Лабораторная работа №3 (+ дополнительные требования)
+      2	0000			     MYCODE SEGMENT 'CODE'
+      3				     ASSUME CS:MYCODE
+      4	0000  8B A0 A1 AE E0 A0	E2+  LABTITLE db 'Лабораторная работа #4$'
+      5	      AE E0 AD A0 EF 20	E0+
+      6	      A0 A1 AE E2 A0 20	23+
+      7	      34 24
+      8	0017  80 E0 E2 F1 AC 20	81+  STUDENTNAME db 'Артём Белков Дмитриевич$'
+      9	      A5 AB AA AE A2 20	84+
+     10	      AC A8 E2 E0 A8 A5	A2+
+     11	      A8 E7 24
+     12	002F			     START:
+     13				     ; Загрузка	сегментного регистра данных DS
+     14	002F  0E			  PUSH CS
+     15	0030  1F			  POP  DS
+     16				     ; Очитка экрана
+     17	0031  E8 002E			  CALL CLRSCR
+     18				     ; Вывод заголовка
+     19	0034  BA 0000r			  MOV DX, offset LABTITLE
+     20	0037  E8 0037			  CALL PUTSTR
+     21	003A  E8 001A			  CALL CLRF
+     22				     ; Вывод первого символа
+     23	003D  B2 80			  MOV DL , 'А'
+     24	003F  E8 002A			  CALL PUTCH
+     25	0042			     SYMBOLLOOP:
+     26				     ; Вывод символов и	перевод	строки
+     27	0042  FE C2			  INC DL
+     28	0044  E8 0025			  CALL PUTCH
+     29	0047  E8 000D			  CALL CLRF
+     30				     ; if (symbol == 'Я')
+     31	004A  3C 9F			  CMP AL, 'Я'
+     32	004C  75 F4			  JNE SYMBOLLOOP
+     33				     ; Ожидание	завершения программы
+     34	004E  E8 0025			  CALL GETCH
+     35				     ; Вывод из	программы
+     36	0051  B0 00			  MOV AL , 0
+     37	0053  B4 4C			  MOV AH , 4CH
+     38	0055  CD 21			  INT 21H
+     39				     ; Процедуры:
+     40				     ; Перевод на новую	строку
+     41	0057			     CLRF PROC
+     42	0057  B2 0A			 MOV DL	, 10
+     43	0059  E8 0010			 CALL PUTCH
+     44	005C  B2 0D			 MOV DL	, 13
+     45	005E  E8 000B			 CALL PUTCH
+     46	0061  C3			 RET
+     47	0062			     CLRF ENDP
+     48				     ; Очистка экрана
+     49	0062			     CLRSCR PROC
+     50	0062  E8 FFF2			 CALL CLRF
+     51	0065  B4 00			 MOV  AH , 0H
+     52	0067  B0 03			 MOV  AL , 3H
+     53	0069  CD 10			 INT  10H
+     54	006B  C3			 RET
+     55	006C			     CLRSCR ENDP
+     56				     ; Вывод одного символа на экран
+     57	006C			     PUTCH PROC
+Turbo Assembler	 Version 3.1	    03/16/17 23:25:21	    Page 2
+lab.asm
+
+
+
+     58	006C  B4 02			 MOV AH	, 02H
+     59	006E  CD 21			 INT 021H
+     60	0070  C3			 RET
+     61	0071			     PUTCH ENDP
+     62				     ; Вывод строки
+     63	0071			     PUTSTR PROC
+     64	0071  B4 09			 MOV AH	, 09H
+     65	0073  CD 21			 INT 021H
+     66	0075  C3			 RETN
+     67	0076			     PUTSTR ENDP
+     68				     ; Ввод символа с клавиатуры в AL
+     69	0076			     GETCH PROC
+     70	0076  B4 08			 MOV AH	, 08H
+     71	0078  CD 21			 INT 021H
+     72	007A  C3			 RET
+     73	007B			     GETCH ENDP
+     74	007B			     MYCODE ENDS
+     75				     END SYMBOLLOOP
+Turbo Assembler	 Version 3.1	    03/16/17 23:25:21	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "03/16/17"
+??FILENAME		Text   "lab	"
+??TIME			Text   "23:25:21"
+??VERSION		Number 030A
+@CPU			Text   0101H
+@CURSEG			Text   MYCODE			   #2
+@FILENAME		Text   LAB
+@WORDSIZE		Text   2			   #2
+CLRF			Near   MYCODE:0057		   21  29  #41	50
+CLRSCR			Near   MYCODE:0062		   17  #49
+GETCH			Near   MYCODE:0076		   34  #69
+LABTITLE		Byte   MYCODE:0000		   #4  19
+PUTCH			Near   MYCODE:006C		   24  28  43  45  #57
+PUTSTR			Near   MYCODE:0071		   20  #63
+START			Near   MYCODE:002F		   #12
+STUDENTNAME		Byte   MYCODE:0017		   #8
+SYMBOLLOOP		Near   MYCODE:0042		   #25	32  75
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+MYCODE			16  007B Para	none	CODE	   #2  3
+
