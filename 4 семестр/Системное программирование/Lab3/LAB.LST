@@ -1,4 +1,4 @@
-Turbo Assembler	 Version 3.1	    03/15/17 20:17:53	    Page 1
+Turbo Assembler	 Version 3.1	    03/26/17 17:42:54	    Page 1
 lab.asm
 
 
@@ -60,7 +60,7 @@ lab.asm
      55	0073			     CLRSCR PROC
      56	0073  E8 FFF2			 CALL CLRF
      57	0076  B4 00			 MOV  AH , 0H
-Turbo Assembler	 Version 3.1	    03/15/17 20:17:53	    Page 2
+Turbo Assembler	 Version 3.1	    03/26/17 17:42:54	    Page 2
 lab.asm
 
 
@@ -89,7 +89,7 @@ lab.asm
      79	008C			     GETCH ENDP
      80	008C			     MYCODE ENDS
      81				     END MAIN
-Turbo Assembler	 Version 3.1	    03/15/17 20:17:53	    Page 3
+Turbo Assembler	 Version 3.1	    03/26/17 17:42:54	    Page 3
 Symbol Table
 
 
@@ -97,9 +97,9 @@ Symbol Table
 
 Symbol Name		Type   Value			   Cref	(defined at #)
 
-??DATE			Text   "03/15/17"
+??DATE			Text   "03/26/17"
 ??FILENAME		Text   "lab	"
-??TIME			Text   "20:17:53"
+??TIME			Text   "17:42:54"
 ??VERSION		Number 030A
 @CPU			Text   0101H
 @CURSEG			Text   MYCODE			   #2
