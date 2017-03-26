@@ -1,4 +1,4 @@
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 1
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 1
 lab.asm
 
 
@@ -33,21 +33,21 @@ lab.asm
      28	003F  B2 B3			  mov dl , '³'
      29	0041  E8 008D			  call PUTCH
      30	0044  2E: 8A 16	0017r		  mov dl, CURNTSMBL
-     31	0049  2E: FE 06	0017r		  inc CURNTSMBL
-     32	004E  E8 0080			  call PUTCH
-     33	0051  B2 B3			  mov dl, '³'
-     34	0053  E8 007B			  call PUTCH
-     35	0056  E8 0042			  call HEX
+     31	0049  E8 0085			  call PUTCH
+     32	004C  B2 B3			  mov dl, '³'
+     33	004E  E8 0080			  call PUTCH
+     34	0051  E8 0047			  call HEX
+     35	0054  2E: FE 06	0017r		  inc CURNTSMBL
      36	0059  B2 68			  mov dl, 'h'
      37	005B  E8 0073			  call PUTCH
      38	005E  B2 B3			  mov dl , '³'
      39	0060  E8 006E			  call PUTCH
      40	0063  2E: 8A 16	0017r		  mov dl, CURNTSMBL
-     41	0068  2E: FE 06	0017r		  inc CURNTSMBL
-     42	006D  E8 0061			  call PUTCH
-     43	0070  B2 B3			  mov dl, '³'
-     44	0072  E8 005C			  call PUTCH
-     45	0075  E8 0023			  call HEX
+     41	0068  E8 0066			  call PUTCH
+     42	006B  B2 B3			  mov dl, '³'
+     43	006D  E8 0061			  call PUTCH
+     44	0070  E8 0028			  call HEX
+     45	0073  2E: FE 06	0017r		  inc CURNTSMBL
      46	0078  B2 68			  mov dl, 'h'
      47	007A  E8 0054			  call PUTCH
      48	007D  B2 B3			  mov dl , '³'
@@ -60,7 +60,7 @@ lab.asm
      55	008F			       CONTINUE:
      56	008F  E8 00D8			  call PRNTTAIL
      57				     ; Ž¦¨¤ ­¨¥	§ ¢¥àè¥­¨ï ¯à®£à ¬¬ë
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 2
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 2
 lab.asm
 
 
@@ -122,7 +122,7 @@ lab.asm
     112	00D8  CD 21			 int 21H
     113	00DA  C3			 ret
     114	00DB			     PUTSTR ENDP
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 3
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 3
 lab.asm
 
 
@@ -184,7 +184,7 @@ lab.asm
     169	0143  B2 C5			 mov dl	, 'Å'
     170	0145  E8 FF89			 call PUTCH
     171	0148  B2 C4			 mov dl	, 'Ä'
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 4
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 4
 lab.asm
 
 
@@ -238,7 +238,7 @@ lab.asm
     218
     219				     END START
 *Warning* lab.asm(213) Open segment: MYCODE
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 5
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 5
 Symbol Table
 
 
@@ -248,7 +248,7 @@ Symbol Name		Type   Value			   Cref	(defined at #)
 
 ??DATE			Text   "03/26/17"
 ??FILENAME		Text   "lab	"
-??TIME			Text   "15:50:28"
+??TIME			Text   "17:15:43"
 ??VERSION		Number 030A
 @CPU			Text   0101H
 @CURSEG			Text   MYCODE			   #2
@@ -257,16 +257,16 @@ Symbol Name		Type   Value			   Cref	(defined at #)
 CLRF			Near   MYCODE:00BC		   19  22  50  #85  95	151  183  215
 CLRSCR			Near   MYCODE:00C7		   17  #94
 CONTINUE		Near   MYCODE:008F		   52  #55
-CURNTSMBL		Byte   MYCODE:0017		   #8  30  31  40  41  68
+CURNTSMBL		Byte   MYCODE:0017		   #8  30  35  40  45  68
 GETCH			Near   MYCODE:00DB		   58  #117
-HEX			Near   MYCODE:009B		   35  45  #67
+HEX			Near   MYCODE:009B		   34  44  #67
 HEX_TABLE		Byte   MYCODE:0018		   #9  69
 LABTITLE		Byte   MYCODE:0000		   #4  20
 LOOPCH			Near   MYCODE:003F		   #27	54
 PRNTHEAD		Near   MYCODE:00E0		   25  #124
 PRNTSEPRTR		Near   MYCODE:0125		   53  #156
 PRNTTAIL		Near   MYCODE:016A		   56  #188
-PUTCH			Near   MYCODE:00D1		   29  32  34  37  39  42  44  47  49  87  89  #103  126  128  130  132	  +
+PUTCH			Near   MYCODE:00D1		   29  31  33  37  39  41  43  47  49  87  89  #103  126  128  130  132	  +
 							   134	136  138  140  142  144	 146  148  150	158  160  162  164  166	  +
 							   168	170  172  174  176  178	 180  182  190	192  194  196  198  200	  +
 							   202	204  206  208  210  212	 214
@@ -276,7 +276,7 @@ START			Near   MYCODE:0028		   #12	219
 Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
 
 MYCODE			16  01AF Para	none	CODE	   #2  3
-Turbo Assembler	 Version 3.1	    03/26/17 15:50:28	    Page 6
+Turbo Assembler	 Version 3.1	    03/26/17 17:15:43	    Page 6
 Error Summary
 
 

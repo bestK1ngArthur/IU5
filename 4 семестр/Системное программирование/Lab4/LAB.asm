@@ -23,21 +23,21 @@ START:
      mov dl , '³'
      call PUTCH
      mov dl, CURNTSMBL
-     inc CURNTSMBL
      call PUTCH
      mov dl, '³'
      call PUTCH
      call HEX
+     inc CURNTSMBL
      mov dl, 'h'
      call PUTCH
      mov dl , '³'
      call PUTCH
      mov dl, CURNTSMBL
-     inc CURNTSMBL
      call PUTCH
      mov dl, '³'
      call PUTCH
      call HEX
+     inc CURNTSMBL
      mov dl, 'h'
      call PUTCH
      mov dl , '³'
