@@ -10,11 +10,27 @@ let main argv =
 
     // Задание 1
     printTask(1, "Разработайте функцию, которая принимает три параметра обобщенных типов и возвращает их в виде кортежа. Модифицируйте функцию: не указывая явно типы параметров, задавая выражения в теле функции, сделайте так, чтобы параметры были типов int, float, string.")
-    // ..скоро будет
+    
+    let combined_function(a, b, c) = (a, b, c)
+    let combined = combined_function(1, 1.1, "s")
+    printfn "%A" combined
 
     // Задание 2
     printTask(2, "С использованием двухэтапного создания обобщенных функций реализуйте функции, которые осуществляют сложение:\n\t* трех аргументов типа int;\n\t* трех аргументов типа float;\n\t* трех аргументов типа string.")
-    // ..скоро будет
+    
+    let sum_generic(a, b, sum_func) = sum_func(a, b)
+
+    let sum_int(a, b) = sum_generic(a, b, fun(a, b)->a+b)
+    let result_int = sum_int(2, 3)
+    printfn "sum_int(2, 3) = %A" result_int
+
+    let sum_float(a, b) = sum_generic(a, b, fun(a, b)->a+b)
+    let result_float = sum_float(2.2, 3.3)
+    printfn "sum_float(2.2, 3.3) = %A" result_float
+
+    let sum_string(a, b) = sum_generic(a, b, fun(a, b)->a+b)
+    let result_string = sum_string("s1", "s2")
+    printfn "sum_int(\"s1\", \"s2\") = %A" result_string
 
     // Задание 3
     printTask(3, "С использованием list comprehension для списка [1..10] верните список кортежей. Каждый кортеж содержит элемент списка, его квадрат и куб.")
