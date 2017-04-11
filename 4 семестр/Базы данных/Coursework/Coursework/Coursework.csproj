@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccessDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AccessDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="mainDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>mainDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +64,12 @@
     </Compile>
     <Compile Include="StudentMenuForm.Designer.cs">
       <DependentUpon>StudentMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StudentProgressForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StudentProgressForm.Designer.cs">
+      <DependentUpon>StudentProgressForm.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
@@ -80,16 +86,19 @@
     <EmbeddedResource Include="StudentMenuForm.resx">
       <DependentUpon>StudentMenuForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="AccessDataSet.xsc">
-      <DependentUpon>AccessDataSet.xsd</DependentUpon>
+    <EmbeddedResource Include="StudentProgressForm.resx">
+      <DependentUpon>StudentProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="mainDataSet.xsc">
+      <DependentUpon>mainDataSet.xsd</DependentUpon>
     </None>
-    <None Include="AccessDataSet.xsd">
+    <None Include="mainDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>AccessDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>mainDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="AccessDataSet.xss">
-      <DependentUpon>AccessDataSet.xsd</DependentUpon>
+    <None Include="mainDataSet.xss">
+      <DependentUpon>mainDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

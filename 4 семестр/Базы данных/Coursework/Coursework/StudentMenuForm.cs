@@ -20,19 +20,30 @@ namespace Coursework
         public StudentMenuForm(String studentName)
         {
             InitializeComponent();
-            this.studentNameLabel.Text = studentName;
+            this.greetingLabel.Text = "Привет, " + studentName;
         }
 
         private void StudentMenuForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'accessDataSet.Student' table. You can move, or remove it, as needed.
-            this.studentTableAdapter1.Fill(this.accessDataSet.Student);
+            // Дарт Вейдер тут был сражен сэром Скайуокером
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             LoginForm.GetLoginForm().Show();
             this.Close();
+        }
+
+        private void StudentMenuForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LoginForm.GetLoginForm().Show();
+        }
+
+        private void progressButton_Click(object sender, EventArgs e)
+        {
+            StudentProgressForm progressForm = new StudentProgressForm(backForm: this);
+            this.Hide();
+            progressForm.Show();
         }
     }
 }

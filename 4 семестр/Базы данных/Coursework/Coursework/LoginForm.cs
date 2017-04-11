@@ -28,8 +28,8 @@ namespace Coursework
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'accessDataSet.User' table. You can move, or remove it, as needed.
-            this.userTableAdapter.Fill(this.accessDataSet.User);
+            // TODO: This line of code loads data into the 'mainDataSet.User' table. You can move, or remove it, as needed.
+            this.userTableAdapter.Fill(this.mainDataSet.User);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace Coursework
 
         private void loginUser(String name, String password)
         {
-            var query = from user in this.accessDataSet.User
+            var query = from user in this.mainDataSet.User
                         where user.Имя == name
                         select user;
 
