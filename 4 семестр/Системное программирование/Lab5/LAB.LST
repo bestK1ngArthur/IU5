@@ -1,0 +1,226 @@
+Turbo Assembler	 Version 3.1	    04/12/17 18:35:19	    Page 1
+lab.asm
+
+
+
+      1				     ; Лабораторная работа №5
+      2
+      3				     assume cs:CODE
+      4	0000			     CODE SEGMENT 'CODE'
+      5				     ; -------------------------------
+      6				     ; Строковые константы
+      7	0000  8B A0 A1 AE E0 A0	E2+  LABTITLE DB 'Лабораторная работа #5$'
+      8	      AE E0 AD A0 EF 20	E0+
+      9	      A0 A1 AE E2 A0 20	23+
+     10	      35 24
+     11	0017  8D AE A2 A0 EF 20	E1+  HELP1 DB 'Новая строка - enter$'
+     12	      E2 E0 AE AA A0 20	2D+
+     13	      20 65 6E 74 65 72	24
+     14	002C  82 EB E5 AE A4 20	A8+  HELP2 DB 'Выход из	программы - esc$'
+     15	      A7 20 AF E0 AE A3	E0+
+     16	      A0 AC AC EB 20 2D	20+
+     17	      65 73 63 24
+     18	0045  1B		     ESCSMBL DB	27
+     19	0046  0D		     ENTRSMBL DB 13
+     20				     ; -------------------------------
+     21				     ; Вспомогательные штуки
+     22	0047  30 31 32 33 34 35	36+  HEX_TABLE DB '0123456789ABCDEF'
+     23	      37 38 39 41 42 43	44+
+     24	      45 46
+     25	0057  41		     CURNTSMBL DB 'A'
+     26	0058  29*(24)		     STRING db 41 dup ('$')
+     27				     ; -------------------------------
+     28	0081			     START:
+     29				     ; Загрузка	сегментного регистра данных DS
+     30	0081  0E			  push cs
+     31	0082  1F			  pop  ds
+     32				     ; Очитка экрана
+     33	0083  E8 00BB			  call CLRSCR
+     34				     ; Вывод заголовка
+     35	0086  E8 00AD			  call CLRF
+     36	0089  BA 0000r			  mov dx , offset LABTITLE
+     37	008C  E8 00C1			  call PUTSTR
+     38	008F  E8 00A4			  call CLRF
+     39				     ; Вывод справки
+     40	0092  E8 00A1			  call CLRF
+     41	0095  BA 0017r			  mov dx , offset HELP1
+     42	0098  E8 00B5			  call PUTSTR
+     43	009B  E8 0098			  call CLRF
+     44	009E  BA 002Cr			  mov dx , offset HELP2
+     45	00A1  E8 00AC			  call PUTSTR
+     46	00A4  E8 008F			  call CLRF
+     47				     ; Главный цикл
+     48	00A7  E8 008C			  call CLRF
+     49	00AA				  MAIN:
+     50	00AA  BE 0000			    mov	si , 0
+     51	00AD  B9 0028			    mov	cx , 40
+     52	00B0				    INPUTSTR:
+     53					    ; Ввод символа
+     54	00B0  E8 00A2			       call GETCH
+     55	00B3  2E: A2 0057r		       mov CURNTSMBL , al
+     56					    ; Проверка на символ выхода	из программы
+     57	00B7  2E: 3A 06	0045r		       cmp al ,	ESCSMBL
+Turbo Assembler	 Version 3.1	    04/12/17 18:35:19	    Page 2
+lab.asm
+
+
+
+     58	00BC  74 4A			       je EXITP
+     59					    ; Проверка на конец	строки
+     60	00BE  2E: 3A 06	0046r		       cmp al ,	ENTRSMBL
+     61	00C3  74 12					     je	FINDEND
+     62					    ; Вывод символа
+     63	00C5  8A D0			       mov dl ,	al
+     64	00C7  E8 0081			       call PUTCH
+     65					    ; Заполнение строки
+     66	00CA  2E: 8A 3E	0057r		       mov bh ,	CURNTSMBL
+     67	00CF  2E: 88 BC	0058r				     mov STRING[si] , bh
+     68	00D4  46					     inc si
+     69					    ; Цикл INPUTSTR
+     70	00D5  E2 D9			       loop INPUTSTR
+     71	00D7				  FINDEND:
+     72	00D7  8B CE			    mov	cx , si
+     73	00D9  BE 0000			    mov	si , 0
+     74					    ; Вывод ' ='
+     75	00DC  B2 20			    mov	dl , ' '
+     76	00DE  E8 006A			    call PUTCH
+     77	00E1  B2 3D			    mov	dl , '='
+     78	00E3  E8 0065			    call PUTCH
+     79	00E6				    OUTPUTCH:
+     80					    ; Вывод пробела
+     81	00E6  B2 20			      mov dl , ' '
+     82	00E8  E8 0060			      call PUTCH
+     83					    ; Перевод символа и	вывод
+     84	00EB  2E: 8A BC	0058r		      mov bh , STRING[si]
+     85	00F0  2E: 88 3E	0057r		      mov CURNTSMBL , bh
+     86	00F5  E8 0016			      call HEX
+     87	00F8  46			      inc si
+     88					    ; Вывод символа 'h'
+     89	00F9  B2 68			      mov dl , 'h'
+     90	00FB  E8 004D			      call PUTCH
+     91					    ; Цикл OUTPUTCH
+     92	00FE  E2 E6			      loop OUTPUTCH
+     93	0100  E8 0033			    call CLRF
+     94	0103  4F			    dec	di
+     95	0104  8B CF				      mov cx , di
+     96					    ; Цикл MAIN
+     97	0106  E2 A2			    loop MAIN
+     98	0108				  EXITP:
+     99					  ; Вывод из программы
+    100	0108  B0 00			    mov	al , 0
+    101	010A  B4 4C			    mov	ah , 4CH
+    102	010C  CD 21			    int	21H
+    103				     ; Процедуры:
+    104				     ; -------------------------------
+    105				     ; Перевод символа в код
+    106	010E			     HEX PROC
+    107	010E  2E: 8A 16	0057r		 mov dl	, CURNTSMBL
+    108	0113  BB 0047r			 lea bx	, HEX_TABLE ; Load data	table.
+    109	0116  8A C2			 mov al	, dl
+    110	0118  D0 E8 D0 E8 D0 E8	D0+	 shr al	, 4 ; Leave high part only.
+    111	      E8
+    112	0120  D7			 xlat ;	Get hex	digit.
+    113	0121  8A D0			 mov dl	, al
+    114	0123  E8 0025			 call PUTCH
+Turbo Assembler	 Version 3.1	    04/12/17 18:35:19	    Page 3
+lab.asm
+
+
+
+    115	0126  2E: 8A 16	0057r		 mov dl	, CURNTSMBL
+    116	012B  8A C2			 mov al	, dl
+    117	012D  24 0F			 and al	, 00001111b ; leave low	part only.
+    118	012F  D7			 xlat ;	Get hex	digit.
+    119	0130  8A D0			 mov dl	, al
+    120	0132  E8 0016			 call PUTCH
+    121	0135  C3			 ret
+    122	0136			     HEX ENDP
+    123				     ; -------------------------------
+    124				     ; Перевод на новую	строку
+    125	0136			     CLRF PROC
+    126	0136  B2 0A			 mov dl	, 10
+    127	0138  E8 0010			 call PUTCH
+    128	013B  B2 0D			 mov dl	, 13
+    129	013D  E8 000B			 call PUTCH
+    130	0140  C3			 ret
+    131	0141			     CLRF ENDP
+    132				     ; -------------------------------
+    133				     ; Очистка экрана
+    134	0141			     CLRSCR PROC
+    135	0141  E8 FFF2			 call CLRF
+    136	0144  B4 00			 mov  ah , 0H
+    137	0146  B0 03			 mov  al , 3H
+    138	0148  CD 10			 int  10H
+    139	014A  C3			 ret
+    140	014B			     CLRSCR ENDP
+    141				     ; -------------------------------
+    142				     ; Вывод одного символа на экран
+    143	014B			     PUTCH PROC
+    144	014B  B4 02			 mov ah	, 02H
+    145	014D  CD 21			 int 21H
+    146	014F  C3			 ret
+    147	0150			     PUTCH ENDP
+    148				     ; -------------------------------
+    149				     ; Вывод строки
+    150	0150			     PUTSTR PROC
+    151	0150  B4 09			 mov ah	, 09H
+    152	0152  CD 21			 int 21H
+    153	0154  C3			 ret
+    154	0155			     PUTSTR ENDP
+    155				     ; -------------------------------
+    156				     ; Ввод символа с клавиатуры
+    157	0155			     GETCH PROC
+    158	0155  B4 08			 mov ah	, 08H
+    159	0157  CD 21			 int 21H
+    160	0159  C3			 ret
+    161	015A			     GETCH ENDP
+    162
+    163				     END START
+*Warning* lab.asm(152) Open segment: CODE
+Turbo Assembler	 Version 3.1	    04/12/17 18:35:19	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name		Type   Value			   Cref	(defined at #)
+
+??DATE			Text   "04/12/17"
+??FILENAME		Text   "lab	"
+??TIME			Text   "18:35:19"
+??VERSION		Number 030A
+@CPU			Text   0101H
+@CURSEG			Text   CODE			   #4
+@FILENAME		Text   LAB
+@WORDSIZE		Text   2			   #4
+CLRF			Near   CODE:0136		   35  38  40  43  46  48  93  #125  135
+CLRSCR			Near   CODE:0141		   33  #134
+CURNTSMBL		Byte   CODE:0057		   #25	55  66	85  107	 115
+ENTRSMBL		Byte   CODE:0046		   #19	60
+ESCSMBL			Byte   CODE:0045		   #18	57
+EXITP			Near   CODE:0108		   58  #98
+FINDEND			Near   CODE:00D7		   61  #71
+GETCH			Near   CODE:0155		   54  #157
+HELP1			Byte   CODE:0017		   #11	41
+HELP2			Byte   CODE:002C		   #14	44
+HEX			Near   CODE:010E		   86  #106
+HEX_TABLE		Byte   CODE:0047		   #22	108
+INPUTSTR		Near   CODE:00B0		   #52	70
+LABTITLE		Byte   CODE:0000		   #7  36
+MAIN			Near   CODE:00AA		   #49	97
+OUTPUTCH		Near   CODE:00E6		   #79	92
+PUTCH			Near   CODE:014B		   64  76  78  82  90  114  120	 127  129  #143
+PUTSTR			Near   CODE:0150		   37  42  45  #150
+START			Near   CODE:0081		   #28	163
+STRING			Byte   CODE:0058		   #26	67  84
+
+Groups & Segments	Bit Size Align	Combine	Class	   Cref	(defined at #)
+
+CODE			16  015A Para	none	CODE	   3  #4
+Turbo Assembler	 Version 3.1	    04/12/17 18:35:19	    Page 5
+Error Summary
+
+
+
+*Warning* lab.asm(152) Open segment: CODE
+
