@@ -5,11 +5,11 @@ CODE SEGMENT 'CODE'
 ; --------------------------------------
 LABTITLE DB 'Лабораторная работа #7$'
 HELP1 DB 'Новая строка - enter$'
-HELP2 DB 'Выход из программы - esc$'
+HELP2 DB 'Выход из программы - *$'
 ENTRMSGE DB 'Введите число: $'
 HEX_TABLE DB '0123456789ABCDEF$'
 CURNTSMBL DB 'A'
-EXITSMBL DB 27 ; esc
+EXITSMBL DB '*'
 PRGRMFLAG DB	0
 k	DW 10000,1000,100,10,1
 ; --------------------------------------
