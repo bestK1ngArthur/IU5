@@ -33,9 +33,9 @@
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.mainDataSet = new Coursework.mainDataSet();
+            this.loginButton = new System.Windows.Forms.Button();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userTableAdapter = new Coursework.mainDataSetTableAdapters.UserTableAdapter();
-            this.loginButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -47,7 +47,8 @@
             this.nameBox.Name = "nameBox";
             this.nameBox.Size = new System.Drawing.Size(350, 40);
             this.nameBox.TabIndex = 0;
-            this.nameBox.Text = "Артём Белков";
+            this.nameBox.Text = "Студент";
+            this.nameBox.TextChanged += new System.EventHandler(this.nameBox_TextChanged);
             // 
             // passwordBox
             // 
@@ -75,15 +76,6 @@
             this.mainDataSet.DataSetName = "mainDataSet";
             this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataMember = "User";
-            this.userBindingSource.DataSource = this.mainDataSet;
-            // 
-            // userTableAdapter
-            // 
-            this.userTableAdapter.ClearBeforeFill = true;
-            // 
             // loginButton
             // 
             this.loginButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -94,6 +86,15 @@
             this.loginButton.Text = "Войти";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataMember = "User";
+            this.userBindingSource.DataSource = this.mainDataSet;
+            // 
+            // userTableAdapter
+            // 
+            this.userTableAdapter.ClearBeforeFill = true;
             // 
             // LoginForm
             // 
@@ -121,9 +122,9 @@
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Label label1;
         private mainDataSet mainDataSet;
+        private System.Windows.Forms.Button loginButton;
         private System.Windows.Forms.BindingSource userBindingSource;
         private mainDataSetTableAdapters.UserTableAdapter userTableAdapter;
-        private System.Windows.Forms.Button loginButton;
     }
 }
 

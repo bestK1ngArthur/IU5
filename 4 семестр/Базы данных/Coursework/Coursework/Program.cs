@@ -16,7 +16,8 @@ namespace Coursework
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(LoginForm.GetLoginForm());
+            StudentProgressForm startForm = new StudentProgressForm();
+            Application.Run(startForm);
         }
     }
 }

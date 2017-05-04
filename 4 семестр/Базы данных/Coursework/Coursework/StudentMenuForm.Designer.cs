@@ -28,12 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.exitButton = new System.Windows.Forms.Button();
             this.greetingLabel = new System.Windows.Forms.Label();
             this.progressButton = new System.Windows.Forms.Button();
             this.attendanceButton = new System.Windows.Forms.Button();
             this.groupButton = new System.Windows.Forms.Button();
             this.teachersButton = new System.Windows.Forms.Button();
+            this.mainDataSet = new Coursework.mainDataSet();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.studentTableAdapter = new Coursework.mainDataSetTableAdapters.StudentTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // exitButton
@@ -100,6 +106,20 @@
             this.teachersButton.Text = "Преподаватели";
             this.teachersButton.UseVisualStyleBackColor = true;
             // 
+            // mainDataSet
+            // 
+            this.mainDataSet.DataSetName = "mainDataSet";
+            this.mainDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataMember = "Student";
+            this.studentBindingSource.DataSource = this.mainDataSet;
+            // 
+            // studentTableAdapter
+            // 
+            this.studentTableAdapter.ClearBeforeFill = true;
+            // 
             // StudentMenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -116,6 +136,8 @@
             this.Text = "Меню";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StudentMenuForm_FormClosed);
             this.Load += new System.EventHandler(this.StudentMenuForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.mainDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,5 +150,8 @@
         private System.Windows.Forms.Button groupButton;
         private System.Windows.Forms.Button teachersButton;
         private System.Windows.Forms.Label greetingLabel;
+        private mainDataSet mainDataSet;
+        private System.Windows.Forms.BindingSource studentBindingSource;
+        private mainDataSetTableAdapters.StudentTableAdapter studentTableAdapter;
     }
 }

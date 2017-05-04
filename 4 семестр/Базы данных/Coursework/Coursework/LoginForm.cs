@@ -29,7 +29,7 @@ namespace Coursework
         private void LoginForm_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'mainDataSet.User' table. You can move, or remove it, as needed.
-            this.userTableAdapter.Fill(this.mainDataSet.User);
+            //this.userTableAdapter.Fill(this.mainDataSet.User);
         }
 
         private void loginButton_Click(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace Coursework
                 {
                     if (u.Тип == "студент")
                     {
-                        StudentMenuForm menuForm = new StudentMenuForm(u.Имя);
+                        StudentMenuForm menuForm = new StudentMenuForm(Int32.Parse(u.ПользовательID));
                         menuForm.Show();
                     }
                     else if (u.Тип == "преподаватель")
@@ -59,6 +59,11 @@ namespace Coursework
                     this.Hide();
                 }
             }
+        }
+
+        private void nameBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -59,6 +59,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PrototypeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PrototypeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="StudentMenuForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +114,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="PrototypeDataSet.xsc">
+      <DependentUpon>PrototypeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PrototypeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PrototypeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PrototypeDataSet.xss">
+      <DependentUpon>PrototypeDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
