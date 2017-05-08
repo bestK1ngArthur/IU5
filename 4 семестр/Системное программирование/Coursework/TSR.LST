@@ -1,0 +1,1361 @@
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 1
+tsr.asm
+
+
+
+      1				     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+      2				     ; tsr.asm
+      3				     ;
+      4				     ; Сборка:
+      5				     ;	tasm.exe /l tsr.asm
+      6				     ;	tlink /t /x tsr.obj
+      7				     ;
+      8				     ;	МГТУ им. Н.Э. Баумана, ИУ5-43, 2017 г.
+      9				     ;	Белков А.Д.
+     10				     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+     11
+     12	0000			     code segment    'code'
+     13					     assume  CS:code, DS:code
+     14					     org     100h
+     15	0100				     _start:
+     16
+     17	0100  E9 0740			     jmp _initTSR ; на начало программы
+     18
+     19					     ; данные
+     20	0103  A9 E6 E3 AA A5 AD	A3+	     ignoredChars				     DB					    +
+     21	      E8 E9 A7 E5 EA E4	EB+  'йцукенгшщзхъфывапролджёячсмитьбюЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЁЯЧСМИТЬБЮ'	; список игнорируемых	    +
+     22	      A2 A0 AF E0 AE AB	A4+  символов
+     23	      A6 F1 EF E7 E1 AC	A8+
+     24	      E2 EC A1 EE 89 96	93+
+     25	      8A 85 8D 83 98 99	87+
+     26	      95 9A 94 9B 82 80	8F+
+     27	      90 8E 8B 84 86 F0	9F+
+     28	      97 91 8C 88 92 9C	81+
+     29	      9E
+     30	0143  71 77 65 72 74 79	75+	     replaceWith	   DB  'qwertyuiop[]asdfghjkl;\zxcvbnm,.QWERTYUIOP		    +
+     31	      69 6F 70 5B 5D 61	73+  []ASDFGHJKL;\ZXCVBNM,.'
+     32	      64 66 67 68 6A 6B	6C+
+     33	      3B 5C 7A 78 63 76	62+
+     34	      6E 6D 2C 2E 51 57	45+
+     35	      52 54 59 55 49 4F	50+
+     36	      5B 5D 41 53 44 46	47+
+     37	      48 4A 4B 4C 3B 5C	5A+
+     38	      58 43 56 42 4E 4D	2C+
+     39	      2E
+     40	      =0080			     ignoredLength			     equ     $-ignoredChars ; длина строки	    +
+     41				     ignoredChars
+     42	0183  00			     ignoreEnabled			     DB	     0	     ; флаг функции игнорирования   +
+     43				     ввода
+     44	0184  54 3A 50 42 52		     translateFrom			     DB	     'T:PBR' ; символы для замены (ЕЖЗИК на +
+     45				     англ. раскладке)
+     46	0189  85 86 87 88 8A		     translateTo				     DB	     'ЕЖЗИК' ; символы на которые   +
+     47				     будет идти	замена
+     48	      =0005			     translateLength			     equ     $-translateTo   ; длина строки	    +
+     49				     trasnlateFrom
+     50	018E  00			     translateEnabled			     DB	     0	     ; флаг функции перевода
+     51
+     52	018F  00			     signaturePrintingEnabled		     DB	     0	     ; флаг функции вывода	    +
+     53				     информации	об авторе
+     54	0190  00			     cursiveEnabled			     DB	     0	     ; флаг перевода символа в курсив
+     55
+     56	0191  00			     cursiveSymbol			     DB	00000000b    ; символ, составленный из	    +
+     57				     единичек (его курсивный вариант)
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 2
+tsr.asm
+
+
+
+     58	0192  00														    +
+     59				     DB	00000000b
+     60	0193  00														    +
+     61				     DB	00000000b
+     62	0194  1F														    +
+     63				     DB	00011111b
+     64	0195  30														    +
+     65				     DB	00110000b
+     66	0196  20														    +
+     67				     DB	00100000b
+     68	0197  60														    +
+     69				     DB	01100000b
+     70	0198  60														    +
+     71				     DB	01100000b
+     72	0199  7C														    +
+     73				     DB	01111100b
+     74	019A  C6														    +
+     75				     DB	11000110b
+     76	019B  C6														    +
+     77				     DB	11000110b
+     78	019C  C6														    +
+     79				     DB	11000110b
+     80	019D  FC														    +
+     81				     DB	11111100b
+     82	019E  00														    +
+     83				     DB	00000000b
+     84	019F  00														    +
+     85				     DB	00000000b
+     86	01A0  00														    +
+     87				     DB	00000000b
+     88
+     89	01A1  81			     charToCursiveIndex		     DB	'Б' ; символ для замены
+     90	01A2  10*(FF)			     savedSymbol				     DB	16 dup(0FFh) ; переменная для	    +
+     91				     хранения старого символа
+     92
+     93	      =00FF			     true								     equ     0FFh ; +
+     94				     константа истинности
+     95	01B2  ????			     old_int9hOffset				     DW	     ?	     ; адрес старого	    +
+     96				     обработчика int 9h
+     97	01B4  ????			     old_int9hSegment				     DW	     ?	     ; сегмент старого	    +
+     98				     обработчика int 9h
+     99	01B6  ????			     old_int1ChOffset				     DW	     ?	     ; адрес старого	    +
+    100				     обработчика int 1Ch
+    101	01B8  ????			     old_int1ChSegment			     DW	     ?	     ; сегмент старого обработчика  +
+    102				     int 1Ch
+    103	01BA  ????			     old_int2FhOffset				     DW	     ?	     ; адрес старого	    +
+    104				     обработчика int 2Fh
+    105	01BC  ????			     old_int2FhSegment			     DW	     ?	     ; сегмент старого обработчика  +
+    106				     int 2Fh
+    107
+    108	01BE  00			     unloadTSR						     DB	     0 ; 1 - выгрузить	    +
+    109				     резидент
+    110	01BF  00			     notLoadTSR					     DB	     0	     ; 1 - не загружать
+    111	01C0  0000			     counter					     DW	     0
+    112	      =0005			     printDelay					     equ     5 ; задержка перед	выводом	    +
+    113				     "подписи" в секундах
+    114	01C2  0000			     printPos						     DW	     0	     ; положение    +
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 3
+tsr.asm
+
+
+
+    115				     подписи на	экране.	0 - верх, 1 - центр, 2 - низ
+    116
+    117					     ;@	заменить на собственные	данные.	формирование таблицы идет по строке большей длины   +
+    118				     (1я строка).
+    119	01C4  B3 81 A5 AB AA AE	A2+	     signatureLine1			     DB	     179, 'Белков Артем			    +
+    120	      20 80 E0 E2 A5 AC	20+  ',	179
+    121	      20 20 20 20 20 20	20+
+    122	      20 20 20 20 20 20	20+
+    123	      20 20 20 20 20 20	20+
+    124	      20 20 20 20 20 20	20+
+    125	      20 20 20 20 20 20	20+
+    126	      20 20 B3
+    127	      =0034			     Line1_length				     equ     $-signatureLine1
+    128	01F8  B3 88 93 35 2D 34	33+	     signatureLine2			     DB	     179, 'ИУ5-43			    +
+    129	      20 20 20 20 20 20	20+  ',	179
+    130	      20 20 20 20 20 20	20+
+    131	      20 20 20 20 20 20	20+
+    132	      20 20 20 20 20 20	20+
+    133	      20 20 20 20 20 20	20+
+    134	      20 20 20 20 20 20	20+
+    135	      20 20 B3
+    136	      =0034			     Line2_length				     equ     $-signatureLine2
+    137	022C  B3 82 A0 E0 A8 A0	AD+	     signatureLine3			     DB	     179, 'Вариант #3			    +
+    138	      E2 20 23 33 20 20	20+  ',	179
+    139	      20 20 20 20 20 20	20+
+    140	      20 20 20 20 20 20	20+
+    141	      20 20 20 20 20 20	20+
+    142	      20 20 20 20 20 20	20+
+    143	      20 20 20 20 20 20	20+
+    144	      20 20 B3
+    145	      =0034			     Line3_length				     equ     $-signatureLine3
+    146	0260  3E 74 73 72 2E 63	6F+	     helpMsg DB	'>tsr.com [/?] [Ctrl+U]', 10, 13
+    147	      6D 20 5B 2F 3F 5D	20+
+    148	      5B 43 74 72 6C 2B	55+
+    149	      5D 0A 0D
+    150	0278  20 5B 2F 3F 5D 20	2D+					     DB	' [/?] - вывод данной справки',	10, 13
+    151	      20 A2 EB A2 AE A4	20+
+    152	      A4 A0 AD AD AE A9	20+
+    153	      E1 AF E0 A0 A2 AA	A8+
+    154	      0A 0D
+    155	0296  20 5B 43 74 72 6C	2B+					     DB	' [Ctrl+U] - выгрузка резидента	из памяти', 10,	13
+    156	      55 5D 20 2D 20 A2	EB+
+    157	      A3 E0 E3 A7 AA A0	20+
+    158	      E0 A5 A7 A8 A4 A5	AD+
+    159	      E2 A0 20 A8 A7 20	AF+
+    160	      A0 AC EF E2 A8 0A	0D
+    161	02C0  20 20 46 33 20 20	2D+					     DB	'  F3  - вывод ФИО и группы по таймеру в верх	    +
+    162	      20 A2 EB A2 AE A4	20+  экрана', 10, 13
+    163	      94 88 8E 20 A8 20	A3+
+    164	      E0 E3 AF AF EB 20	AF+
+    165	      AE 20 E2 A0 A9 AC	A5+
+    166	      E0 E3 20 A2 20 A2	A5+
+    167	      E0 E5 20 ED AA E0	A0+
+    168	      AD A0 0A 0D
+    169	02F5  20 20 46 34 20 20	2D+					     DB	'  F4  - включение и отключения	курсивного вывода   +
+    170	      20 A2 AA AB EE E7	A5+  русского символа Б', 10, 13
+    171	      AD A8 A5 20 A8 20	AE+
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 4
+tsr.asm
+
+
+
+    172	      E2 AA AB EE E7 A5	AD+
+    173	      A8 EF 20 AA E3 E0	E1+
+    174	      A8 A2 AD AE A3 AE	20+
+    175	      A2 EB A2 AE A4 A0	20+
+    176	      E0 E3 E1 E1 AA AE	A3+
+    177	      AE 20 E1 A8 AC A2	AE+
+    178	      AB A0 20 81 0A 0D
+    179	033A  20 20 46 35 20 20	2D+					     DB	'  F5  - включение и отключение	частичной	    +
+    180	      20 A2 AA AB EE E7	A5+  русификации клавиатуры(TP:BR -> ЕЗЖИК)', 10, 13
+    181	      AD A8 A5 20 A8 20	AE+
+    182	      E2 AA AB EE E7 A5	AD+
+    183	      A8 A5 20 E7 A0 E1	E2+
+    184	      A8 E7 AD AE A9 20	E0+
+    185	      E3 E1 A8 E4 A8 AA	A0+
+    186	      E6 A8 A8 20 AA AB	A0+
+    187	      A2 A8 A0 E2 E3 E0	EB+
+    188	      28 54 50 3A 42 52	20+
+    189	      2D 3E 20 85 87 86	88+
+    190	      8A 29 0A 0D
+    191	038B  20 20 46 36 20 20	2D+					     DB	'  F6  - включение и отключение	режима замены	    +
+    192	      20 A2 AA AB EE E7	A5+  русских букв на латинские', 10, 13
+    193	      AD A8 A5 20 A8 20	AE+
+    194	      E2 AA AB EE E7 A5	AD+
+    195	      A8 A5 20 E0 A5 A6	A8+
+    196	      AC A0 20 A7 A0 AC	A5+
+    197	      AD EB 20 E0 E3 E1	E1+
+    198	      AA A8 E5 20 A1 E3	AA+
+    199	      A2 20 AD A0 20 AB	A0+
+    200	      E2 A8 AD E1 AA A8	A5+
+    201	      0A 0D
+    202
+    203	      =0173			     helpMsg_length			     equ  $-helpMsg
+    204	03D3  8E E8 A8 A1 AA A0	20+	     errorParamMsg				     DB	     'Ошибка параметров	коммандной  +
+    205	      AF A0 E0 A0 AC A5	E2+  строки', 10, 13
+    206	      E0 AE A2 20 AA AE	AC+
+    207	      AC A0 AD A4 AD AE	A9+
+    208	      20 E1 E2 E0 AE AA	A8+
+    209	      0A 0D
+    210	      =0025			     errorParamMsg_length    equ     $-errorParamMsg
+    211
+    212	03F8  DA 32*(C4) BF		     tableTop						     DB	     218, Line1_length-2 dup+
+    213				     (196), 191
+    214	      =0034			     tableTop_length		     equ     $-tableTop
+    215	042C  C0 32*(C4) D9		     tableBottom				     DB	     192, Line1_length-2 dup (196), +
+    216				     217
+    217	      =0034			     tableBottom_length	     equ  $-tableBottom
+    218
+    219					     ; сообщения
+    220	0460  90 A5 A7 A8 A4 A5	AD+	     installedMsg				     DB	 'Резидент загружен!$'
+    221	      E2 20 A7 A0 A3 E0	E3+
+    222	      A6 A5 AD 21 24
+    223	0473  90 A5 A7 A8 A4 A5	AD+	     alreadyInstalledMsg	     DB	 'Резидент уже загружен$'
+    224	      E2 20 E3 A6 A5 20	A7+
+    225	      A0 A3 E0 E3 A6 A5	AD+
+    226	      24
+    227	0489  8D A5 A4 AE E1 E2	A0+	     noMemMsg						       DB  'Недостаточно памяти$'
+    228	      E2 AE E7 AD AE 20	AF+
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 5
+tsr.asm
+
+
+
+    229	      A0 AC EF E2 A8 24
+    230	049D  8D A5 20 E3 A4 A0	AB+	     notInstalledMsg			     DB	 'Не удалось загрузить резидент$'
+    231	      AE E1 EC 20 A7 A0	A3+
+    232	      E0 E3 A7 A8 E2 EC	20+
+    233	      E0 A5 A7 A8 A4 A5	AD+
+    234	      E2 24
+    235
+    236	04BB  90 A5 A7 A8 A4 A5	AD+	     removedMsg					     DB	 'Резидент выгружен'
+    237	      E2 20 A2 EB A3 E0	E3+
+    238	      A6 A5 AD
+    239	      =0011			     removedMsg_length		     equ     $-removedMsg
+    240
+    241	04CC  8D A5 20 E3 A4 A0	AB+	     noRemoveMsg				     DB	 'Не удалось выгрузить резидент'
+    242	      AE E1 EC 20 A2 EB	A3+
+    243	      E0 E3 A7 A8 E2 EC	20+
+    244	      E0 A5 A7 A8 A4 A5	AD+
+    245	      E2
+    246	      =001D			     noRemoveMsg_length	     equ     $-noRemoveMsg
+    247
+    248	04E9  46 33			     f1_txt					     DB	     'F3'
+    249	04EB  46 34			     f2_txt					     DB	     'F4'
+    250	04ED  46 35			     f3_txt					     DB	     'F5'
+    251	04EF  46 36			     f4_txt					     DB	     'F6'
+    252	      =0002			     fx_length					     equ     $-f4_txt
+    253
+    254	04F1				     changeFx proc
+    255	04F1  50				     push AX
+    256	04F2  53				     push BX
+    257	04F3  51				     push CX
+    258	04F4  52				     push DX
+    259	04F5  55				     push BP
+    260	04F6  06				     push ES
+    261	04F7  33 DB				     xor BX, BX
+    262
+    263	04F9  B4 03				     mov AH, 03h
+    264	04FB  CD 10				     int 10h
+    265	04FD  52				     push DX
+    266
+    267	04FE  0E				     push CS
+    268	04FF  07				     pop ES
+    269
+    270	0500				     _checkF1:
+    271	0500  BD 04E9r				     lea BP, f1_txt
+    272	0503  B9 0002				     mov CX, fx_length
+    273	0506  B7 00				     mov BH, 0
+    274	0508  B6 00				     mov DH, 0
+    275	050A  B2 4E				     mov DL, 78
+    276	050C  B8 1301				     mov AX, 1301h
+    277
+    278	050F  80 3E 018Fr FF			     cmp signaturePrintingEnabled, true
+    279	0514  74 07				     je	_greenF1
+    280
+    281	0516					     _redF1:
+    282	0516  B3 4F					     mov BL, 01001111b ; red
+    283	0518  CD 10					     int 10h
+    284	051A  EB 08 90					     jmp _checkF2
+    285
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 6
+tsr.asm
+
+
+
+    286	051D					     _greenF1:
+    287	051D  BD 04E9r					     lea BP, f1_txt
+    288	0520  B3 2F					     mov BL, 00101111b ; green
+    289	0522  CD 10					     int 10h
+    290
+    291	0524				     _checkF2:
+    292	0524  BD 04EBr				     lea BP, f2_txt
+    293	0527  B9 0002				     mov CX, fx_length
+    294	052A  B7 00				     mov BH, 0
+    295	052C  B6 01				     mov DH, 1
+    296	052E  B2 4E				     mov DL, 78
+    297	0530  B8 1301				     mov AX, 1301h
+    298
+    299	0533  80 3E 0190r FF			     cmp cursiveEnabled, true
+    300	0538  74 07				     je	_greenF2
+    301
+    302	053A					     _redF2:
+    303	053A  B3 4F					     mov BL, 01001111b ; red
+    304	053C  CD 10					     int 10h
+    305	053E  EB 05 90					     jmp _checkF3
+    306
+    307	0541					     _greenF2:
+    308	0541  B3 2F					     mov BL, 00101111b ; green
+    309	0543  CD 10					     int 10h
+    310
+    311	0545				     _checkF3:
+    312	0545  BD 04EDr				     lea BP, f3_txt
+    313	0548  B9 0002				     mov CX, fx_length
+    314	054B  B7 00				     mov BH, 0
+    315	054D  B6 02				     mov DH, 2
+    316	054F  B2 4E				     mov DL, 78
+    317	0551  B8 1301				     mov AX, 1301h
+    318
+    319	0554  80 3E 018Er FF			     cmp translateEnabled, true
+    320	0559  74 07				     je	_greenF3
+    321
+    322	055B					     _redF3:
+    323	055B  B3 4F					     mov BL, 01001111b ; red
+    324	055D  CD 10					     int 10h
+    325	055F  EB 05 90					     jmp _checkF4
+    326
+    327	0562					     _greenF3:
+    328	0562  B3 2F					     mov BL, 00101111b ; green
+    329	0564  CD 10					     int 10h
+    330
+    331	0566				     _checkF4:
+    332	0566  BD 04EFr				     lea BP, f4_txt
+    333	0569  B9 0002				     mov CX, fx_length
+    334	056C  B7 00				     mov BH, 0
+    335	056E  B6 03				     mov DH, 3
+    336	0570  B2 4E				     mov DL, 78
+    337	0572  B8 1301				     mov AX, 1301h
+    338
+    339	0575  80 3E 0183r FF			     cmp ignoreEnabled,	true
+    340	057A  74 07				     je	_greenF4
+    341
+    342	057C					     _redF4:
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 7
+tsr.asm
+
+
+
+    343	057C  B3 4F					     mov BL, 01001111b ; red
+    344	057E  CD 10					     int 10h
+    345	0580  EB 05 90					     jmp _outFx
+    346
+    347	0583					     _greenF4:
+    348	0583  B3 2F					     mov BL, 00101111b ; green
+    349	0585  CD 10					     int 10h
+    350
+    351	0587				     _outFx:
+    352	0587  5A				     pop DX
+    353	0588  B4 02				     mov AH, 02h
+    354	058A  CD 10				     int 10h
+    355
+    356	058C  07				     pop ES
+    357	058D  5D				     pop BP
+    358	058E  5A				     pop DX
+    359	058F  59				     pop CX
+    360	0590  5B				     pop BX
+    361	0591  58				     pop AX
+    362	0592  C3				     ret
+    363	0593				     changeFx endp
+    364
+    365					 ;новый	обработчик
+    366	0593				 new_int9h proc	far
+    367						     ; сохраняем значения всех,	изменяемых регистров в стэке
+    368	0593  56				     push SI
+    369	0594  50				     push AX
+    370	0595  53				     push BX
+    371	0596  51				     push CX
+    372	0597  52				     push DX
+    373	0598  06				     push ES
+    374	0599  1E				     push DS
+    375						     ; синхронизируем CS и DS
+    376	059A  0E				     push CS
+    377	059B  1F				     pop     DS
+    378
+    379	059C  B8 0040				     mov     AX, 40h ; 40h-сегмент,где хранятся	флаги сост-я клавиатуры, кольц.	    +
+    380				     буфер ввода
+    381	059F  8E C0				     mov     ES, AX
+    382	05A1  E4 60				     in	     AL, 60h ; записываем в AL скан-код	нажатой	клавиши
+    383
+    384						     ;@	проверка на Ctrl+U, только для ИУ5-41
+    385	05A3  3C 16				     cmp     AL, 22  ; была нажата клавиша U?
+    386	05A5  75 24				     jne     _test_Fx
+    387	05A7  26: 8A 26	0017			     mov     AH, ES:[17h]     ;	флаги клавиатуры
+    388	05AC  80 E4 0F				     and     AH, 00001111b
+    389	05AF  80 FC 04				     cmp     AH, 00000100b   ; был ли нажат ctrl?
+    390	05B2  75 17				     jne     _test_Fx
+    391						     ; выгрузка
+    392	05B4  B4 FF					     mov AH, 0FFh
+    393	05B6  B0 01					     mov AL, 01h
+    394	05B8  CD 2F					     int 2Fh
+    395							     ; завершаем обработку нажатия
+    396
+    397	05BA  E4 61					     in	     AL, 61h ;контроллер состояния клавиатуры
+    398	05BC  0C 80					     or	     AL, 10000000b   ;пометим, что клавишу нажали
+    399	05BE  E6 61					     out     61h, AL
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 8
+tsr.asm
+
+
+
+    400	05C0  24 7F					     and     AL, 01111111b   ;пометим, что клавишу отпустили
+    401	05C2  E6 61					     out     61h, AL
+    402	05C4  B0 20					     mov     AL, 20h
+    403	05C6  E6 20					     out     20h, AL ;отправим в контроллер прерываний признак конца	    +
+    404				     прерывания
+    405
+    406							     ; выходим
+    407	05C8  E9 00A1					     jmp _quit
+    408
+    409						     ;@	далее -	код для	всех вариантов
+    410
+    411						     ;проверка F1-F4
+    412	05CB					     _test_Fx:
+    413	05CB  2C 3A				     sub AL, 58	; в AL теперь номер функциональной клавиши
+    414	05CD					     _F1:
+    415	05CD  3C 03					     cmp AL, 3 ; F1
+    416	05CF  75 0A					     jne _F2
+    417	05D1  F6 16 018Fr				     not signaturePrintingEnabled
+    418	05D5  E8 FF19					     call changeFx
+    419	05D8  EB 2E 90					     jmp _translate_or_ignore
+    420	05DB					     _F2:
+    421	05DB  3C 04					     cmp AL, 4 ; F2
+    422	05DD  75 0D					     jne _F3
+    423	05DF  F6 16 0190r				     not cursiveEnabled
+    424	05E3  E8 FF0B					     call changeFx
+    425	05E6  E8 01F3					     call setCursive ; перевод символа в курсив	и обратно в зависимости	от  +
+    426				     флага cursiveEnabled
+    427	05E9  EB 1D 90					     jmp _translate_or_ignore
+    428	05EC					     _F3:
+    429	05EC  3C 05					     cmp AL, 5 ; F3
+    430	05EE  75 0A					     jne _F4
+    431	05F0  F6 16 018Er				     not translateEnabled
+    432	05F4  E8 FEFA					     call changeFx
+    433	05F7  EB 0F 90					     jmp _translate_or_ignore
+    434	05FA					     _F4:
+    435	05FA  3C 06					     cmp AL, 6 ; F4
+    436	05FC  75 0A					     jne _translate_or_ignore
+    437	05FE  F6 16 0183r				     not ignoreEnabled
+    438	0602  E8 FEEC					     call changeFx
+    439	0605  EB 01 90					     jmp _translate_or_ignore
+    440
+    441						     ;игнорирование и перевод
+    442	0608					     _translate_or_ignore:
+    443
+    444	0608  9C				     pushf
+    445	0609  2E: FF 1E	01B2r			     call dword	ptr CS:[old_int9hOffset] ; вызываем стандартный	обработчик прерывания
+    446	060E  B8 0040				     mov     AX, 40h	     ; 40h-сегмент,где хранятся	флаги сост-я клавы,кольц.   +
+    447				     буфер ввода
+    448	0611  8E C0				     mov     ES, AX
+    449	0613  26: 8B 1E	001C			     mov     BX, ES:[1Ch]    ; адрес хвоста
+    450	0618  4B				     dec     BX	     ; сместимся назад к последнему
+    451	0619  4B				     dec     BX	     ; введённому символу
+    452	061A  83 FB 1E				     cmp     BX, 1Eh ; не вышли	ли мы за пределы буфера?
+    453	061D  73 03				     jae     _go
+    454	061F  BB 003C				     mov     BX, 3Ch ; хвост вышел за пределы буфера, значит последний введённый    +
+    455				     символ
+    456									 ; находится в конце буфера
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 9
+tsr.asm
+
+
+
+    457
+    458	0622				     _go:
+    459	0622  26: 8B 17				     mov DX, ES:[BX] ; в DX 0 введённый	символ
+    460						     ;включен ли режим блокировки ввода?
+    461	0625  80 3E 0183r FF			     cmp ignoreEnabled,	true
+    462	062A  75 1E				     jne _check_translate
+    463
+    464						     ; да, включен
+    465	062C  BE 0000				     mov SI, 0
+    466	062F  B9 0080				     mov CX, ignoredLength ;кол-во игнорируемых	символов
+    467
+    468						     ; проверяем, присутствует ли текущий символ в списке игнорируемых
+    469	0632				     _check_ignored:
+    470	0632  3A 94 0103r			     cmp DL,ignoredChars[SI]
+    471	0636  74 06				     je	_block
+    472	0638  46				     inc SI
+    473	0639  E2 F7			     loop _check_ignored
+    474	063B  EB 0D 90				     jmp _check_translate
+    475
+    476					     ; блокируем
+    477	063E				     _block:
+    478						     ;mov ES:[1Ch], BX ;блокировка ввода символа
+    479						     ;@	если по	варианту нужно не блокировать ввод символа,
+    480						     ;@	а заменять одни	символы	другими,
+    481						     ;@	замените строку	выше строкой
+    482						     ;mov ES:[BX], AX
+    483						     ;@	на месте AX может быть '*' для замены всех символов множества ignoredChars  +
+    484				     на	звёздочки
+    485						     ;@	или, для перевода одних	символов в другие - завести массив
+    486						     ;@	replaceWith DB '...', где перечислить символы, на которые пойдёт замена
+    487						     ;@	и раскомментировать строки ниже:
+    488	063E  33 C0				       xor AX, AX
+    489	0640  8A 84 0143r			       mov AL, replaceWith[SI]
+    490	0644  26: 89 07				       mov ES:[BX], AX	     ; замена символа
+    491	0647  EB 23 90				     jmp _quit
+    492
+    493	064A				     _check_translate:
+    494						     ; включен ли режим	перевода?
+    495	064A  80 3E 018Er FF			     cmp translateEnabled, true
+    496	064F  75 1B				     jne _quit
+    497
+    498						     ; да, включен
+    499	0651  BE 0000				     mov SI, 0
+    500	0654  B9 0005				     mov CX, translateLength ; кол-во символов для перевода
+    501						     ; проверяем, присутствует ли текущий символ в списке для перевода
+    502	0657					     _check_translate_loop:
+    503	0657  3A 94 0184r				     cmp DL, translateFrom[SI]
+    504	065B  74 06					     je	_translate
+    505	065D  46					     inc SI
+    506	065E  E2 F7				     loop _check_translate_loop
+    507	0660  EB 0A 90				     jmp _quit
+    508
+    509						     ; переводим
+    510	0663					     _translate:
+    511	0663  33 C0					     xor AX, AX
+    512	0665  8A 84 0189r				     mov AL, translateTo[SI]
+    513	0669  26: 89 07					     mov ES:[BX], AX ; замена символа
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 10
+tsr.asm
+
+
+
+    514
+    515	066C				     _quit:
+    516						     ; восстанавливаем все регистры
+    517	066C  1F				     pop     DS
+    518	066D  07				     pop     ES
+    519	066E  5A				     pop DX
+    520	066F  59				     pop CX
+    521	0670  5B				     pop     BX
+    522	0671  58				     pop     AX
+    523	0672  5E				     pop SI
+    524	0673  CF				     iret
+    525	0674			     new_int9h endp
+    526
+    527				     ;=== Обработчик прерывания	int 1Ch	===;
+    528				     ;=== Вызывается каждые 55 мс ===;
+    529	0674			     new_int1Ch	proc far
+    530	0674  50			     push AX
+    531	0675  0E			     push CS
+    532	0676  1F			     pop DS
+    533
+    534	0677  9C			     pushf
+    535	0678  2E: FF 1E	01B6r		     call dword	ptr CS:[old_int1ChOffset]
+    536
+    537	067D  80 3E 018Fr FF		     cmp signaturePrintingEnabled, true	; если нажата управляющая клавиша (в данном случае  +
+    538				     F1)
+    539	0682  75 1C			     jne _notToPrint
+    540
+    541	0684  83 3E 01C0r 5B			     cmp counter, printDelay*1000/55 + 1 ; если	кол-во "тактов"	эквивалентно	    +
+    542				     %printDelay% секундам
+    543	0689  74 03				     je	_letsPrint
+    544
+    545	068B  EB 0E 90				     jmp _dontPrint
+    546
+    547	068E					     _letsPrint:
+    548	068E  F6 16 018Fr				     not signaturePrintingEnabled
+    549	0692  C7 06 01C0r 0000				     mov counter, 0
+    550	0698  E8 0094					     call printSignature
+    551
+    552	069B					     _dontPrint:
+    553	069B  83 06 01C0r 01				     add counter, 1
+    554
+    555	06A0				     _notToPrint:
+    556
+    557	06A0  58			     pop AX
+    558
+    559	06A1  CF			     iret
+    560	06A2			     new_int1Ch	endp
+    561
+    562				     ;=== Обработчик прерывания	int 2Fh	===;
+    563				     ;=== Служит для:
+    564				     ;===  1) проверки факта присутствия TSR в памяти (при AH=0FFh, AL=0)
+    565				     ;===     будет возвращён AH='i' в случае, если TSR	уже загружен
+    566				     ;===  2) выгрузки TSR из памяти (при AH=0FFh, AL=1)
+    567				     ;===
+    568	06A2			     new_int2Fh	proc
+    569	06A2  80 FC FF			     cmp     AH, 0FFh	     ;наша функция?
+    570	06A5  75 0B			     jne     _2Fh_std	     ;нет - на старый обработчик
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 11
+tsr.asm
+
+
+
+    571	06A7  3C 00			     cmp     AL, 0   ;подфункция проверки, загружен ли резидент	в память?
+    572	06A9  74 0C			     je	     _already_installed
+    573	06AB  3C 01			     cmp     AL, 1   ;подфункция выгрузки из памяти?
+    574	06AD  74 0B			     je	     _uninstall
+    575	06AF  EB 01 90			     jmp     _2Fh_std	     ;нет - на старый обработчик
+    576
+    577	06B2			     _2Fh_std:
+    578	06B2  2E: FF 2E	01BAr		     jmp     dword ptr CS:[old_int2FhOffset] ;вызов старого обработчика
+    579
+    580	06B7			     _already_installed:
+    581	06B7  B4 69				     mov     AH, 'i' ;вернём 'i', если резидент	загружен     в память
+    582	06B9  CF				     iret
+    583
+    584	06BA			     _uninstall:
+    585	06BA  1E			     push    DS
+    586	06BB  06			     push    ES
+    587	06BC  52			     push    DX
+    588	06BD  53			     push    BX
+    589
+    590	06BE  33 DB			     xor BX, BX
+    591
+    592					     ; CS = ES,	для доступа к переменным
+    593	06C0  0E			     push CS
+    594	06C1  07			     pop ES
+    595
+    596	06C2  B8 2509			     mov     AX, 2509h
+    597	06C5  26: 8B 16	01B2r		     mov DX, ES:old_int9hOffset		; возвращаем вектор прерывания
+    598	06CA  26: 8E 1E	01B4r		 mov DS, ES:old_int9hSegment	    ; на место
+    599	06CF  CD 21			     int     21h
+    600
+    601	06D1  B8 251C			     mov     AX, 251Ch
+    602	06D4  26: 8B 16	01B6r		     mov DX, ES:old_int1ChOffset	 ; возвращаем вектор прерывания
+    603	06D9  26: 8E 1E	01B8r		 mov DS, ES:old_int1ChSegment	     ; на место
+    604	06DE  CD 21			     int     21h
+    605
+    606	06E0  B8 252F			     mov     AX, 252Fh
+    607	06E3  26: 8B 16	01BAr		     mov DX, ES:old_int2FhOffset	 ; возвращаем вектор прерывания
+    608	06E8  26: 8E 1E	01BCr		 mov DS, ES:old_int2FhSegment	     ; на место
+    609	06ED  CD 21			     int     21h
+    610
+    611	06EF  2E: 8E 06	002C		     mov     ES, CS:2Ch	     ; загрузим	в ES адрес окружения
+    612	06F4  B4 49			     mov     AH, 49h	     ; выгрузим	из памяти окружение
+    613	06F6  CD 21			     int     21h
+    614	06F8  72 0B			     jc	_notRemove
+    615
+    616	06FA  0E			     push    CS
+    617	06FB  07			     pop     ES	     ;в	ES - адрес резидентной программы
+    618	06FC  B4 49			     mov     AH, 49h  ;выгрузим	из памяти резидент
+    619	06FE  CD 21			     int     21h
+    620	0700  72 03			     jc	_notRemove
+    621	0702  EB 15 90			     jmp _unloaded
+    622
+    623	0705			     _notRemove: ; не удалось выполнить	выгрузку
+    624					 ; вывод сообщения о неудачной выгрузке
+    625	0705  B4 03			     mov AH, 03h				     ; получаем	позицию	курсора
+    626	0707  CD 10			     int 10h
+    627	0709  BD 04CCr			     lea BP, noRemoveMsg
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 12
+tsr.asm
+
+
+
+    628	070C  B9 001D			     mov CX, noRemoveMsg_length
+    629	070F  B3 07			     mov BL, 0111b
+    630	0711  B8 1301			     mov AX, 1301h
+    631	0714  CD 10			     int 10h
+    632	0716  EB 12 90			     jmp _2Fh_exit
+    633
+    634	0719			     _unloaded:	; выгрузка прошла успешно
+    635					 ; вывод сообщения об удачной выгрузке
+    636	0719  B4 03			     mov AH, 03h				     ; получаем	позицию	курсора
+    637	071B  CD 10			     int 10h
+    638	071D  BD 04BBr			     lea BP, removedMsg
+    639	0720  B9 0011			     mov CX, removedMsg_length
+    640	0723  B3 07			     mov BL, 0111b
+    641	0725  B8 1301			     mov AX, 1301h
+    642	0728  CD 10			     int 10h
+    643
+    644	072A			     _2Fh_exit:
+    645	072A  5B			     pop BX
+    646	072B  5A			     pop     DX
+    647	072C  07			     pop     ES
+    648	072D  1F			     pop     DS
+    649	072E  CF			     iret
+    650	072F			     new_int2Fh	endp
+    651
+    652				     ;=== Процедура вывода подписи (ФИО, группа)
+    653				     ;=== Настраивается	значениями переменных в	начале исходника
+    654				     ;===
+    655	072F			     printSignature proc
+    656	072F  50			     push AX
+    657	0730  52			     push DX
+    658	0731  51			     push CX
+    659	0732  53			     push BX
+    660	0733  06			     push ES
+    661	0734  54			     push SP
+    662	0735  55			     push BP
+    663	0736  56			     push SI
+    664	0737  57			     push DI
+    665
+    666	0738  33 C0			     xor AX, AX
+    667	073A  33 DB			     xor BX, BX
+    668	073C  33 D2			     xor DX, DX
+    669
+    670	073E  B4 03			     mov AH, 03h					     ;чтение текущей позиции курсора
+    671	0740  CD 10			     int 10h
+    672	0742  52			     push DX						     ;помещаем информацию о	    +
+    673				     положении курсора в стек
+    674
+    675	0743  83 3E 01C2r 00		     cmp printPos, 0
+    676	0748  74 0E			     je	_printTop
+    677
+    678	074A  83 3E 01C2r 01		     cmp printPos, 1
+    679	074F  74 0E			     je	_printCenter
+    680
+    681	0751  83 3E 01C2r 02		     cmp printPos, 2
+    682	0756  74 0E			     je	_printBottom
+    683
+    684					     ;все числа	подобраны на глаз...
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 13
+tsr.asm
+
+
+
+    685	0758				     _printTop:
+    686	0758  B6 00				     mov DH, 0
+    687	075A  B2 0F				     mov DL, 15
+    688	075C  EB 0F 90				     jmp _actualPrint
+    689
+    690	075F				     _printCenter:
+    691	075F  B6 09				     mov DH, 9
+    692	0761  B2 0F				     mov DL, 15
+    693	0763  EB 08 90				     jmp _actualPrint
+    694
+    695	0766				     _printBottom:
+    696	0766  B6 13				     mov DH, 19
+    697	0768  B2 0F				     mov DL, 15
+    698	076A  EB 01 90				     jmp _actualPrint
+    699
+    700	076D				     _actualPrint:
+    701	076D  B4 0F				     mov AH, 0Fh				     ;чтение текущего видеорежима. в+
+    702				     BH	- текущая страница
+    703	076F  CD 10				     int 10h
+    704
+    705	0771  0E				     push CS
+    706	0772  07				     pop ES					     ;указываем	ES на CS
+    707
+    708						     ;вывод 'верхушки' таблицы
+    709	0773  52				     push DX
+    710	0774  BD 03F8r				     lea BP, tableTop				     ;помещаем в BP указатель на    +
+    711				     выводимую строку
+    712	0777  B9 0034				     mov CX, tableTop_length	     ;в	CX - длина строки
+    713	077A  B3 07				     mov BL, 0111b			     ;цвет выводимого текста ref:	    +
+    714				     http://en.wikipedia.org/wiki/BIOS_color_attributes
+    715	077C  B8 1301				     mov AX, 1301h				     ;AH=13h - номер ф-ии, AL=01h - +
+    716				     курсор перемещается при выводе каждого из символов	строки
+    717	077F  CD 10				     int 10h
+    718	0781  5A				     pop DX
+    719	0782  FE C6				     inc DH
+    720
+    721
+    722						     ;вывод первой линии
+    723	0784  52				     push DX
+    724	0785  BD 01C4r				     lea BP, signatureLine1
+    725	0788  B9 0034				     mov CX, Line1_length
+    726	078B  B3 07				     mov BL, 0111b
+    727	078D  B8 1301				     mov AX, 1301h
+    728	0790  CD 10				     int 10h
+    729	0792  5A				     pop DX
+    730	0793  FE C6				     inc DH
+    731
+    732						     ;вывод второй линии
+    733	0795  52				     push DX
+    734	0796  BD 01F8r				     lea BP, signatureLine2
+    735	0799  B9 0034				     mov CX, Line2_length
+    736	079C  B3 07				     mov BL, 0111b
+    737	079E  B8 1301				     mov AX, 1301h
+    738	07A1  CD 10				     int 10h
+    739	07A3  5A				     pop DX
+    740	07A4  FE C6				     inc DH
+    741
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 14
+tsr.asm
+
+
+
+    742						     ;вывод третьей линии
+    743	07A6  52				     push DX
+    744	07A7  BD 022Cr				     lea BP, signatureLine3
+    745	07AA  B9 0034				     mov CX, Line3_length
+    746	07AD  B3 07				     mov BL, 0111b
+    747	07AF  B8 1301				     mov AX, 1301h
+    748	07B2  CD 10				     int 10h
+    749	07B4  5A				     pop DX
+    750	07B5  FE C6				     inc DH
+    751
+    752						     ;вывод 'низа' таблицы
+    753	07B7  52				     push DX
+    754	07B8  BD 042Cr				     lea BP, tableBottom
+    755	07BB  B9 0034				     mov CX, tableBottom_length
+    756	07BE  B3 07				     mov BL, 0111b
+    757	07C0  B8 1301				     mov AX, 1301h
+    758	07C3  CD 10				     int 10h
+    759	07C5  5A				     pop DX
+    760	07C6  FE C6				     inc DH
+    761
+    762	07C8  33 DB				     xor BX, BX
+    763	07CA  5A				     pop DX					     ;восстанавливаем из стека	    +
+    764				     прежнее положение курсора
+    765	07CB  B4 02				     mov AH, 02h				     ;меняем положение курсора на   +
+    766				     первоначальное
+    767	07CD  CD 10				     int 10h
+    768	07CF  E8 FD1F				     call changeFx
+    769
+    770	07D2  5F			     pop DI
+    771	07D3  5E			     pop SI
+    772	07D4  5D			     pop BP
+    773	07D5  5C			     pop SP
+    774	07D6  07			     pop ES
+    775	07D7  5B			     pop BX
+    776	07D8  59			     pop CX
+    777	07D9  5A			     pop DX
+    778	07DA  58			     pop AX
+    779
+    780	07DB  C3			     ret
+    781	07DC			     printSignature endp
+    782
+    783				     ;=== Функция, которая в зависимости от флага cursiveEnabled меняет	начертание символа с курсива+
+    784				     на	обычное	и наоброт
+    785				     ;=== Сама смена происходит	в процедуре changeFont,	а здесь	подготавливаются данные
+    786	07DC			     setCursive	proc
+    787	07DC  06			     push ES ; сохраняем регистры
+    788	07DD  50			     push AX
+    789	07DE  0E			     push CS
+    790	07DF  07			     pop ES
+    791
+    792	07E0  80 3E 0190r FF		     cmp cursiveEnabled, true
+    793	07E5  75 30			     jne _restoreSymbol
+    794					     ; если флаг равен true, выполняем замену символа на курсивный вариант,
+    795					     ; предварительно сохраняя старый символ в savedSymbol
+    796
+    797	07E7  E8 004C			     call saveFont
+    798	07EA  8A 0E 01A1r		     mov CL, charToCursiveIndex
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 15
+tsr.asm
+
+
+
+    799	07EE			     _shifTtable:
+    800					     ; мы получаем в BP	таблицу	всех символов. адрес указывает на символ 0
+    801					     ; поэтому нуэно совершить сдвиг 16*X - где	X - код	символа
+    802	07EE  83 C5 10			     add BP, 16
+    803	07F1  E2 FB			     loop _shiftTable
+    804
+    805					     ; пpи savefont смещается pегистp ES
+    806					     ; поэтомy пpиходится делать такие махинации, чтобы
+    807					     ; записать	полyченный элемент в savedSymbol
+    808					     ; swap(ES,	DS) и сохранение старого значения DS
+    809	07F3  1E			     push DS
+    810	07F4  58			     pop AX
+    811	07F5  06			     push ES
+    812	07F6  1F			     pop DS
+    813	07F7  50			     push AX
+    814	07F8  07			     pop ES
+    815	07F9  50			     push AX
+    816
+    817	07FA  8B F5			     mov SI, BP
+    818	07FC  BF 01A2r			     lea DI, savedSymbol
+    819					     ; сохpаняем в пеpеменнyю savedSymbol
+    820					     ; таблицy нyжного символа
+    821	07FF  B9 0010			     mov CX, 16
+    822					     ; movsb из	DS:SI в	ES:DI
+    823	0802  F3> A4			     rep movsb
+    824					     ; исходные	позиции	сегментов возвpащены
+    825	0804  1F			     pop DS ; восстановление DS
+    826
+    827					     ; заменим написание символа на кypсив
+    828	0805  B9 0001			     mov CX, 1
+    829	0808  B6 00			     mov DH, 0
+    830	080A  8A 16 01A1r		     mov DL, charToCursiveIndex
+    831	080E  BD 0191r			     lea BP, cursiveSymbol
+    832	0811  E8 0015			     call changeFont
+    833	0814  EB 10 90			     jmp _exitSetCursive
+    834
+    835	0817			     _restoreSymbol:
+    836					     ; если флаг равен 0, выполняем замену курсивного символа на старый	вариант
+    837
+    838	0817  B9 0001			     mov CX, 1
+    839	081A  B6 00			     mov DH, 0
+    840	081C  8A 16 01A1r		     mov DL, charToCursiveIndex
+    841	0820  BD 01A2r			     lea bp, savedSymbol
+    842	0823  E8 0003			     call changeFont
+    843
+    844	0826			     _exitSetCursive:
+    845	0826  58			     pop AX
+    846	0827  07			     pop ES
+    847	0828  C3			     ret
+    848	0829			     setCursive	endp
+    849
+    850				     ;=== Функция смены	начертания символа (курсив/нормальное)
+    851				     ;===
+    852				     ; *** входные данные
+    853				     ; DL = номер символа для замены
+    854				     ; CX = Кол-во символов заменяемых изображений символов
+    855				     ; (начиная	с символа указанного в DX)
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 16
+tsr.asm
+
+
+
+    856				     ; ES:bp = адрес таблицы
+    857				     ;
+    858				     ; *** описание работы процедуры
+    859				     ; Происходит вызов	int 10h	(видеосервис)
+    860				     ; с функцией AH = 11h (функции знакогенератора)
+    861				     ; Параметр	AL = 0 сообщает, что будет заменено изображение
+    862				     ; символа для текущего шрифта
+    863				     ; В случаях, когда	AL = 1 или 2, будет заменено изображение
+    864				     ; только для опредленного шрифта (8x14 и 8x8 соответственно)
+    865				     ; Параметр	BH = 0Eh сообщает, что на опредление каждого изображения символа
+    866				     ; расходуется по 14 байт (режим 8x14 бит как раз 14 байт)
+    867				     ; Параметр	BL = 0 - блок шрифта для загрузки (от 0	до 4)
+    868				     ;
+    869				     ; *** результат
+    870				     ; изображение указанного(ых) символа(ов) будет заменено
+    871				     ; на предложенное пользователем.
+    872				     ; Изменению подвергнутся все символы, находящиеся на экране,
+    873				     ; то есть если изображение	заменено, старый вариант нигде уже не проявится
+    874
+    875	0829			     changeFont	proc
+    876	0829  50			     push AX
+    877	082A  53			     push BX
+    878	082B  B8 1100			     mov AX, 1100h
+    879	082E  BB 1000			     mov BX, 1000h
+    880	0831  CD 10			     int 10h
+    881	0833  58			     pop AX
+    882	0834  5B			     pop BX
+    883	0835  C3			     ret
+    884	0836			     changeFont	endp
+    885
+    886				     ;=== Функция сохранения нормального начертания символа
+    887				     ;===
+    888				     ; *** входные данные
+    889				     ; BH - тип	возвращаемой символьной	таблицы
+    890				     ;	 0 - таблица из	int 1fh
+    891				     ;	 1 - таблица из	int 44h
+    892				     ;	 2-5 - таблица из 8x14,	8x8, 8x8 (top),	9x14
+    893				     ;	 6 - 8x16
+    894				     ;
+    895				     ; *** описание работы процедуры
+    896				     ; Происходит вызов	int 10h	(видеосервис)
+    897				     ; с функцией AH = 11h (функции знакогенератора)
+    898				     ; Параметр	AL = 30	- подфункция получения информации о EGA
+    899				     ;
+    900				     ; *** результат
+    901				     ; в ES:BP находится таблица символов (полная)
+    902				     ; в CX находится байт на символ
+    903				     ; в DL количество экранных	строк
+    904				     ; ВАЖНО! Происходит сдвиг регистра	ES
+    905				     ; ( ES становится равным C000h )
+    906
+    907	0836			     saveFont proc
+    908	0836  50			     push AX
+    909	0837  53			     push BX
+    910	0838  B8 1130			     mov AX, 1130h
+    911	083B  BB 0600			     mov BX, 0600h
+    912	083E  CD 10			     int 10h
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 17
+tsr.asm
+
+
+
+    913	0840  58			     pop AX
+    914	0841  5B			     pop BX
+    915	0842  C3			     ret
+    916	0843			     saveFont endp
+    917
+    918
+    919				     ;=== Отсюда начинается выполнение основной	части программы	===;
+    920				     ;===
+    921	0843			     _initTSR: ; старт резидента
+    922	0843  B4 03			     mov AH, 03h
+    923	0845  CD 10			     int 10h
+    924	0847  52			     push DX
+    925	0848  B4 00			     mov AH,00h	; установка видеорежима	(83h  текст  80x25  16/8  CGA,EGA  b800	 Comp,RGB,  +
+    926				     Enhanced),	без очистки экрана
+    927	084A  B0 83			     mov AL,83h
+    928	084C  CD 10			     int 10h
+    929	084E  5A			     pop DX
+    930	084F  B4 02			     mov AH, 02h
+    931	0851  CD 10			     int 10h
+    932
+    933
+    934	0853  E8 00B3			 call commandParamsParser
+    935	0856  B8 3509			     mov AX,3509h		     ; получить	в ES:BX	вектор 09
+    936	0859  CD 21			 int 21h			 ; прерывания
+    937
+    938					     ;@	=== Удаление резидента из памяти ===
+    939					     ;@	Если по	варианту необходимо выгружать резидент по повторному запуску приложений,
+    940					     ;@	нужно закомментировать следующие 3 строки, а также
+    941					     ;@	содержимое метки _finishTSR ф-ии commandParamsParser, но не саму метку!
+    942	085B  80 3E 01BEr FF		     cmp unloadTSR, true
+    943	0860  74 03			     je	_removingOnParameter
+    944	0862  EB 15 90			     jmp _notRemovingNow
+    945
+    946	0865				     _removingOnParameter:
+    947	0865  B4 FF				     mov AH, 0FFh
+    948	0867  B0 00				     mov AL, 0
+    949	0869  CD 2F				     int 2Fh
+    950	086B  80 FC 69				     cmp AH, 'i'  ; проверка того, загружена ли	уже программа
+    951	086E  74 7D				     je	_remove
+    952	0870  B4 09				     mov AH, 09h			     ;@	для выгрузки резидента по повторному+
+    953				     запуску закомментировать эту строку
+    954	0872  BA 049Dr				     lea DX, notInstalledMsg ;@	для выгрузки резидента по повторному запуску	    +
+    955				     закомментировать эту строку
+    956	0875  CD 21				     int 21h				     ;@	для выгрузки резидента по повторному+
+    957				     запуску закомментировать эту строку
+    958	0877  CD 20				     int 20h				     ;@	для выгрузки резидента по повторному+
+    959				     запуску закомментировать эту строку
+    960
+    961	0879				     _notRemovingNow:
+    962
+    963	0879  80 3E 01BFr FF		     cmp notLoadTSR, true		     ; если была выведена справка
+    964	087E  74 0E			     je	_exit_tmp					     ; просто выходим
+    965
+    966					     ;@	Если по	варианту необходимо выгружать резидент по повторному запуску, то	    +
+    967				     комментируем 5 строк ниже
+    968					     ;@	если необходимо	выгружать по параметру коммандной строки, то оставляем их
+    969	0880  B4 FF			     mov AH, 0FFh
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 18
+tsr.asm
+
+
+
+    970	0882  B0 00			     mov AL, 0
+    971	0884  CD 2F			     int 2Fh
+    972	0886  80 FC 69			     cmp AH, 'i'  ; проверка того, загружена ли	уже программа
+    973	0889  74 6B			     je	_alreadyInstalled
+    974
+    975	088B  EB 04 90			     jmp _tmp
+    976
+    977	088E				     _exit_tmp:
+    978	088E  EB 77 90				     jmp _exit
+    979
+    980	0891				     _tmp:
+    981	0891  06			     push ES
+    982	0892  A1 002C			 mov AX, DS:[2Ch]		 ; psp
+    983	0895  8E C0			 mov ES, AX
+    984	0897  B4 49			 mov AH, 49h			 ; хватит памяти чтоб остаться
+    985	0899  CD 21			 int 21h			 ; резидентом?
+    986	089B  07			 pop ES
+    987	089C  72 62			 jc _notMem			 ; не хватило -	выходим
+    988
+    989					     ;== int 09h ==;
+    990
+    991	089E  2E: 89 1E	01B2r		     mov     word ptr CS:old_int9hOffset, BX
+    992	08A3  2E: 8C 06	01B4r		     mov     word ptr CS:old_int9hSegment, ES
+    993	08A8  B8 2509			 mov AX, 2509h			 ; установим вектор на 09
+    994	08AB  BA 0593r			 mov DX, offset	new_int9h	     ; прерывание
+    995	08AE  CD 21			 int 21h
+    996
+    997					     ;== int 1Ch ==;
+    998	08B0  B8 351C			     mov AX,351Ch		     ; получить	в ES:BX	вектор 1C
+    999	08B3  CD 21			 int 21h			 ; прерывания
+   1000	08B5  2E: 89 1E	01B6r		     mov     word ptr CS:old_int1ChOffset, BX
+   1001	08BA  2E: 8C 06	01B8r		     mov     word ptr CS:old_int1ChSegment, ES
+   1002	08BF  B8 251C			     mov AX, 251Ch		     ; установим вектор	на 1C
+   1003	08C2  BA 0674r			     mov DX, offset new_int1Ch		  ; прерывание
+   1004	08C5  CD 21			     int 21h
+   1005
+   1006					     ;== int 2Fh ==;
+   1007	08C7  B8 352F			     mov AX,352Fh		     ; получить	в ES:BX	вектор 1C
+   1008	08CA  CD 21			 int 21h			 ; прерывания
+   1009	08CC  2E: 89 1E	01BAr		     mov     word ptr CS:old_int2FhOffset, BX
+   1010	08D1  2E: 8C 06	01BCr		     mov     word ptr CS:old_int2FhSegment, ES
+   1011	08D6  B8 252F			     mov AX, 252Fh		     ; установим вектор	на 2F
+   1012	08D9  BA 06A2r			     mov DX, offset new_int2Fh		  ; прерывание
+   1013	08DC  CD 21			     int 21h
+   1014
+   1015	08DE  E8 FC10			     call changeFx
+   1016	08E1  BA 0460r			 mov DX, offset	installedMsg	     ; выводим что все ок
+   1017	08E4  B4 09			 mov AH, 9
+   1018	08E6  CD 21			 int 21h
+   1019	08E8  BA 0843r			 mov DX, offset	_initTSR       ; остаемся в памяти резидентом
+   1020	08EB  CD 27			 int 27h			 ; и выходим
+   1021					 ; конец основной программы
+   1022	08ED			     _remove: ;	выгрузка программы из памяти
+   1023	08ED  B4 FF			     mov AH, 0FFh
+   1024	08EF  B0 01			     mov AL, 1
+   1025	08F1  CD 2F			     int 2Fh
+   1026	08F3  EB 12 90			     jmp _exit
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 19
+tsr.asm
+
+
+
+   1027	08F6			     _alreadyInstalled:
+   1028	08F6  B4 09			     mov AH, 09h
+   1029	08F8  BA 0473r			     lea DX, alreadyInstalledMsg
+   1030	08FB  CD 21			     int 21h
+   1031	08FD  EB 08 90			     jmp _exit
+   1032	0900			     _notMem:				 ; не хватает памяти, чтобы остаться резидентом
+   1033	0900  BA 0489r			 mov DX, offset	noMemMsg
+   1034	0903  B4 09			 mov AH, 9
+   1035	0905  CD 21			 int 21h
+   1036	0907			     _exit:				  ; выход
+   1037	0907  CD 20			 int 20h
+   1038
+   1039				     ;=== Процедура проверки параметров	ком. строки ===;
+   1040				     ;===
+   1041	0909			     commandParamsParser proc
+   1042	0909  0E			     push CS
+   1043	090A  07			     pop ES
+   1044	090B  C6 06 01BEr 00		     mov unloadTSR, 0
+   1045	0910  C6 06 01BFr 00		     mov notLoadTSR, 0
+   1046
+   1047	0915  BE 0080			     mov SI, 80h			     ;SI=смещение командной строки.
+   1048	0918  AC			     lodsb					     ;Получим кол-во символов.
+   1049	0919  0A C0			     or	AL, AL				     ;Если 0 символов введено,
+   1050	091B  74 40			     jz	_exitHelp			     ;то все в порядке.
+   1051
+   1052	091D				     _nextChar:
+   1053
+   1054	091D  46			     inc SI					     ;Теперь SI	указывает на первый символ  +
+   1055				     строки.
+   1056
+   1057	091E  80 3C 0D			     cmp [SI], BYTE ptr	13
+   1058	0921  74 3A			     je	_exitHelp
+   1059
+   1060
+   1061	0923  AD				     lodsw				     ;Получаем два символа
+   1062	0924  3D 3F2F				     cmp AX, '?/'			     ;Это '/?' (данные расположены в	    +
+   1063				     обратном порядк, т.е. AL:AH вместо	AH:AL)
+   1064	0927  74 03				     je	_question
+   1065						     ;cmp AX, 'u/'
+   1066						     ;je _finishTSR
+   1067
+   1068						     ;cmp AH, '/'
+   1069						     ;je _errorParam
+   1070
+   1071	0929  EB 32 90				     jmp _exitHelp
+   1072
+   1073	092C				     _question:
+   1074						     ; вывод строки помощи
+   1075	092C  B4 03					     mov AH,03
+   1076	092E  CD 10					     int 10h
+   1077	0930  BD 0260r					     lea BP, helpMsg
+   1078	0933  B9 0173					     mov CX, helpMsg_length
+   1079	0936  B3 07					     mov BL, 0111b
+   1080	0938  B8 1301					     mov AX, 1301h
+   1081	093B  CD 10					     int 10h
+   1082						     ; конец вывода строки помощи
+   1083	093D  F6 16 01BFr			     not notLoadTSR	     ;флаг того, что необходимо	не загружать резидент
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 20
+tsr.asm
+
+
+
+   1084	0941  EB DA				     jmp _nextChar
+   1085
+   1086					     ;@	=== Удаление резидента из памяти ===
+   1087					     ;@	Если по	варианту необходимо выгружать резидент по параметру '/u' коммандной строки,
+   1088					     ;@	нужно использовать следующий код, в остальных случаях необходимо закомменитровать
+   1089					     ;@	этот код, кроме	названия метки!	(по желанию можно избавиться и от метки, но	    +
+   1090				     аккуратно просмотреть использование)
+   1091	0943				     _finishTSR:
+   1092	0943  F6 16 01BEr			     not unloadTSR		   ;флаг того, что необходимо выгузить резидент
+   1093	0947  EB D4				     jmp _nextChar
+   1094
+   1095	0949  EB 12 90			     jmp _exitHelp
+   1096
+   1097	094C				     _errorParam:
+   1098						     ;вывод строки
+   1099	094C  B4 03					     mov AH,03
+   1100	094E  CD 10					     int 10h
+   1101	0950  BD 03D3r					     lea BP, CS:errorParamMsg
+   1102	0953  B9 0025					     mov CX, errorParamMsg_length
+   1103	0956  B3 07					     mov BL, 0111b
+   1104	0958  B8 1301					     mov AX, 1301h
+   1105	095B  CD 10					     int 10h
+   1106						     ;конец вывода строки
+   1107	095D				     _exitHelp:
+   1108	095D  C3			     ret
+   1109	095E			     commandParamsParser endp
+   1110
+   1111	095E			     code ends
+   1112				     end _start
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 21
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "05/08/17"
+??FILENAME			  Text	 "tsr	  "
+??TIME				  Text	 "12:14:35"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CODE
+@FILENAME			  Text	 TSR
+@WORDSIZE			  Text	 2
+ALREADYINSTALLEDMSG		  Byte	 CODE:0473
+CHANGEFONT			  Near	 CODE:0829
+CHANGEFX			  Near	 CODE:04F1
+CHARTOCURSIVEINDEX		  Byte	 CODE:01A1
+COMMANDPARAMSPARSER		  Near	 CODE:0909
+COUNTER				  Word	 CODE:01C0
+CURSIVEENABLED			  Byte	 CODE:0190
+CURSIVESYMBOL			  Byte	 CODE:0191
+ERRORPARAMMSG			  Byte	 CODE:03D3
+ERRORPARAMMSG_LENGTH		  Number 0025
+F1_TXT				  Byte	 CODE:04E9
+F2_TXT				  Byte	 CODE:04EB
+F3_TXT				  Byte	 CODE:04ED
+F4_TXT				  Byte	 CODE:04EF
+FX_LENGTH			  Number 0002
+HELPMSG				  Byte	 CODE:0260
+HELPMSG_LENGTH			  Number 0173
+IGNOREDCHARS			  Byte	 CODE:0103
+IGNOREDLENGTH			  Number 0080
+IGNOREENABLED			  Byte	 CODE:0183
+INSTALLEDMSG			  Byte	 CODE:0460
+LINE1_LENGTH			  Number 0034
+LINE2_LENGTH			  Number 0034
+LINE3_LENGTH			  Number 0034
+NEW_INT1CH			  Far	 CODE:0674
+NEW_INT2FH			  Near	 CODE:06A2
+NEW_INT9H			  Far	 CODE:0593
+NOMEMMSG			  Byte	 CODE:0489
+NOREMOVEMSG			  Byte	 CODE:04CC
+NOREMOVEMSG_LENGTH		  Number 001D
+NOTINSTALLEDMSG			  Byte	 CODE:049D
+NOTLOADTSR			  Byte	 CODE:01BF
+OLD_INT1CHOFFSET		  Word	 CODE:01B6
+OLD_INT1CHSEGMENT		  Word	 CODE:01B8
+OLD_INT2FHOFFSET		  Word	 CODE:01BA
+OLD_INT2FHSEGMENT		  Word	 CODE:01BC
+OLD_INT9HOFFSET			  Word	 CODE:01B2
+OLD_INT9HSEGMENT		  Word	 CODE:01B4
+PRINTDELAY			  Number 0005
+PRINTPOS			  Word	 CODE:01C2
+PRINTSIGNATURE			  Near	 CODE:072F
+REMOVEDMSG			  Byte	 CODE:04BB
+REMOVEDMSG_LENGTH		  Number 0011
+REPLACEWITH			  Byte	 CODE:0143
+SAVEDSYMBOL			  Byte	 CODE:01A2
+SAVEFONT			  Near	 CODE:0836
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 22
+Symbol Table
+
+
+
+SETCURSIVE			  Near	 CODE:07DC
+SIGNATURELINE1			  Byte	 CODE:01C4
+SIGNATURELINE2			  Byte	 CODE:01F8
+SIGNATURELINE3			  Byte	 CODE:022C
+SIGNATUREPRINTINGENABLED	  Byte	 CODE:018F
+TABLEBOTTOM			  Byte	 CODE:042C
+TABLEBOTTOM_LENGTH		  Number 0034
+TABLETOP			  Byte	 CODE:03F8
+TABLETOP_LENGTH			  Number 0034
+TRANSLATEENABLED		  Byte	 CODE:018E
+TRANSLATEFROM			  Byte	 CODE:0184
+TRANSLATELENGTH			  Number 0005
+TRANSLATETO			  Byte	 CODE:0189
+TRUE				  Number 00FF
+UNLOADTSR			  Byte	 CODE:01BE
+_2FH_EXIT			  Near	 CODE:072A
+_2FH_STD			  Near	 CODE:06B2
+_ACTUALPRINT			  Near	 CODE:076D
+_ALREADYINSTALLED		  Near	 CODE:08F6
+_ALREADY_INSTALLED		  Near	 CODE:06B7
+_BLOCK				  Near	 CODE:063E
+_CHECKF1			  Near	 CODE:0500
+_CHECKF2			  Near	 CODE:0524
+_CHECKF3			  Near	 CODE:0545
+_CHECKF4			  Near	 CODE:0566
+_CHECK_IGNORED			  Near	 CODE:0632
+_CHECK_TRANSLATE		  Near	 CODE:064A
+_CHECK_TRANSLATE_LOOP		  Near	 CODE:0657
+_DONTPRINT			  Near	 CODE:069B
+_ERRORPARAM			  Near	 CODE:094C
+_EXIT				  Near	 CODE:0907
+_EXITHELP			  Near	 CODE:095D
+_EXITSETCURSIVE			  Near	 CODE:0826
+_EXIT_TMP			  Near	 CODE:088E
+_F1				  Near	 CODE:05CD
+_F2				  Near	 CODE:05DB
+_F3				  Near	 CODE:05EC
+_F4				  Near	 CODE:05FA
+_FINISHTSR			  Near	 CODE:0943
+_GO				  Near	 CODE:0622
+_GREENF1			  Near	 CODE:051D
+_GREENF2			  Near	 CODE:0541
+_GREENF3			  Near	 CODE:0562
+_GREENF4			  Near	 CODE:0583
+_INITTSR			  Near	 CODE:0843
+_LETSPRINT			  Near	 CODE:068E
+_NEXTCHAR			  Near	 CODE:091D
+_NOTMEM				  Near	 CODE:0900
+_NOTREMOVE			  Near	 CODE:0705
+_NOTREMOVINGNOW			  Near	 CODE:0879
+_NOTTOPRINT			  Near	 CODE:06A0
+_OUTFX				  Near	 CODE:0587
+_PRINTBOTTOM			  Near	 CODE:0766
+_PRINTCENTER			  Near	 CODE:075F
+_PRINTTOP			  Near	 CODE:0758
+_QUESTION			  Near	 CODE:092C
+_QUIT				  Near	 CODE:066C
+Turbo Assembler	 Version 3.1	    05/08/17 12:14:35	    Page 23
+Symbol Table
+
+
+
+_REDF1				  Near	 CODE:0516
+_REDF2				  Near	 CODE:053A
+_REDF3				  Near	 CODE:055B
+_REDF4				  Near	 CODE:057C
+_REMOVE				  Near	 CODE:08ED
+_REMOVINGONPARAMETER		  Near	 CODE:0865
+_RESTORESYMBOL			  Near	 CODE:0817
+_SHIFTTABLE			  Near	 CODE:07EE
+_START				  Near	 CODE:0100
+_TEST_FX			  Near	 CODE:05CB
+_TMP				  Near	 CODE:0891
+_TRANSLATE			  Near	 CODE:0663
+_TRANSLATE_OR_IGNORE		  Near	 CODE:0608
+_UNINSTALL			  Near	 CODE:06BA
+_UNLOADED			  Near	 CODE:0719
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CODE				  16  095E Para	  none	  CODE
+
