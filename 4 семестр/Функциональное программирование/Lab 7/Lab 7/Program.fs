@@ -11,7 +11,20 @@ let main argv =
 
     // Агент, обрабатывающий события
 
-    // ...
+    let printerAgent = MailboxProcessor.Start(fun inbox->
+        // обработка сообщений
+        let rec messageLoop() = async{
+            // чтение сообщения
+            let! msg = inbox.Receive()
+            // печать сообщения
+            printfn "\nСообщение: %s\n" msg
+            return! messageLoop()
+            }
+        // запуск обработки сообщений
+        messageLoop()
+        )
+
+    printerAgent.Post "Сообщение в консоли"
 
     //|> ignore - перенаправление потока с игнорирование результата вычисления
     Console.ReadLine() |> ignore
