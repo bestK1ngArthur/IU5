@@ -7,33 +7,29 @@ class Unique(object):
         # Например: ignore_case = True, Aбв и АБВ разные строки
         #           ignore_case = False, Aбв и АБВ одинаковые строки, одна из них удалится
         # По-умолчанию ignore_case = False
-        unique_items = []
-
-        buf_items = items
-        if not ignore_case:
-            buf_items = [item.lower() for item in items]
-
-        for i, item in enumerate(buf_items):
-            if item not in unique_items:
-                unique_items.append(items[i])
-
-        self.items = items
-        self.unique_items = unique_items
-        self.index = 0
+        self.unique_items = []
+        self.ignore_case = ignore_case
+        self.items = iter(items)
 
         pass
 
     def __next__(self):
         # Нужно реализовать __next__
 
-        if self.index == len(self.unique_items):
-            raise StopIteration
-        else:
-            item = self.unique_items[self.index]
-            self.index = self.index + 1
-            return item
+        while True:
+            item = self.items.__next__()
+            check_item = None
 
-        pass
+            if self.ignore_case and type(item) is str:
+                check_item = item.lower()
+            else:
+                check_item = item
+
+            if check_item not in self.unique_items:
+                self.unique_items.append(check_item)
+                return item
+
 
     def __iter__(self):
+
         return self
