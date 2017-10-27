@@ -11,24 +11,21 @@ class Unique(object):
         self.ignore_case = ignore_case
         self.items = iter(items)
 
-        pass
-
     def __next__(self):
         # Нужно реализовать __next__
 
         while True:
             item = self.items.__next__()
-            check_item = None
+            compare_item = None
 
             if self.ignore_case and type(item) is str:
-                check_item = item.lower()
+                compare_item = item.lower()
             else:
-                check_item = item
+                compare_item = item
 
-            if check_item not in self.unique_items:
-                self.unique_items.append(check_item)
+            if compare_item not in self.unique_items:
+                self.unique_items.append(compare_item)
                 return item
-
 
     def __iter__(self):
 
