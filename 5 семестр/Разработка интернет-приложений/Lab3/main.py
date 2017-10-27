@@ -21,7 +21,7 @@ def make_chart(friends):
 def draw_chart(chart):
     keys = sorted(chart.keys())
     for i in keys:
-        print(i, ":", chart[i]*'#')
+        print("{}:{}".format(i, chart[i]*'#'))
 
 
 def load_with_id(user_id):

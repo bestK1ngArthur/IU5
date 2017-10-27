@@ -28,7 +28,6 @@ class VkRequest:
     # Отправка запроса к VK API
     def _get_data(self, method, http_method):
         response = None
-        # todo выполнить запрос
         return self.response_handler(response)
 
     # Обработка ответа от VK API
