@@ -1,0 +1,5973 @@
+* COPYRIGHT OF NATIONAL SEMICONDUCTOR CORP.
+*
+* Library of National Semiconductor Corp. JFET OP-AMP
+* Macromodels.  Version 2.5
+*
+* This library of macromodels is being supplied to users as
+* an aid to circuit designs.  While it reflects reasonably 
+* close similarity to the actual device in terms of
+* performance, it is not suggested as a replacement for
+* breadboarding.  Simulation should be used as a supplement
+* to traditional lab testing.
+*
+* Users should very carefully note the following factors
+* regarding these models:
+*
+* -- Model performance in general will reflect typical
+* baseline specs for a given device, and certain aspects of
+* performance may not be modeled fully.
+*
+* -- While reasonable care has been taken in their
+* preparation, we cannot be responsible for correct
+* application on any and all computer systems.
+*
+* -- Model users are hereby notified that these models are
+* supplied "as is", with no direct or implied responsibility
+* on the part of National Semiconductor for their operation
+* within a customer circuit or system.  Further, National
+* Semiconductor reserves the right to change these models
+* without prior notice.
+*
+* -- In all cases, the current data sheet information for a
+* given real device is your final design guideline, and is
+* the only actual performance guarantee.  For further
+* technical information, refer to individual device data
+* sheets.
+*
+* Note: The current models presently do not simulate
+* temperature or noise effects. 
+*
+* Your feedback and suggestions on these (and future) models
+* will be appreciated.
+*
+* Models developed by:
+* David Hindi
+* National Semiconductor       For information on the models, contact:
+* 2900 Semiconductor Dr.       Linear Applications    
+* Santa Clara, CA 95052        (408) 721-3877 
+* M/S C2500                     
+* FAX (408) 721-7321           For ordering information, contact:
+*                              Customer Response Center
+*                              (408) 721-4902
+*---------------------------------------------------------
+*//////////////////////////////////////////////////////////
+*LF155/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF155     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*NOTE:Asymetrical slew rate not modeled.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 9.6796E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=23.7 HZ
+C3 98 11 67.154P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 -.1V
+D4  25  9 DX
+V4  24 28 -.1V
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF156/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF156     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.5944E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=31.96 HZ
+C3 98 11 49.9798P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 20
+V5  28 25 -.25
+D4  25  9 DX
+V4  24 28 -.25
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF157/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF157     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 8.1291E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=224 HZ
+C3 98 11 7.10513P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF255/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF255     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*NOTE:Asymetrical slew rate not modeled.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 9.6796E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=23.7 HZ
+C3 98 11 67.154P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 -.1V
+D4  25  9 DX
+V4  24 28 -.1V
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF256/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF256     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.5944E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=31.96 HZ
+C3 98 11 49.9798P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 20
+V5  28 25 -.25V
+D4  25  9 DX
+V4  24 28 -.25V
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF257/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF257     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 8.1291E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=224 HZ
+C3 98 11 7.10513P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF351 Wide Bandwidth JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF351     1   2  99  50  28
+*
+*Features:
+*Low supply current =                1.8mA
+*Wide bandwidth =                     4MHz
+*High slew rate =                   13V/uS
+*Low offset voltage =                 10mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.7MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.0985E7
+G1 98 9 5 6 1E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=40.3 HZ
+C3 98 11 39.493P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 3.7894E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 31.831M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 35
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=50E-12)
+*
+.ENDS
+*
+*//////////////////////////////////////////////////////////
+*LF353 Wide Bandwidth Dual JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF353     1   2  99  50  28
+*
+*Features:
+*Low supply current =                1.8mA
+*Wide bandwidth =                     4MHz
+*High slew rate =                   13V/uS
+*Low offset voltage =                 10mV
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.7MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.0985E7
+G1 98 9 5 6 1E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=40.3 HZ
+C3 98 11 39.493P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 3.7894E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 31.831M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 35
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=50E-12)
+*
+.ENDS
+*
+*//////////////////////////////////////////////////////////
+*LF355/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF355     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*NOTE:Asymetrical slew rate not modeled.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 9.6796E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=23.7 HZ
+C3 98 11 67.154P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 -.1V
+D4  25  9 DX
+V4  24 28 -.1V
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF356/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF356     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=20 MHz
+C4 5 6 1.9894E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.5944E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=31.96 HZ
+C3 98 11 49.9798P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 9 1
+VA8 26 27 0
+R16 27 28 20
+V5  28 25 -.25V
+D4  25  9 DX
+V4  24 28 -.25V
+D3   9 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF357/A/B Monolithic JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF357     1   2  99  50  28
+*
+*Features:
+*Low input bias current =             30pA
+*Low input offset current =            3pA
+*High input impedance =              1Tohm
+*Low input offset voltage =            1mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 3P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.65MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 8.1291E7
+G1 98 9 5 6 2E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=224 HZ
+C3 98 11 7.10513P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 530.52M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 25
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=30E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF400/A Fast-Settling JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF400     1   2  99  50  28
+*
+*Features:
+*Fast settling time (.01%) =         400nS
+*High bandwidth =                    16MHz
+*High slew rate =                   60V/uS
+*Low offset voltage =                 .5mV
+*NOTE: High current output not modeled.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 50P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 1.0M
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 2K
+R4 6 50 2K
+*Fp2=100MHz
+C4 5 6 3.9789E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 10MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .5E-3 1
+*Input offset voltage.^
+R8 99 49 40K
+R9 49 50 40K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 3.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 3.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 6.887E6
+G1 98 9 5 6 2.74E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=54.6 HZ
+C3 98 11 29.149P
+*
+***************POLE STAGE***************
+*
+*Fp3=100 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.5915E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1.0E-8
+L2 98 17 144.7M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 40
+V5  28 25 .396V
+D4  25 15 DX
+V4  24 28 .396V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-4 VTO=-2.00 IS=100E-12)
+*
+.ENDS
+*
+*//////////////////////////////////////////////////////////
+*LF411/A LOW OFFSET, LOW DRIFT JFET INPUT OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF411     1   2  99  50  28
+*
+*Features:
+*Fast settling time (.01%) =           2uS
+*High bandwidth =                     3MHz
+*High slew rate =                   10V/uS
+*Low offset voltage =                 .5mV
+*Low supply current =                1.8mA
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25.0P
+*^Input offset current
+CI1 1 0 3P
+CI2 2 0 3P
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 1.0M
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 650
+R4 6 50 650
+*Fp2=28 MHZ
+C4 5 6 4.372P 
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 800UA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .8E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 20E-3
+R5 98 9 10MEG
+VA3 9 11 0
+*Fp1=18 HZ
+C3 98 11 857.516P
+*
+***************POLE STAGE***************
+*
+*Fp=30 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 5.305E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 144.7M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 50
+V5  28 25 0.646V
+D4  25 15 DX
+V4  24 28 0.646V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.183E-3 VTO=-.65 IS=50E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF412/A LOW OFFSET, LOW DRIFT DUAL JFET INPUT OP-AMP MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF412     1   2  99  50  28
+*
+*Features:
+*Fast settling time (.01%) =           2uS
+*High bandwidth =                     3MHz
+*High slew rate =                   10V/uS
+*Low offset voltage =                  1mV
+*Low supply current =                1.8mA
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25.0P
+*^Input offset current
+CI1 1 0 3P
+CI2 2 0 3P
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 1.0M
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 650
+R4 6 50 650
+*Fp2=28 MHZ
+C4 5 6 4.372P 
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 800UA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 20E-3
+R5 98 9 10MEG
+VA3 9 11 0
+*Fp1=18 HZ
+C3 98 11 857.516P
+*
+***************POLE STAGE***************
+*
+*Fp=30 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 5.305E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 144.7M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 50
+V5  28 25 0.646V
+D4  25 15 DX
+V4  24 28 0.646V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.183E-3 VTO=-.65 IS=50E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF451 Wide-Bandwidth JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF451     1   2  99  50  28
+*
+*Features:
+*Low supply current =                3.4mA(max)
+*Wide bandwidth =                     4MHz
+*High slew rate =                   13V/uS
+*Low offset voltage =                 10mV
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.1MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.0985E7
+G1 98 9 5 6 1E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=40.3 HZ
+C3 98 11 39.493P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 3.7894E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 31.831M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 35
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=50E-12)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LF453 Wide-Bandwidth Dual JFET-Input OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:    non-inverting input
+*                 |   inverting input
+*                 |   |   positive power supply
+*                 |   |   |   negative power supply
+*                 |   |   |   |   output
+*                 |   |   |   |   |
+*                 |   |   |   |   |
+.SUBCKT LF453     1   2  99  50  28
+*
+*Features:
+*Low supply current =                6.5mA(max)
+*Wide bandwidth =                     4MHz
+*High slew rate =                   13V/uS
+*Low offset voltage =                  5mV(max)
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE************** 
+*
+IOS 2 1 25P
+*^Input offset current
+R1 1 3 5E11
+R2 3 2 5E11
+I1 99 4 100U
+J1 5 2 4 JX
+J2 6 7 4 JX
+R3 5 50 20K
+R4 6 50 20K
+*Fp2=12 MHz
+C4 5 6 3.31573E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.1MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .3E-3 1
+*Input offset voltage.^
+R8 99 49 50K
+R9 49 50 50K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.13
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.13
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA3 0 0 0 1.0985E7
+G1 98 9 5 6 1E-3
+R5 98 9 100MEG
+VA3 9 11 0
+*Fp1=40.3 HZ
+C3 98 11 39.493P
+*
+***************POLE STAGE***************
+*
+*Fp3=42 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 3.7894E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+G4 98 16 3 49 1E-8
+L2 98 17 31.831M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+F5  99 23 VA8 1
+D5  21 23 DX
+VA7 99 21 0
+D6  23 99 DX
+E1  99 26 99 15 1
+VA8 26 27 0
+R16 27 28 35
+V5  28 25 0.1V
+D4  25 15 DX
+V4  24 28 0.1V
+D3  15 24 DX
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL JX PJF(BETA=1.25E-5 VTO=-2.00 IS=50E-12)
+*
+.ENDS
+* COPYRIGHT OF NATIONAL SEMICONDUCTOR CORP.
+*
+* Library of National Semiconductor Corp. CMOS OP-AMP
+* Macromodels.  Version 2.5
+*
+* This library of macromodels is being supplied to users as
+* an aid to circuit designs.  While it reflects reasonably 
+* close similarity to the actual device in terms of
+* performance, it is not suggested as a replacement for
+* breadboarding.  Simulation should be used as a supplement
+* to traditional lab testing.
+*
+* Users should very carefully note the following factors
+* regarding these models:
+*
+* -- Model performance in general will reflect typical
+* baseline specs for a given device, and certain aspects of
+* performance may not be modeled fully.
+*
+* -- While reasonable care has been taken in their
+* preparation, we cannot be responsible for correct
+* application on any and all computer systems.
+*
+* -- Model users are hereby notified that these models are
+* supplied "as is", with no direct or implied responsibility
+* on the part of National Semiconductor for their operation
+* within a customer circuit or system.  Further, National
+* Semiconductor reserves the right to change these models
+* without prior notice.
+*
+* -- In all cases, the current data sheet information for a
+* given real device is your final design guideline, and is
+* the only actual performance guarantee.  For further
+* technical information, refer to individual device data
+* sheets.
+*
+* Note: The current models presently do not simulate
+* temperature or noise effects. 
+*
+* Your feedback and suggestions on these (and future) models
+* will be appreciated.
+*
+* Models developed by:
+* David Hindi
+* National Semiconductor       For information on the models, contact:
+* 2900 Semiconductor Dr.       Linear Applications    
+* Santa Clara, CA 95052        (408) 721-3877 
+* M/S C2500                     
+* FAX (408) 721-7321           For ordering information, contact:
+*                              Customer Response Center
+*                              (408) 721-4902
+* ---------------------------------------------------------
+*//////////////////////////////////////////////////////////
+*LMC660AM/AI/C CMOS Quad OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC660      1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =             40fA
+*Slew rate =                        1.1V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 20U
+M1   5  2 4 99 MOSFET
+R3   5 50 5.2696K
+M2   6  7 4 99 MOSFET
+R4   6 50 5.2696K
+*Fp2=7.5 MHz
+C4   5  6 2.0135P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 23.721E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 305U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 100K
+R9  49 50 100K
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=1 MHz, Fz= 2.6MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+R15 98 19 625
+C6  19 18 97.94P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=20 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 3.5397E-8 3.5397E-8
+L2  98 17 7.958M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 8.253E-6
+R5  98 29 510.8MEG
+D1   8 99 DX
+V2   8 29 1.363
+D2  50 10 DX
+V3  29 10 1.363
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 11.765E-3
+R16 38 40 2.688K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.5294 Hz
+C3  29 39 18.182P
+R6  39 40 1K
+R17 40 41 47
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=5E-14)
+.MODEL DB D(IS=4E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=1.801E-3)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LPC660AM/AI/I CMOS Quad OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LPC660      1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =             40fA
+*Slew rate =                        .11V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 37.65K
+M2   6  7 4 99 MOSFET
+R4   6 50 37.65K
+*Fp2=345 KHz
+C4   5  6 6.126P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 66.402E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 41U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 2.5MEG
+R9  49 50 2.5MEG
+*
+************ZERO/POLE STAGE*************
+*
+*Fz=2.5 MHz, Fp= 5.6MHz
+G2  98 13 9 49 1E-3
+R10 98 14 1.24K
+R11 14 13 1K
+L1  98 14 35.24U
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 13 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=2 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 3.5397E-8 3.5397E-8
+L2  98 17 79.58M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 15 49 4.1265E-7
+R5  98 29 1.154G
+D1   8 99 DX
+V2   8 29 1.363
+D2  50 10 DX
+V3  29 10 1.363
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 11.765E-3
+R16 38 40 2.688K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.465 Hz
+C3  29 39 9.091P
+R6  39 40 1K
+R17 40 41 53.9
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=5E-14)
+.MODEL DB D(IS=4E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=7.054728E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC662AM/AI/C CMOS Dual OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC662      1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =             40fA
+*Slew rate =                        1.1V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 20U
+M1   5  2 4 99 MOSFET
+R3   5 50 5.2696K
+M2   6  7 4 99 MOSFET
+R4   6 50 5.2696K
+*Fp2=7.5 MHz
+C4   5  6 2.0135P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 23.721E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 305U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 100K
+R9  49 50 100K
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=1 MHz, Fz= 2.6MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+R15 98 19 625
+C6  19 18 97.94P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=20 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 3.5397E-8 3.5397E-8
+L2  98 17 7.958M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 8.253E-6
+R5  98 29 510.8MEG
+D1   8 99 DX
+V2   8 29 1.363
+D2  50 10 DX
+V3  29 10 1.363
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 11.765E-3
+R16 38 40 2.688K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.5294 Hz
+C3  29 39 18.182P
+R6  39 40 1K
+R17 40 41 47
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=5E-14)
+.MODEL DB D(IS=4E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=1.801E-3)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LPC662AM/AI/I CMOS Dual OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LPC662      1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =             40fA
+*Slew rate =                        .11V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 37.65K
+M2   6  7 4 99 MOSFET
+R4   6 50 37.65K
+*Fp2=345 KHz
+C4   5  6 6.126P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 66.402E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 41U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 2.5MEG
+R9  49 50 2.5MEG
+*
+************ZERO/POLE STAGE*************
+*
+*Fz=2.5 MHz, Fp= 5.6MHz
+G2  98 13 9 49 1E-3
+R10 98 14 1.24K
+R11 14 13 1K
+L1  98 14 35.24U
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 13 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=2 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 3.5397E-8 3.5397E-8
+L2  98 17 79.58M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 15 49 4.1265E-7
+R5  98 29 1.154G
+D1   8 99 DX
+V2   8 29 1.363
+D2  50 10 DX
+V3  29 10 1.363
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 11.765E-3
+R16 38 40 2.688K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.465 Hz
+C3  29 39 9.091P
+R6  39 40 1K
+R17 40 41 53.9
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=5E-14)
+.MODEL DB D(IS=4E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=7.054728E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6041/A CMOS Single Micropower OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6041     1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =              2fA
+*Slew rate =                        .02V/uS
+*Low supply current =                  14uA
+*
+*NOTE: Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 69.198K
+M2   6  7 4 99 MOSFET
+R4   6 50 69.198K
+*Fp2=100 KHz
+C4   5  6 11.5P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 36.128E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-17 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 11U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 1.25MEG
+R9  49 50 1.25MEG
+*
+***************POLE STAGE*************** 
+*
+*Fp=2.7 MHz
+G2  98 13 9 49 1E-3
+R10 98 13 1K
+C5  98 13 58.8463P
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 13 49 1E-3
+R12 98 15 1K
+C6  98 15 11.967P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=800 Hz
+G4  98 16 POLY(2) 1 49 2 49 0 8.891397E-8 8.891397E-8
+L2  98 17 198.944M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 15 49 4.1265E-7
+R5  98 29 2.12115G
+D1   8 99 DX
+V2   8 29 .63
+D2  50 10 DX
+V3  29 10 .63
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 8.163E-3
+R16 38 40 3.874K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.046 Hz
+C3  29 39 50P
+R6  39 40 1K
+R17 40 41 83.6
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=3E-15)
+.MODEL DB D(IS=2E-15)
+.MODEL DX D(IS=1E-15)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=2.0884E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6042/A CMOS Dual Micropower OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6042     1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =              2fA
+*Slew rate =                        .02V/uS
+*Low supply current =                  14uA
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 69.198K
+M2   6  7 4 99 MOSFET
+R4   6 50 69.198K
+*Fp2=100 KHz
+C4   5  6 11.5P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 36.128E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-17 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 11U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 1.25MEG
+R9  49 50 1.25MEG
+*
+***************POLE STAGE*************** 
+*
+*Fp=2.7 MHz
+G2  98 13 9 49 1E-3
+R10 98 13 1K
+C5  98 13 58.8463P
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 13 49 1E-3
+R12 98 15 1K
+C6  98 15 11.967P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=800 Hz
+G4  98 16 POLY(2) 1 49 2 49 0 8.891397E-8 8.891397E-8
+L2  98 17 198.944M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 15 49 4.1265E-7
+R5  98 29 2.12115G
+D1   8 99 DX
+V2   8 29 .63
+D2  50 10 DX
+V3  29 10 .63
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 8.163E-3
+R16 38 40 3.874K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.046 Hz
+C3  29 39 50P
+R6  39 40 1K
+R17 40 41 83.6
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=3E-15)
+.MODEL DB D(IS=2E-15)
+.MODEL DX D(IS=1E-15)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=2.0884E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6044/A CMOS Quad Micropower OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6044     1   2  99  50  41
+*
+*Features:
+*Operates from single supply
+*Rail-to-rail output swing
+*Ultra low input current =              2fA
+*Slew rate =                        .02V/uS
+*Low supply current =                  14uA
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 69.198K
+M2   6  7 4 99 MOSFET
+R4   6 50 69.198K
+*Fp2=100 KHz
+C4   5  6 11.5P
+CI1  1  0 2P
+CI2  2  0 2P
+DP1  1 99 DA
+DP2 50  1 DX
+DP3  2 99 DX
+DP4 50  2 DB
+G0  98  9 6 5 36.128E-3
+R0  98  9 1K
+*For accurate Ib , set GMIN<=1E-17 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 11U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 1E-3 1
+*Offset voltage.........^
+R8  99 49 1.25MEG
+R9  49 50 1.25MEG
+*
+***************POLE STAGE*************** 
+*
+*Fp=2.7 MHz
+G2  98 13 9 49 1E-3
+R10 98 13 1K
+C5  98 13 58.8463P
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 13 49 1E-3
+R12 98 15 1K
+C6  98 15 11.967P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=800 Hz
+G4  98 16 POLY(2) 1 49 2 49 0 8.891397E-8 8.891397E-8
+L2  98 17 198.944M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 15 49 4.1265E-7
+R5  98 29 2.12115G
+D1   8 99 DX
+V2   8 29 .63
+D2  50 10 DX
+V3  29 10 .63
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 8.163E-3
+R16 38 40 3.874K  
+D5  30 99 DX
+V4  30 40 .77
+D6  50 31 DX
+V5  40 31 .77
+*Fp1=.046 Hz
+C3  29 39 50P
+R6  39 40 1K
+R17 40 41 83.6
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=3E-15)
+.MODEL DB D(IS=2E-15)
+.MODEL DX D(IS=1E-15)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=2.0884E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6062 Precision CMOS Dual Micropower OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6062     1   2  99  50  40
+*
+*Features:
+*Operates from single or dual supplies
+*Rail-to-rail output swing
+*Ultra low input current =             10fA
+*Ultra low input offset voltage =     100uV
+*High voltage gain =                  140dB
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 1U
+M1   5  2 4 99 MOSFET
+R3   5 50 77.26K
+M2   6  7 4 99 MOSFET
+R4   6 50 77.26K
+*Fp2=300 KHz
+C4   5  6 3.433P
+G0  98  9 6 5 54.916E-3
+R0  98  9 1K
+DP1  1 99 DA
+DP2 50  1 DB
+DP3  2 99 DB
+DP4 50  2 DA
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 13U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 100E-6 1
+*Offset voltage.........^
+R8  99 49 1.25MEG
+R9  49 50 1.25MEG
+*
+***************POLE STAGE*************** 
+*
+*Fp=370 KHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 430.15P
+*
+***************POLE STAGE*************** 
+*
+*Fp=6.8 MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+C6  98 18 23.405P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=1 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 2.812E-8 2.812E-8
+L2  98 17 159.2M
+R13 17 16 1K
+*
+**************SECOND STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 5.5611E-7 
+R5  98 29 65.33G
+V2  99  8 1.0
+D1  29  8 DX
+D2  10 29 DX
+V3  10 50 1.0
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 12.5E-3  
+R16 38 40 119.698  
+V4  30 40 .77
+D5  30 99 DX
+V5  40 31 .77
+D6  50 31 DX
+*Fp1=.034 Hz
+C3  29 39 28.57P
+R6  39 40 1K
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=2E-14)
+.MODEL DB D(IS=1E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=1.6753E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6082 Precision CMOS Dual Micropower OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6082     1   2  99  50  40
+*
+*Features:
+*Operates from single or dual supplies
+*Rail-to-rail output swing
+*Ultra low input current =             10fA
+*Ultra low input offset voltage =     100uV
+*High voltage gain =                  140dB
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 20U
+M1   5  2 4 99 MOSFET
+R3   5 50 11.477K
+M2   6  7 4 99 MOSFET
+R4   6 50 11.477K
+*Fp2=3 MHz
+C4   5  6 2.311P
+G0  98  9 6 5 18.483E-3
+R0  98  9 1K
+DP1  1 99 DA
+DP2 50  1 DB
+DP3  2 99 DB
+DP4 50  2 DA
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 380U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 150E-6 1
+*Offset voltage.........^
+R8  99 49 50K
+R9  49 50 50K
+*
+***************POLE STAGE*************** 
+*
+*Fp=4.5 MHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 35.368P
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+C6  98 18 11.966P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=1 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 2.812E-8 2.812E-8
+L2  98 17 26.526M
+R13 17 16 1K
+*
+**************SECOND STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 9.14357E-6 
+R5  98 29 3.0699G
+V2  99  8 1.3
+D1  29  8 DX
+D2  10 29 DX
+V3  10 50 1.3
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 13.889E-3  
+R16 38 40 193.79  
+V4  30 40 .77
+D5  30 99 DX
+V5  40 31 .77
+D6  50 31 DX
+*Fp1=1.053 Hz
+C3  29 39 13.333P
+R6  39 40 1K
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=2E-14)
+.MODEL DB D(IS=1E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=-2.35 KP=3.7956E-4)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6482 CMOS Dual OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6482     1   2  99  50  40
+*
+*Features:
+*Operates from single or dual supplies
+*Rail-to-rail input and output swing
+*Ultra low input current =             10fA
+*Slew rate =                        1.2V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 17U
+M1   5  2 4 99 MOSFET
+R3   5 50 5.651K
+M2   6  7 4 99 MOSFET
+R4   6 50 5.651K
+*Fp2=5.9 MHz
+C4   5  6 2.3868P
+G0  98  9 6 5 4.4165E-2
+R0  98  9 1K
+DP1  1 99 DA
+DP2 50  1 DB
+DP3  2 99 DB
+DP4 50  2 DA
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 420.5U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 .5E-3 1
+*Offset voltage..........^
+R8  99 49 40K
+R9  49 50 40K
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=600 KHz, Fz= 1.4MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+R15 98 19 750
+C6  19 18 151.58P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=20 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 2.812E-8 2.812E-8
+L2  98 17 7.958M
+R13 17 16 1K
+*
+**************SECOND STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 5.6667E-6 
+R5  98 29 100.37MEG
+V2  99  8 1.56
+D1  29  8 DX
+D2  10 29 DX
+V3  10 50 1.56
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 16.667E-3  
+R16 38 40 2.3886K  
+V4  30 40 .77
+D5  30 99 DX
+V5  40 31 .77
+D6  50 31 DX
+*Fp1=2.343 Hz
+C3  29 39 17P
+R6  39 40 1K
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=2E-14)
+.MODEL DB D(IS=1E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=0 KP=1.842E-3)
+.ENDS
+*//////////////////////////////////////////////////////////
+*LMC6484 CMOS Quad OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LMC6484     1   2  99  50  40
+*
+*Features:
+*Operates from single or dual supplies
+*Rail-to-rail input and output swing
+*Ultra low input current =             10fA
+*Slew rate =                        1.2V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Noise is not modeled.
+*      Asymmetrical gain is not modeled.
+*
+*****************INPUT STAGE************** 
+*
+I1  99  4 17U
+M1   5  2 4 99 MOSFET
+R3   5 50 5.651K
+M2   6  7 4 99 MOSFET
+R4   6 50 5.651K
+*Fp2=5.9 MHz
+C4   5  6 2.3868P
+G0  98  9 6 5 4.4165E-2
+R0  98  9 1K
+DP1  1 99 DA
+DP2 50  1 DB
+DP3  2 99 DB
+DP4 50  2 DA
+*For accurate Ib , set GMIN<=1E-16 on .OPTIONS line.
+*
+***********COMMON MODE EFFECT***********
+*
+I2  99 50 420.5U
+*^Quiescent current                   
+EOS  7  1 POLY(1) 16 49 .5E-3 1
+*Offset voltage..........^
+R8  99 49 40K
+R9  49 50 40K
+*
+***************POLE STAGE*************** 
+*
+*Fp=13.3 MHz
+G3  98 15 9 49 1E-3
+R12 98 15 1K
+C5  98 15 11.967P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=600 KHz, Fz= 1.4MHz
+G5  98 18 15 49 1E-3
+R14 98 18 1K
+R15 98 19 750
+C6  19 18 151.58P
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=20 KHz
+G4  98 16 POLY(2) 1 49 2 49 0 2.812E-8 2.812E-8
+L2  98 17 7.958M
+R13 17 16 1K
+*
+**************SECOND STAGE**************
+*
+EH  99 98 99 49 1
+G1  98 29 18 49 5.6667E-6 
+R5  98 29 100.37MEG
+V2  99  8 1.56
+D1  29  8 DX
+D2  10 29 DX
+V3  10 50 1.56
+*
+**************OUTPUT STAGE**************
+*
+F6  99 50 VA7 1
+*^Dynamic supply current
+F5  99 35 VA8 1
+D3  36 35 DX
+VA7 99 36 0
+D4  35 99 DX
+E1  99 37 99 49 1
+VA8 37 38 0
+G6  38 40 49 29 16.667E-3  
+R16 38 40 2.3886K  
+V4  30 40 .77
+D5  30 99 DX
+V5  40 31 .77
+D6  50 31 DX
+*Fp1=2.343 Hz
+C3  29 39 17P
+R6  39 40 1K
+*
+***************MODELS USED**************
+*
+.MODEL DA D(IS=2E-14)
+.MODEL DB D(IS=1E-14)
+.MODEL DX D(IS=1E-14)
+.MODEL MOSFET PMOS(VTO=0 KP=1.842E-3)
+.ENDS
+* COPYRIGHT OF NATIONAL SEMICONDUCTOR CORP.
+*
+* Library of National Semiconductor Corp. BIPOLAR OP-AMP
+* Macromodels.  Version 2.5
+*
+* This library of macromodels is being supplied to users as
+* an aid to circuit designs.  While it reflects reasonably
+* close similarity to the actual device in terms of
+* performance, it is not suggested as a replacement for
+* breadboarding.  Simulation should be used as a supplement
+* to traditional lab testing.
+*
+* Users should very carefully note the following factors
+* regarding these models:
+*
+* -- Model performance in general will reflect typical
+* baseline specs for a given device, and certain aspects of
+* performance may not be modeled fully.
+*
+* -- While reasonable care has been taken in their
+* preparation, we cannot be responsible for correct
+* application on any and all computer systems.
+*
+* -- Model users are hereby notified that these models are
+* supplied "as is", with no direct or implied responsibility
+* on the part of National Semiconductor for their operation
+* within a customer circuit or system.  Further, National
+* Semiconductor reserves the right to change these models
+* without prior notice.
+*
+* -- In all cases, the current data sheet information for a
+* given real device is your final design guideline, and is
+* the only actual performance guarantee.  For further
+* technical information, refer to individual device data
+* sheets.
+*
+* Note: The current models presently do not simulate
+* temperature or noise effects.
+*
+* Your feedback and suggestions on these (and future) models
+* will be appreciated.
+*
+* Models developed by:
+* David Hindi
+* National Semiconductor       For information on the models, contact:
+* 2900 Semiconductor Dr.       Linear Applications
+* Santa Clara, CA 95052        (408) 721-3877
+* M/S C2500
+* FAX (408) 721-7321           For ordering information, contact:
+*                              Customer Response Center
+*                              (408) 721-4902
+* ---------------------------------------------------------
+*//////////////////////////////////////////////////////////
+*LM118 OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM118       1   2  99  50  28
+*
+*Features:
+*Internal frequency compensation
+*High bandwidth =                    15MHz
+*Minimum slew rate =                50V/uS
+*Low bias current =                  250nA
+*Wide supply range =         +-5V to +-20V
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 6N
+*^Input offset current
+R1 1 3 1.5MEG
+R2 3 2 1.5MEG
+I1 4 50 100U
+R3 99 5 517
+R4 99 6 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=25 MHz
+C4 5 6 6.1569P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.9M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 4E-3 1
+*Input offset voltage.^
+R8 99 49 80.2K
+R9 49 50 80.2K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 3.0967E-4 0 596.674E-3
+*Fp1=115 Hz
+R5 98 9 9.6877G
+C3 98 9 1.4286P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=300 KHz, Fz=600 KHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 1MEG
+C6 14 13 2.6526E-13
+*
+***************POLE STAGE***************
+*
+*Fp=55 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C5 98 15 2.8937E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 1E-8                    
+L2 98 17 53.1M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 15 1
+R16 24 23 30
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 30
+D6 25 27 DX
+V7 22 27 .63V
+C9 23 22 100P
+V5 22 21 0.2V
+D4 21 15 DX
+V4 20 22 0.2V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=333.333)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM124 Low Power Quad OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM124       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =        +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 3N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 0.635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM158 DUAL OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM158       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =       +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM218 OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM218       1   2  99  50  28
+*
+*Features:
+*Internal frequency compensation
+*High bandwidth =                    15MHz
+*Minimum slew rate =                50V/uS
+*Low bias current =                  250nA
+*Wide supply range =         +-5V to +-20V
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 6N
+*^Input offset current
+R1 1 3 1.5MEG
+R2 3 2 1.5MEG
+I1 4 50 100U
+R3 99 5 517
+R4 99 6 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=25 MHz
+C4 5 6 6.1569P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.9M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 4E-3 1
+*Input offset voltage.^
+R8 99 49 80.2K
+R9 49 50 80.2K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 3.0967E-4 0 596.674E-3
+*Fp1=115 Hz
+R5 98 9 9.6877G
+C3 98 9 1.4286P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=300 KHz, Fz=600 KHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 1MEG
+C6 14 13 2.6526E-13
+*
+***************POLE STAGE***************
+*
+*Fp=55 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C5 98 15 2.8937E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 1E-8                    
+L2 98 17 53.1M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 15 1
+R16 24 23 30
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 30
+D6 25 27 DX
+V7 22 27 .63V
+C9 23 22 100P
+V5 22 21 0.2V
+D4 21 15 DX
+V4 20 22 0.2V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=333.333)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM224 Low Power Quad OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM224       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =        +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 3N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM258 DUAL OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM258       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =       +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM318 OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM318       1   2  99  50  28
+*
+*Features:
+*Internal frequency compensation
+*High bandwidth =                    15MHz
+*Minimum slew rate =                50V/uS
+*Low bias current =                  250nA
+*Wide supply range =         +-5V to +-20V
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 30N
+*^Input offset current
+R1 1 3 1.5MEG
+R2 3 2 1.5MEG
+I1 4 50 100U
+R3 99 5 517
+R4 99 6 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=25 MHz
+C4 5 6 6.1569P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4.9M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 4E-3 1
+*Input offset voltage.^
+R8 99 49 80.2K
+R9 49 50 80.2K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 3.0967E-4 0 596.674E-3
+*Fp1=115 Hz
+R5 98 9 9.6877G
+C3 98 9 1.4286P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=300 KHz, Fz=600 KHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 1MEG
+C6 14 13 2.6526E-13
+*
+***************POLE STAGE***************
+*
+*Fp=55 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C5 98 15 2.8937E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 1E-8                    
+L2 98 17 53.1M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 15 1
+R16 24 23 30
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 30
+D6 25 27 DX
+V7 22 27 .63V
+C9 23 22 100P
+V5 22 21 0.2V
+D4 21 15 DX
+V4 20 22 0.2V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=333.333)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM324 Low Power Quad OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM324       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =        +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM358 DUAL OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM358       1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =                     1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =       +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8               
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM607/LM607A/LM607B OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM607       1   2  99  50  28
+*
+*Features:
+*Low Vos =                            25 uV
+*High gain =                         134 dB
+*High unity gain freq. =             1.8MHz
+*High slew rate =                    .7V/uS
+*Wide supply range =          +-3V to +-18V
+*
+*NOTE:  Noise is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 500P
+*^Input offset current
+R1 1 3 1MEG
+R2 3 2 1MEG
+I1 4 50 100U
+R3 5 99 517
+R4 6 99 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=14 MHz
+C4 5 6 10.994P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 900UA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 15E-6 1
+*Input offset voltage.^
+R8 99 49 2MEG
+R9 49 50 2MEG
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.83
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 1.83
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 2E-3
+*Fp1=.14 Hz
+R5 98 9 5.116G
+C3 98 9 222.222P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=500 KHz, Fz=800 KHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 1.666MEG
+C5 14 13 1.194E-13
+*
+***************POLE STAGE***************
+*
+*Fp=14 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C6 98 15 1.1368E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 Hz
+G4 98 16 3 49 1E-10
+L2 98 17 795.8M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 80U 1
+E1 99 23 99 15 1
+R16 24 23 50
+D5 26 24 DX
+V6 26 22 0.65V
+R17 23 25 50
+D6 25 27 DX
+V7 22 27 0.65V
+V5 22 21 0.145V
+D4 21 15 DX
+V4 20 22 0.145V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=5.0E4)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM627 PRECISION OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM627       1   2  99  50  28
+*
+*Features:
+*Low Vos =                            25 uV
+*High gain =                         134 dB
+*High unity gain freq. =             14 MHz
+*High slew rate =                   4.5V/uS
+*Wide supply range =        +-3.5V to +-18V
+*
+*NOTE:  Noise is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 2N
+*^Input offset current
+R1 1 3 10G
+R2 3 2 10G
+I1 4 50 100U
+R3 5 99 517
+R4 6 99 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=25.3 MHz
+C4 5 6 6.084P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.9MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 15E-6 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.83
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 1.83
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 2.1E-3
+*Fp1=1.49 Hz
+R5 98 9 4.807G
+C3 98 9 22.2222P
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=300 KHz, Fz=1 MHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 428.571K
+C5 14 13 3.7136E-13
+*
+***************POLE STAGE***************
+*
+*Fp=30 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C6 98 15 5.305E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=300 Hz
+G4 98 16 3 49 1E-10
+L2 98 17 530.5M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 220U 1
+E1 99 23 99 15 1
+R16 24 23 50
+D5 26 24 DX
+V6 26 22 0.63V
+R17 23 25 50
+D6 25 27 DX
+V7 22 27 0.63V
+V5 22 21 1.4V
+D4 21 15 DX
+V4 20 22 1.4V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=1.6667E4)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM637 PRECISION OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM637       1   2  99  50  28
+*
+*Features:
+*Low Vos =                            25 uV
+*High gain =                         134 dB
+*High unity gain freq. =             65 MHz
+*High slew rate =                    14V/uS
+*Wide supply range =        +-3.5V to +-18V
+*
+*NOTE:  Noise is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 2N
+*^Input offset current
+R1 1 3 10G
+R2 3 2 10G
+I1 4 50 100U
+R3 5 99 517
+R4 6 99 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=50 MHz
+C4 5 6 3.0784P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.9MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 15E-6 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.83
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 1.83
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 3.7E-3
+F1 9 98 POLY(1) VA3 0 0 0 9.24E7
+*Fp1=10 Hz
+R5 98 9 2.7056G
+C3 98 11 5.8824P
+VA3 9 11 0
+*
+************POLE/ZERO STAGE*************
+*
+*Fp=300 KHz, Fz=450 KHz
+G2 98 13 9 49 1E-6
+R10 98 13 1MEG
+R11 98 14 2MEG
+C6 14 13 1.768E-13
+*
+***************POLE STAGE****************
+*
+*Fp=50 MHz
+G3 98 15 13 49 1E-6
+R12 98 15 1MEG
+C5  98 15 3.1831E-15
+*
+***************POLE STAGE****************
+*
+*Fp=80 MHz
+G5 98 18 15 49 1E-6
+R14 98 18 1MEG
+C7  98 18 1.9894E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=2 KHz
+G4 98 16 3 49 1E-10
+L2 98 17 79.6M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 18 1
+R16 24 23 50
+D5 26 24 DX
+V6 26 22 0.61V
+R17 23 25 50
+D6 25 27 DX
+V7 22 27 0.61V
+V5 22 21 1.4V
+D4 21 18 DX
+V4 20 22 1.4V
+D3 18 20 DX
+L3 22 28 .02U
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=1.67E4)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM741/A/C/E OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM741       1   2  99  50  28
+*
+*Features:
+*Improved performance over industry standards
+*Plug-in replacement for LM709,LM201,MC1439,748
+*Input and output overload protection
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 20N
+*^Input offset current
+R1 1 3 250K
+R2 3 2 250K
+I1 4 50 100U
+R3 5 99 517
+R4 6 99 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=2.55 MHz
+C4 5 6 60.3614P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 1.6MA
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 40K
+R9 49 50 40K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 1.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 5 6 2.1E-3
+*Fp1=5 Hz
+R5 98 9 95.493MEG
+C3 98 9 333.33P
+*
+***************POLE STAGE***************
+*
+*Fp=30 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 5.3052E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=300 Hz
+G4 98 16 3 49 3.1623E-8
+L2 98 17 530.5M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 450U 1
+E1 99 23 99 15 1
+R16 24 23 25
+D5 26 24 DX
+V6 26 22 0.65V
+R17 23 25 25
+D6 25 27 DX
+V7 22 27 0.65V
+V5 22 21 0.18V
+D4 21 15 DX
+V4 20 22 0.18V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=625)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM2902 QUAD OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM2902      1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =             100dB
+*High bandwidth =       1MHz
+*Low input offset voltage =            2mV
+*Wide supply range =        +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/4 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM2904 DUAL OPERATIONAL AMPLIFIER MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM2904      1   2  99  50  28
+*
+*Features:
+*Eliminates need for dual supplies
+*Large DC voltage gain =              100dB
+*High bandwidth =                      1MHz
+*Low input offset voltage =             2mV
+*Wide supply range =        +-1.5V to +-16V
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*      Output crossover distortion with dual supplies
+*      is not modeled.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 5N
+*^Input offset current
+R1 1 3 500K
+R2 3 2 500K
+I1 99 4 100U
+R3 5 50 517
+R4 6 50 517
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=1.2 MHz
+C4 5 6 128.27P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 75U
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 60K
+R9 49 50 60K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 .635
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 9.8772E-4 0 .3459
+*Fp1=7.86 Hz
+R5 98 9 101.2433MEG
+C3 98 9 200P
+*
+***************POLE STAGE***************
+*
+*Fp=2 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.9577E-14
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 5.6234E-8
+L2 98 17 15.9M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 300U 1
+E1 99 23 99 15 1
+R16 24 23 17.5
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 17.5
+D6 25 27 DX
+V7 22 27 .63V
+V5 22 21 0.27V
+D4 21 15 DX
+V4 20 22 0.27V
+D3 15 20 DX
+L3 22 28 500P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX PNP(BF=1.111E3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LH4161 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LH4161      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =      50MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 1.5P
+CI2 2 0 1.5P
+R1 1 3 162.5K
+R2 3 2 162.5K
+I1 4 50 1M
+R3 99 5 651.7
+R4 99 6 651.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 600
+R44 46 4 600
+*Fp2=200 MHz
+C4 5 6 6.1054E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .5E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.335
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.155
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 20
+G1 98 9 POLY(1) 5 6 0 2.9E-3 0 5.062E-4
+*Fp1=23.52 KHz
+R5 98 9 1MEG
+C3 98 9 6.7668P
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.84E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 KHz
+G4 98 16 3 49 1.9952E-8
+L2 98 17 795.77U
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX NPN(BF=250)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LH4162 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LH4162      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =      50MHz
+*High slew rate =    300V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 1.5P
+CI2 2 0 1.5P
+R1 1 3 162.5K
+R2 3 2 162.5K
+I1 4 50 1M
+R3 99 5 651.7
+R4 99 6 651.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 600
+R44 46 4 600
+*Fp2=200 MHz
+C4 5 6 6.1054E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.335
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.155
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 20
+G1 98 9 POLY(1) 5 6 0 2.9E-3 0 5.062E-4
+*Fp1=23.52 KHz
+R5 98 9 1MEG
+C3 98 9 6.7668P
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.84E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 KHz
+G4 98 16 3 49 1.9952E-8
+L2 98 17 795.77U
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX NPN(BF=250)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6118/A Fast Settling Dual OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6118      1   2  99  50  28
+*
+*Features:
+*Low offset voltage =   .2mV
+*High bandwidth =      17MHz
+*Slew rate (Av=-1) = 140V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 20N
+*^Input offset current
+CI1 1 0 2.5P
+CI2 2 0 2.5P
+R1  1 3 3.125G
+R2  3 2 3.125G
+I1 99 4 40U
+R43 45 4 1.25K
+R44 46 4 1.25K
+Q1  5 2 45 QX
+Q2  6 7 46 QX
+R3 50 5 2.54K
+R4 50 6 2.54K
+*Fp2=30 MHz
+C4 5 6 1.0433P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.71M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .2E-3 1
+*Input offset voltage.^
+R8 99 49 71.4K
+R9 49 50 71.4K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 5E-3 0 5.056
+*Fp1=38.24 Hz
+R5 98 9 100MEG
+C3 98 9 41.62P
+*
+***************POLE STAGE***************
+*
+*Fp=110 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.4469E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=6 KHz
+G4 98 16 3 49 1E-8
+L2 98 17 26.526M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 .001U
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX PNP(BF=100)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6161 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6161      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =      50MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 1.5P
+CI2 2 0 1.5P
+R1 1 3 162.5K
+R2 3 2 162.5K
+I1 4 50 1M
+R3 99 5 651.7
+R4 99 6 651.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 600
+R44 46 4 600
+*Fp2=200 MHz
+C4 5 6 6.1054E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.335
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.155
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 20
+G1 98 9 POLY(1) 5 6 0 2.9E-3 0 5.062E-4
+*Fp1=23.52 KHz
+R5 98 9 1MEG
+C3 98 9 6.7668P
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.84E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 KHz
+G4 98 16 3 49 1.9952E-8
+L2 98 17 795.77U
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX NPN(BF=250)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6162 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6162      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     100MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 2P
+CI2 2 0 2P
+R1 1 3 90K
+R2 3 2 90K
+I1 4 50 1M
+R3 99 5 351.7
+R4 99 6 351.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 300
+R44 46 4 300
+*Fp2=230 MHz
+C4 5 6 9.8376E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 .85
+G1 98 9 POLY(1) 5 6 0 6.5E-3 0 8.646E-3
+*Fp1=17.935 KHz
+R5 98 9 1MEG
+C3 98 9 8.874P
+*
+***************POLE STAGE***************
+*
+*Fp=230 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 6.9198E-16
+*
+***************POLE STAGE***************
+*
+*Fp=250 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 6.3662E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 1E-8
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 200P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=227.3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6164 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6164      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     175MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 3P
+CI2 2 0 3P
+R1 1 3 50K
+R2 3 2 50K
+I1 4 50 1M
+R3 99 5 201.7
+R4 99 6 201.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 150
+R44 46 4 150
+*Fp2=190 MHz
+C4 5 6 2.0765P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 3.4
+G1 98 9 POLY(1) 5 6 0 9.0E-3 0 10.6E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+C3 98 9 6.3408P
+*
+***************POLE STAGE***************
+*
+*Fp=190 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-16
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 7.8401E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 5.6234E-9
+L2 98 17 53.052E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6165 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6165      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     725MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 6P
+CI2 2 0 6P
+R1 1 3 10K
+R2 3 2 10K
+I1 4 50 1M
+R3 99 5 51.7
+R4 99 6 51.7
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=120 MHz
+C4 5 6 12.827P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(2) VA1 VA3 0 0 0 0 0 0 4.25 0 0 4.978143E5
+G1 98 9 POLY(1) 5 6 0 38.0E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+VA3 9 11 0
+C3 98 11 3.897P
+*
+***************POLE STAGE***************
+*
+*Fp=120 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.3263E-15
+*
+***************POLE STAGE***************
+*
+*Fp=124 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 1.2835E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 7.94328E-9
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .25V
+D4 21 18 DX
+V4 20 22 .25V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6218/A Fast Settling Dual OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6218      1   2  99  50  28
+*
+*Features:
+*Low offset voltage =   .2mV
+*High bandwidth =      17MHz
+*Slew rate (Av=-1) = 140V/uS
+*
+*NOTE: Model is for single device only and simulated
+*      supply current is 1/2 of total device current.
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 20N
+*^Input offset current
+CI1 1 0 2.5P
+CI2 2 0 2.5P
+R1  1 3 3.125G
+R2  3 2 3.125G
+I1 99 4 40U
+R43 45 4 1.25K
+R44 46 4 1.25K
+Q1  5 2 45 QX
+Q2  6 7 46 QX
+R3 50 5 2.54K
+R4 50 6 2.54K
+*Fp2=30 MHz
+C4 5 6 1.0433P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 2.71M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 .2E-3 1
+*Input offset voltage.^
+R8 99 49 71.4K
+R9 49 50 71.4K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 2.63
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.63
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+G1 98 9 POLY(1) 5 6 0 5E-3 0 5.056
+*Fp1=38.24 Hz
+R5 98 9 100MEG
+C3 98 9 41.62P
+*
+***************POLE STAGE***************
+*
+*Fp=110 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.4469E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=6 KHz
+G4 98 16 3 49 1E-8
+L2 98 17 26.526M
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+E1 99 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 .001U
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX PNP(BF=100)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6261 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6261      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =      50MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 1.5P
+CI2 2 0 1.5P
+R1 1 3 162.5K
+R2 3 2 162.5K
+I1 4 50 1M
+R3 99 5 651.7
+R4 99 6 651.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 600
+R44 46 4 600
+*Fp2=200 MHz
+C4 5 6 6.1054E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.335
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.155
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 20
+G1 98 9 POLY(1) 5 6 0 2.9E-3 0 5.062E-4
+*Fp1=23.52 KHz
+R5 98 9 1MEG
+C3 98 9 6.7668P
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.84E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 KHz
+G4 98 16 3 49 1.9952E-8
+L2 98 17 795.77U
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX NPN(BF=250)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6262 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6262      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     100MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 2P
+CI2 2 0 2P
+R1 1 3 90K
+R2 3 2 90K
+I1 4 50 1M
+R3 99 5 351.7
+R4 99 6 351.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 300
+R44 46 4 300
+*Fp2=230 MHz
+C4 5 6 9.8376E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 .85
+G1 98 9 POLY(1) 5 6 0 6.5E-3 0 8.646E-3
+*Fp1=17.935 KHz
+R5 98 9 1MEG
+C3 98 9 8.874P
+*
+***************POLE STAGE***************
+*
+*Fp=230 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 6.9198E-16
+*
+***************POLE STAGE***************
+*
+*Fp=250 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 6.3662E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 1E-8
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 200P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=227.3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6264 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6264      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     175MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 3P
+CI2 2 0 3P
+R1 1 3 50K
+R2 3 2 50K
+I1 4 50 1M
+R3 99 5 201.7
+R4 99 6 201.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 150
+R44 46 4 150
+*Fp2=190 MHz
+C4 5 6 2.0765P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 3.4
+G1 98 9 POLY(1) 5 6 0 9.0E-3 0 10.6E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+C3 98 9 6.3408P
+*
+***************POLE STAGE***************
+*
+*Fp=190 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-16
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 7.8401E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 5.6234E-9
+L2 98 17 53.052E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6265 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6265      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     725MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 6P
+CI2 2 0 6P
+R1 1 3 10K
+R2 3 2 10K
+I1 4 50 1M
+R3 99 5 51.7
+R4 99 6 51.7
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=120 MHz
+C4 5 6 12.827P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(2) VA1 VA3 0 0 0 0 0 0 4.25 0 0 4.978143E5
+G1 98 9 POLY(1) 5 6 0 38.0E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+VA3 9 11 0
+C3 98 11 3.897P
+*
+***************POLE STAGE***************
+*
+*Fp=120 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.3263E-15
+*
+***************POLE STAGE***************
+*
+*Fp=124 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 1.2835E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 7.94328E-9
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .25V
+D4 21 18 DX
+V4 20 22 .25V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6361 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6361      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =      50MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 1.5P
+CI2 2 0 1.5P
+R1 1 3 162.5K
+R2 3 2 162.5K
+I1 4 50 1M
+R3 99 5 651.7
+R4 99 6 651.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 600
+R44 46 4 600
+*Fp2=200 MHz
+C4 5 6 6.1054E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 5E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.335
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.155
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 20
+G1 98 9 POLY(1) 5 6 0 2.9E-3 0 5.062E-4
+*Fp1=23.52 KHz
+R5 98 9 1MEG
+C3 98 9 6.7668P
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 7.84E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=200 KHz
+G4 98 16 3 49 1.9952E-8
+L2 98 17 795.77U
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 15 1
+R16 24 23 10
+D5 26 24 DY
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DY
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .63V
+D4 21 15 DX
+V4 20 22 .63V
+D3 15 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL DY D(IS=1E-25)
+.MODEL QX NPN(BF=250)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6362 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6362      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     100MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 2P
+CI2 2 0 2P
+R1 1 3 90K
+R2 3 2 90K
+I1 4 50 1M
+R3 99 5 351.7
+R4 99 6 351.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 300
+R44 46 4 300
+*Fp2=230 MHz
+C4 5 6 9.8376E-13
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 3E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 .85
+G1 98 9 POLY(1) 5 6 0 6.5E-3 0 8.646E-3
+*Fp1=17.935 KHz
+R5 98 9 1MEG
+C3 98 9 8.874P
+*
+***************POLE STAGE***************
+*
+*Fp=230 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 6.9198E-16
+*
+***************POLE STAGE***************
+*
+*Fp=250 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 6.3662E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 1E-8
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 200P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=227.3)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6364 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6364      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     175MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 3P
+CI2 2 0 3P
+R1 1 3 50K
+R2 3 2 50K
+I1 4 50 1M
+R3 99 5 201.7
+R4 99 6 201.7
+Q1 5 2 45 QX
+Q2 6 7 46 QX
+R43 45 4 150
+R44 46 4 150
+*Fp2=190 MHz
+C4 5 6 2.0765P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 2E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(1) VA1 0 0 0 3.4
+G1 98 9 POLY(1) 5 6 0 9.0E-3 0 10.6E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+C3 98 9 6.3408P
+*
+***************POLE STAGE***************
+*
+*Fp=190 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 8.3766E-16
+*
+***************POLE STAGE***************
+*
+*Fp=203 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 7.8401E-16
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=3 KHz
+G4 98 16 3 49 5.6234E-9
+L2 98 17 53.052E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .23V
+D4 21 18 DX
+V4 20 22 .23V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+*//////////////////////////////////////////////////////////
+*LM6365 High Speed OP-AMP MACRO-MODEL
+*//////////////////////////////////////////////////////////
+*
+* connections:      non-inverting input
+*                   |   inverting input
+*                   |   |   positive power supply
+*                   |   |   |   negative power supply
+*                   |   |   |   |   output
+*                   |   |   |   |   |
+*                   |   |   |   |   |
+.SUBCKT LM6365      1   2  99  50  28
+*
+*Features:
+*Low supply current =    5mA
+*High bandwidth =     725MHz
+*High slew rate =    300V/uS
+*
+****************INPUT STAGE**************
+*
+IOS 2 1 150N
+*^Input offset current
+CI1 1 0 6P
+CI2 2 0 6P
+R1 1 3 10K
+R2 3 2 10K
+I1 4 50 1M
+R3 99 5 51.7
+R4 99 6 51.7
+Q1 5 2 4 QX
+Q2 6 7 4 QX
+*Fp2=120 MHz
+C4 5 6 12.827P
+*
+***********COMMON MODE EFFECT***********
+*
+I2 99 50 4M
+*^Quiescent supply current
+EOS 7 1 POLY(1) 16 49 1E-3 1
+*Input offset voltage.^
+R8 99 49 80K
+R9 49 50 80K
+*
+*********OUTPUT VOLTAGE LIMITING********
+V2 99 8 1.43
+D1 9 8 DX
+D2 10 9 DX
+V3 10 50 2.23
+*
+**************SECOND STAGE**************
+*
+EH 99 98 99 49 1
+F1 9 98 POLY(2) VA1 VA3 0 0 0 0 0 0 4.25 0 0 4.978143E5
+G1 98 9 POLY(1) 5 6 0 38.0E-3
+*Fp1=25.1 KHz
+R5 98 9 1MEG
+VA3 9 11 0
+C3 98 11 3.897P
+*
+***************POLE STAGE***************
+*
+*Fp=120 MHz
+G3 98 15 9 49 1E-6
+R12 98 15 1MEG
+C5 98 15 1.3263E-15
+*
+***************POLE STAGE***************
+*
+*Fp=124 MHz
+G5 98 18 15 49 1E-6
+R15 98 18 1MEG
+C6 98 18 1.2835E-15
+*
+*********COMMON-MODE ZERO STAGE*********
+*
+*Fpcm=10 KHz
+G4 98 16 3 49 7.94328E-9
+L2 98 17 15.915E-3
+R13 17 16 1K
+*
+**************OUTPUT STAGE**************
+*
+F6 50 99 POLY(1) V6 200U 1
+VA1 99 93 0
+E1 93 23 99 18 1
+R16 24 23 10
+D5 26 24 DX
+V6 26 22 .63V
+R17 23 25 10
+D6 25 27 DX
+C9 23 22 500P
+V7 22 27 .63V
+V5 22 21 .25V
+D4 21 18 DX
+V4 20 22 .25V
+D3 18 20 DX
+L3 22 28 100P
+RL3 22 28 100K
+*
+***************MODELS USED**************
+*
+.MODEL DX D(IS=1E-15)
+.MODEL QX NPN(BF=200)
+*
+.ENDS
+

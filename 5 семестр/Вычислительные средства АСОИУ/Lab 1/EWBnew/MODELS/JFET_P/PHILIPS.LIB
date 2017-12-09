@@ -1,0 +1,120 @@
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: J174.PRM          Date: sep 1992
+*
+.MODEL  J174   PJF
++             VTO = -7.1507E+000
++            BETA = 1.24461E-003
++          LAMBDA = 2.01968E-002
++              RD = 3.95403E+000
++              RS = 3.95403E+000
++              IS = 9.72750E-016
++            CGS  = 1.58000E-011
++            CGD  = 1.88000E-011
++              PB = 3.72072E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: J175.PRM          Date: sep 1992
+*
+.MODEL  J175   PJF
++             VTO = -3.6320E+000
++            BETA = 2.84523E-003
++          LAMBDA = 2.00000E-002
++              RD = 1.17482E+001
++              RS = 1.17482E+001
++              IS = 7.74158E-016
++            CGS  = 1.57000E-011
++            CGD  = 1.70000E-011
++              PB = 3.19450E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: J176.PRM          Date: sep 1992
+*
+.MODEL  J176   PJF
++             VTO = -2.3000E+000
++            BETA = 2.89414E-003
++          LAMBDA = 2.00000E-002
++              RD = 1.02409E+000
++              RS = 1.02409E+000
++              IS = 4.51393E-016
++            CGS  = 1.00000E-011
++            CGD  = 1.05000E-011
++              PB = 7.05860E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: J177.PRM          Date: sep 1992
+*
+.MODEL  J177   PJF
++             VTO = -1.8000E+000
++            BETA = 3.37432E-003
++          LAMBDA = 2.41676E-002
++              RD = 1.45880E+000
++              RS = 1.45880E+000
++              IS = 7.27555E-016
++            CGS  = 8.90000E-012
++            CGD  = 1.02500E-011
++              PB = 6.94243E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: PMBFJ174.PRM      Date: sep 1992
+*
+.MODEL  PMBFJ174   PJF
++             VTO = -7.1507E+000
++            BETA = 1.24461E-003
++          LAMBDA = 2.01968E-002
++              RD = 3.95403E+000
++              RS = 3.95403E+000
++              IS = 9.72750E-016
++            CGS  = 1.58000E-011
++            CGD  = 1.88000E-011
++              PB = 3.72072E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: PMBFJ175.PRM      Date: sep 1992
+*
+.MODEL  PMBFJ175   PJF
++             VTO = -3.6320E+000
++            BETA = 2.84523E-003
++          LAMBDA = 2.00000E-002
++              RD = 1.17482E+001
++              RS = 1.17482E+001
++              IS = 7.74158E-016
++            CGS  = 1.57000E-011
++            CGD  = 1.70000E-011
++              PB = 3.19450E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: PMBFJ176.PRM      Date: sep 1992
+*
+.MODEL  PMBFJ176   PJF
++             VTO = -2.3000E+000
++            BETA = 2.89414E-003
++          LAMBDA = 2.00000E-002
++              RD = 1.02409E+000
++              RS = 1.02409E+000
++              IS = 4.51393E-016
++            CGS  = 1.00000E-011
++            CGD  = 1.05000E-011
++              PB = 7.05860E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC
+*PHILIPS SEMICONDUCTORS        Version: 1.0
+*Filename: PMBFJ177.PRM      Date: sep 1992
+*
+.MODEL  PMBFJ177   PJF
++             VTO = -1.8000E+000
++            BETA = 3.37432E-003
++          LAMBDA = 2.41676E-002
++              RD = 1.45880E+000
++              RS = 1.45880E+000
++              IS = 7.27555E-016
++            CGS  = 8.90000E-012
++            CGD  = 1.02500E-011
++              PB = 6.94243E-001
++              FC = 5.00000E-001
+*Parameter with default value: FC

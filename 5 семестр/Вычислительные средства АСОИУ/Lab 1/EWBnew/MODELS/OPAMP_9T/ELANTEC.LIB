@@ -1,0 +1,301 @@
+* COPYRIGHT OF ELANTEC, INC.
+*
+*This library of macromodels is being supplied to users as an  aid 
+*to   circuit  designs.    While  it  reflects  reasonably   close 
+*similarity  to the actual device in terms of performance,  it  is 
+*not  suggested  as a replacement for  breadboarding.   Simulation 
+*should be used as a forerunner or a supplement to traditional lab 
+*testing.
+*
+*Users  should very carefully note the following factors regarding 
+*these models:
+*
+*Model performance in general will reflect typical baseline  specs 
+*for a given device, and certain aspects of performance may not be 
+*modeled  fully  to  keep  the model as simple  as  possible  thus 
+*minimizing  computer running time.  For example,  PSRR  and  CMRR 
+*effects,  parametric variation with temperature,  operation under 
+*output short circuit conditions,  and input noise sources are not 
+*included in the models.
+*
+*While  reasonable  care has been taken in their  preparation,  we 
+*cannot  be  responsible for correct application on  any  and  all 
+*computer  systems.  Model  users are hereby notified  that  these 
+*models  are  supplied  "as  is",   with  no  direct  or   implied 
+*responsibility on the part of Elantec,  Inc.  for their operation 
+*within  a  customer circuit or  system.   Further,  Elantec  Inc. 
+*reserves the right to change these models without prior notice.
+* 
+*In all cases, the current data sheet information for a given real 
+*device  is  your final design guideline,  and is the only  actual 
+*performance guarantee.   For further technical information, refer 
+*to individual device data sheets.
+*
+*The  Elantec  Engineering staff is in the  process  of  improving 
+*these  models,   and  we  welcome  your  comments  and  feedback. 
+*Inquiries should be made to:
+*
+*                  Applications Engineering Manager
+*                  Elantec, Inc.
+*                  1996 Tarob Ct. 
+*                  Milpitas, CA 95035
+*
+*Voice Telephone:  (800) 333-6314, ext. 311
+*
+*FAX: (408) 945-9305   
+*
+*TELEX: 910-997-0649            
+*ELH0032 Model
+* 
+* Connections     +input
+*                   |  -input
+*                   |    | +Vsupply
+*                   |    |    | -Vsupply
+*                   |    |    |    |  Output 
+*                   |    |    |    |    |  Comp 2
+*                   |    |    |    |    |    |  Comp 3
+*                   |    |    |    |    |    |    |  Comp 4
+*                   |    |    |    |    |    |    |    |
+*                   |    |    |    |    |    |    |    |
+.subckt ELH0032/EL  6    5    12   10   11   2    3    4  
+*
+* Models 
+*
+.model qfa njf (vto=-3V beta=1.11e-3 cgd=2pF cgs=5pF m=0.3744)
+*
+.model qp pnp (is=1e-14 bf=150 vaf=100 ikf=100mA tf=.53nS vtf=0 ise=1nA,       
++cjc=4pF cje=5.7pF tr=170nS rb=3 br=5 mje=.32 mjc=.43 xtb=2.1 ne=4 
++isc=1nA nc=4 itf=.4 vtf=4 xtf=6)
+*
+.model qn npn (is=5e-14 bf=150 vaf=800 ikf=200mA tf=.53nS vtf=0       
++cjc=4pF cje=5pF rb=3 br=5 mje=.42 MJC=.23 tr=200nS xtb=2.1
++ise=4nA ne=4 isc=4nA nc=4 itf=.4 vtf=4 xtf=2)
+*
+.model qfb njf (vto=-2.8V beta=4e-3 cgd=7pF cgs=8pF lambda=4e-3)     
+*
+.model zener d (bv=2.49V ibv=1mA)
+*
+* Resistors and Capacitors
+*
+r1 12 4 700
+r2 12 3 700
+r3 12 105 160
+r4 103 100 10
+r5 108 100 10
+r6 12 101 22K
+r7 113 11 10
+r8 11 112 10
+r9 102 10 407      
+cs2 10 116 100pF
+*
+* Transistors & Diodes
+*
+j1a 4 5 103 qfa     
+j1b 3 6 108 qfa
+j2 111 10 116 qfb
+q1 104 4 105 qp
+q2 2 3 105 qp
+q3 114 11 104 qp
+q4 12 2 113 qn
+q5 10 111 112 qp
+q6 2 2 110 qn     
+q7 111 111 110 qp
+q8 100 101 102 qn
+d1 10 117 zener
+q9 101 101 117 qn
+q10 114 114 10 qn
+q11 116 114 10 qn
+.ends
+*ELH0101 Macromodel
+* Connections        +Input 
+*                      |  -Input
+*                      |    |    V+
+*                      |    |    |    V- 
+*                      |    |    |    |   Output
+*                      |    |    |    |    |   Isc+
+*                      |    |    |    |    |    |   Isc-
+*                      |    |    |    |    |    |    | Feedback
+*                      |    |    |    |    |    |    |    |
+.subckt ELH0101/EL     6    5    2    7    4    1    8    3 
+x1                    21         2    1    3    7    8    4    buffer/EL
+x2                     6    5    2              7        21    lf156/EL         
+
+*
+*  This is a support circuit for the ELH0101/EL macromodel
+*
+.subckt buffer/EL     21         2    1    3    7    8    4
+*
+* Resistors 
+*
+r1 3 27 10
+r2 26 3 10
+r3 30 7 50
+r4 2 23 50
+r5 29 7 2K
+r6 2 22 2K
+r7 27 28 10
+r8 24 26 10
+*
+* Transistors 
+*
+q1 4 30 8 qnd   
+d1 8 4 dclamp
+q2 4 23 1 qpd   
+d2 4 1 dclamp
+q3 7 21 22 qp    
+q4 23 22 24 qn    
+q5 21 21 26 qn    
+q6 23 1 2 qp    
+q7 2 21 29 qn    
+q8 27 27 21 qn     
+q9 30 29 28 qp    
+q10 30 8 7 qn    
+*
+* Models 
+*
+.model qpd pnp (is=88.013e-12 ikf=5A tf=32nS vaf=50V cje=45pF cjc=60pF
++xtb=2.1 bf=12000 ne=4 ise=1e-10)
+.model qnd npn (is=88.013e-12 ikf=5A tf=32nS vaf=50V cje=45pF cjc=60pF
++xtb=2.1 bf=12000 ne=4 ise=1e-10)
+.model dclamp d (is=10e-28 tt=100nS)
+.model qp pnp (is=10e-15 xti=3 eg=1.11V vaf=91V bf=200 ne=2.321 ise=6.2fA
++ikf=500mA xtb=2.1 br=3.3 nc=2 cjc=14.6pF vjc=0.75V mjc=0.3333 fc=0.5 cje=20pF
++vje=0.75V mje=0.3333 tr=29nS tf=0.4nS itf=0.4 vtf=10 xtf=2 rb=10
+.model qn npn (is=3e-15 xti=3 eg=1.11V vaf=151V bf=220 ne=1.541 ise=14fA
++ikf=500mA xtb=2.1 br=6 nc=2 cjc=14.6pF vjc=0.75V mjc=0.3333 fc=0.5 cje=26pF
++vje=0.75V mje=0.3333 tr=51nS tf=0.4nS itf=0.6 vtf=1.7 xtf=2 rb=10
+.ends buffer/EL
+
+.ends
+
+
+*EL2006 Model
+* 
+* Connections    +input
+*                  |  -input
+*                  |    | +Vsupply
+*                  |    |    | -Vsupply
+*                  |    |    |    |  Output
+*                  |    |    |    |    |  Comp 2
+*                  |    |    |    |    |    |  Comp 3
+*                  |    |    |    |    |    |    |  Comp 4
+*                  |    |    |    |    |    |    |    |
+*                  |    |    |    |    |    |    |    |
+.subckt EL2006/EL  6    5    12   10   11   2    3    4 
+*
+* Models 
+*
+.model qfa njf (vto=-3V beta=1.11e-3 cgd=2pF cgs=5pF m=0.3744)
+*
+.model qp pnp (is=5e-14 bf=150 vaf=100 ikf=100mA tf=.53nS vtf=0 ise=1nA,       
++cjc=4pF cje=5.7pF tr=170nS rb=3 br=5 mje=.32 mjc=.43 xtb=2.1 ne=4 
++isc=1nA nc=4 itf=.4 vtf=4 xtf=6)
+*
+.model qn npn (is=5e-14 bf=150 vaf=800 ikf=200mA tf=.53nS vtf=0       
++cjc=4pF cje=5pF rb=3 br=5 mje=.42 MJC=.23 tr=200nS xtb=2.1
++ise=4nA ne=4 isc=4nA nc=4 itf=.4 vtf=4 xtf=2)
+*
+.model qfb njf (vto=-2.8V beta=4e-3 cgd=7pF cgs=8pF lambda=4e-3)     
+*
+.model zener d (bv=2.49V ibv=1mA)
+*
+* Resistors and Capacitors
+*
+r1 12 4 700
+r2 12 3 700
+r3 12 105 160
+r4 103 100 10
+r5 108 100 10
+r6 12 101 22K
+r7 113 11 10
+r8 11 112 10
+r9 102 10 407      
+cs2 10 116 100pF
+*
+* Transistors & Diodes
+*
+j1a 4 5 103 qfa     
+j1b 3 6 108 qfa
+j2 111 10 116 qfb
+q1 104 4 105 qp
+q2 2 3 105 qp
+q3 114 11 104 qp
+q4 12 2 113 qn
+q5 10 111 112 qp
+q6 2 2 110 qn     
+q7 111 111 110 qp
+q8 100 101 102 qn
+d1 10 117 zener
+q9 101 101 117 qn
+q10 114 114 10 qn
+q11 116 114 10 qn
+.ends
+* EL4430 Macromodel
+*  Revision A, May 1995
+*  This is a Pspice-compatible macromodel of the EL4430 video instrumentation 
+*  amplifier assembled as a subcircuit.  The pins are numbered sequentially 
+*  as the subcircuit interface nodes.  T1 is a transmission line which provides
+*  a good emulation of the more complicated real device.  This model correctly 
+*  displays the characteristics of input clipping, frequency response, CMRR
+*  both AC and DC, output clipping, output sensitivity to capacitive loads,
+*  gain accuracy, slewrate limiting, input bias current and impedance.  The
+*  macromodel does not exibit proper results with respect to supply current,
+*  supply sensitivities, offsets, output current limit, differential gain or
+*  phase, nor temperature.
+*  Connections:         IN+
+*                         |     VIN-
+*                         |       |     V+
+*                         |       |       |     V-
+*                         |       |       |       |     VOUT 
+*                         |       |       |       |       |     VFB
+*                         |       |       |       |       |       |     VREF
+*                         |       |       |       |       |       |       |     GND
+*                         |       |       |       |       |       |       |       |
+.SUBCKT EL4430/EL        3       4       7       2       8       6       5        1
+***
+*** EL4430 macromodel ***
+***
+******
+i1 7 10 .00103
+i2 7 11 .00103
+i3 7 12 .00105
+i4 7 13 .00105
+v1 7 14 3
+v2 7 15 3
+v3 19 2 3
+******
+c1 11 1 .03p
+c2 12 1 .03p
+c3 18 1 2.1p
+c4 16 17 0.6p
+******
+r1 10 11 2000
+r2 12 13 2000
+r3 10 1 30e6
+r4 16 2 1000
+r5 17 2 1000
+r6 18 1 1.27e6
+r7 23 21 20
+r8 21 8 100
+******
+l1 21 8 50n
+******
+d1 11 14 diode
+d2 12 14 diode
+d3 18 15 diode
+d4 19 18 diode
+.model diode d(tt=120n)
+******
+q1 16 3 10 1 pnp
+q2 17 4 11 1 pnp
+q3 16 5 12 1 pnp
+q4 17 6 13 1 pnp
+.model pnp pnp (bf=90 va=44 tr=50n)
+******
+g1 18 1 17 16 .0005
+e1 20 1 1 18 1.0
+t1 22 1 20 1 z0=50 td=1.5n
+rlt1 22 1 50
+e2 23 1 22 1 1.0
+******
+.ENDS

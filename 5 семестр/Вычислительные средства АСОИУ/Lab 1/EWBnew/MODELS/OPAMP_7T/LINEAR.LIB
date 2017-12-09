@@ -1,0 +1,875 @@
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM101A op amp model  
+* Written: 08-23-1989 15:55:44 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=7.0E-04, Ib=3.0E-08, Ios=1.5E-09, GBP=9.0E+05Hz, Phase mar.= 70 deg, 
+* SR(+)=5.0E-01V/us, SR(-)=4.8E-01V/us, Av= 104 dB, CMMR= 96 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/-30.0mA, Iq= 1800uA
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM101A 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 5.895E+03
+RC2 7 90 5.895E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.438E+03
+RE2 11 12 2.438E+03
+IEE 12 4 1.506E-05
+RE 12 0 1.328E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 2.689E-09
+GA 8 0 80 90 1.696E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 1.401E+02
+* OUTPUT 
+RO1 1 6 3.333E+01
+RO2 1 0 6.667E+01
+RC 17 0 4.758E-05
+GC 0 17 6 0 2.102E+04
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.808E+00
+VE 14 4 1.808E+00
+IP 7 4 1.785E-03
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=2.439E+02)
+.MODEL QM2 NPN (IS=8.220E-16 BF=2.564E+02)
+.MODEL DM1 D (IS=3.337E-15)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM101A
+* 
+* - - - - - * FINI LM107 * - - - - - * [OAMM VN1 8/89]
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM108 op amp model (with calls for LH2108)
+* Written: 08-23-1989 15:42:36 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=7.0E-04, Ib=5.0E-10, Ios=5.0E-11, GBP=6.0E+05Hz, Phase mar.= 70 deg, 
+* SR(+)=2.0E-01V/us, SR(-)=1.9E-01V/us, Av= 110 dB, CMMR= 100 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/- 6.0mA, Iq=  300uA
+* (input differential mode clamp active)
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM108 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 8.842E+03
+RC2 7 90 8.842E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+DDM1 2 3 DM2 
+DDM2 3 2 DM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.246E+02
+RE2 11 12 2.246E+02
+IEE 12 4 6.001E-06
+RE 12 0 3.333E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 1.131E-09
+GA 8 0 80 90 1.131E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 3.146E+01
+* OUTPUT 
+RO1 1 6 1.111E+02
+RO2 1 0 8.889E+02
+RC 17 0 3.533E-04
+GC 0 17 6 0 2.830E+03
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.766E+00
+VE 14 4 1.766E+00
+IP 7 4 2.940E-04
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=5.714E+03)
+.MODEL QM2 NPN (IS=8.220E-16 BF=6.316E+03)
+.MODEL DM1 D (IS=1.192E-10)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM108
+* 
+.SUBCKT LH2108 3 2 7 4 6 1 8 
+X_LH2108 3 2 7 4 6 1 8 LM108
+.ENDS LH2108
+* 
+* - - - - - * FINI LM108 FAMILY * - - - - - * [OAMM VN1 8/89]
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM108A op amp model (with calls for LH2108A)
+* Written: 08-23-1989 15:40:03 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=3.0E-04, Ib=5.0E-10, Ios=5.0E-11, GBP=6.0E+05Hz, Phase mar.= 70 deg, 
+* SR(+)=2.0E-01V/us, SR(-)=1.9E-01V/us, Av= 110 dB, CMMR= 110 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/- 6.0mA, Iq=  300uA
+* (input differential mode clamp active)
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM108A 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 8.842E+03
+RC2 7 90 8.842E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+DDM1 2 3 DM2 
+DDM2 3 2 DM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.246E+02
+RE2 11 12 2.246E+02
+IEE 12 4 6.001E-06
+RE 12 0 3.333E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 3.576E-10
+GA 8 0 80 90 1.131E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 3.146E+01
+* OUTPUT 
+RO1 1 6 1.111E+02
+RO2 1 0 8.889E+02
+RC 17 0 3.533E-04
+GC 0 17 6 0 2.830E+03
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.766E+00
+VE 14 4 1.766E+00
+IP 7 4 2.940E-04
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=5.714E+03)
+.MODEL QM2 NPN (IS=8.093E-16 BF=6.316E+03)
+.MODEL DM1 D (IS=1.192E-10)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM108A
+* 
+.SUBCKT LH2108A 3 2 7 4 6 1 8 
+X_LH2108A 3 2 7 4 6 1 8 LM108A
+.ENDS LH2108A
+* 
+* - - - - - * FINI LM108A FAMILY * - - - - - * [OAMM VN1 8/89]
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM10C op amp model
+* Written: 08-13-1990 12:54:51 Type: Bipolar pnp input, internal comp.
+* Typical specs: 
+* Vos=5.0E-04, Ib=1.2E-08, Ios=4.0E-10, GBP=1.0E+05Hz, Phase mar.= 30 deg, 
+* SR(-)=1.5E-01V/us, SR(+)=1.4E-01V/us, Av= 114 dB, CMMR= 102 dB, 
+* Vsat(+)=0.01V, Vsat(-)=0.01V, Isc=+/-20.0mA, Iq=300uA.
+* (input common mode clamp active)
+* 
+* Connections: + - V+V-O RoRf
+.SUBCKT LM10C 3 2 7 4 6 1 8
+RC1 4 80 5.305E+04
+RC2 4 90 5.305E+04
+Q1 80 102 10 QM1 
+Q2 90 103 11 QM2 
+RB1 2 102 4.000E+03
+RB2 3 103 4.000E+03
+DCM1 105 102 DM2 
+DCM2 105 103 DM2 
+VCMC 105 4 4.000E-01
+C1 80 90 2.598E-11
+RE1 10 12 4.134E+04
+RE2 11 12 4.134E+04
+IEE 7 12 4.524E-06
+RE 12 0 4.421E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 85 12 0 1.497E-10
+GA 85 0 80 90 1.885E-05
+R2 85 0 1.000E+05
+C2 15 85 3.000E-11
+GB 15 0 85 0 2.455E+02
+* OUTPUT 
+RO1 15 110 1.000E+02
+RO2A 15 0 1.083E+03
+RO2B 6 110 8.170E+02
+EC 17 0 110 0 1
+D1 15 17 DM1
+D2 17 15 DM1
+D3 110 13 DM2 
+D4 14 110 DM2 
+D5 6 110 DM2 
+D6 110 6 DM2 
+VC 7 13 8.075E-01
+VE 14 4 8.075E-01
+IP 7 4 2.955E-04
+DSUB 4 7 DM2 
+* REFERENCE
+ER 1 4 8 200 70E3
+VR 200 4 0.200
+RRIN 200 4 1E9
+IBR 8 4 22E-9
+* MODELS 
+.MODEL QM1 PNP (IS=8.000E-16 BF=1.844E+02)
+.MODEL QM2 PNP (IS=8.156E-16 BF=1.907E+02)
+.MODEL DM1 D (IS=2.784E-32)
+.MODEL DM2 D (IS=8.000E-16 BV=4.9500E+01)
+*
+.ENDS LM10C
+* 
+* - - - - - * FINI LM118 * - - - - - *
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM301A op amp model
+* Written: 08-23-1989 15:55:44 Type: Bipolar npn input, external comp.
+* LM301A updated from original model on 05-21-1990
+* Typical specs: 
+* Vos=2.0E-03, Ib=7.0E-08, Ios=3.0E-09, GBP=9.0E+05Hz, Phase mar.= 70 deg,
+* SR(+)=5.0E-01V/us, SR(-)=4.8E-01V/us, Av= 104 dB, CMMR= 96 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/-30.0mA, Iq= 1800uA
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM301A 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 5.895E+03
+RC2 7 90 5.895E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.438E+03
+RE2 11 12 2.438E+03
+IEE 12 4 1.506E-05
+RE 12 0 1.328E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 2.689E-09
+GA 8 0 80 90 1.696E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 1.401E+02
+* OUTPUT 
+RO1 1 6 3.333E+01
+RO2 1 0 6.667E+01
+RC 17 0 4.758E-05
+GC 0 17 6 0 2.102E+04
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.808E+00
+VE 14 4 1.808E+00
+IP 7 4 1.785E-03
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=1.049E+02)
+.MODEL QM2 NPN (IS=8.647E-16 BF=1.095E+02)
+.MODEL DM1 D (IS=3.337E-15)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM301A
+* 
+* - - - - - * FINI LM307 * - - - - - * [OAMM VN1 8/89]
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM308 op amp model  
+* Written: 08-23-1989 15:46:51 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=2.0E-03, Ib=1.5E-09, Ios=2.0E-10, GBP=6.0E+05Hz, Phase mar.= 70 deg, 
+* SR(+)=2.0E-01V/us, SR(-)=1.9E-01V/us, Av= 110 dB, CMMR= 100 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/- 6.0mA, Iq=  300uA
+* (input differential mode clamp active)
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM308 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 8.842E+03
+RC2 7 90 8.842E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+DDM1 2 3 DM2 
+DDM2 3 2 DM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.245E+02
+RE2 11 12 2.245E+02
+IEE 12 4 6.003E-06
+RE 12 0 3.332E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 1.131E-09
+GA 8 0 80 90 1.131E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 3.146E+01
+* OUTPUT 
+RO1 1 6 1.111E+02
+RO2 1 0 8.889E+02
+RC 17 0 3.533E-04
+GC 0 17 6 0 2.830E+03
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.766E+00
+VE 14 4 1.766E+00
+IP 7 4 2.940E-04
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=1.875E+03)
+.MODEL QM2 NPN (IS=8.643E-16 BF=2.143E+03)
+.MODEL DM1 D (IS=1.192E-10)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM308
+* 
+* - - - - - * FINI LM308 * - - - - - * [OAMM VN1 8/89]
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LM308A op amp model  
+* Written: 08-23-1989 15:45:03 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=3.0E-04, Ib=1.5E-09, Ios=2.0E-10, GBP=6.0E+05Hz, Phase mar.= 70 deg, 
+* SR(+)=2.0E-01V/us, SR(-)=1.9E-01V/us, Av= 110 dB, CMMR= 110 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/- 6.0mA, Iq=  300uA
+* (input differential mode clamp active)
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LM308A 3 2 7 4 6 1 8 
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 8.842E+03
+RC2 7 90 8.842E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+DDM1 2 3 DM2 
+DDM2 3 2 DM2 
+C1 80 90 5.460E-12
+RE1 10 12 2.245E+02
+RE2 11 12 2.245E+02
+IEE 12 4 6.003E-06
+RE 12 0 3.332E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 3.576E-10
+GA 8 0 80 90 1.131E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 3.146E+01
+* OUTPUT 
+RO1 1 6 1.111E+02
+RO2 1 0 8.889E+02
+RC 17 0 3.533E-04
+GC 0 17 6 0 2.830E+03
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.766E+00
+VE 14 4 1.766E+00
+IP 7 4 2.940E-04
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=1.875E+03)
+.MODEL QM2 NPN (IS=8.093E-16 BF=2.143E+03)
+.MODEL DM1 D (IS=1.192E-10)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LM308A
+* 
+* - - - - - * FINI LT1007A * - - - - - *
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+* 
+* Linear Technology LT1008 op amp model  
+* Written: 08-18-1989 17:38:46 Type: Bipolar npn input, external comp.
+* Typical specs: 
+* Vos=3.0E-05, Ib=3.0E-11, Ios=3.0E-11, GBP=6.0E+05Hz, Phase mar.= 60 deg, 
+* SR(+)=2.0E-01V/us, SR(-)=1.9E-01V/us, Av= 126 dB, CMMR= 132 dB, 
+* Vsat(+)=1.00V, Vsat(-)=1.00V, Isc=+/- 8.0mA, Iq=  380uA
+* (input differential mode clamp active)
+* 
+* Connections: + - V+V-O CaCb 
+.SUBCKT LT1008 3 2 7 4 6 1 8
+* USE C=30 PF IN MAIN CIRCUIT (CA TO CB).
+* INPUT
+RC1 7 80 8.842E+03
+RC2 7 90 8.842E+03
+Q1 80 2 10 QM1 
+Q2 90 3 11 QM2 
+DDM1 2 3 DM2 
+DDM2 3 2 DM2 
+C1 80 90 8.660E-12
+RE1 10 12 2.246E+02
+RE2 11 12 2.246E+02
+IEE 12 4 6.000E-06
+RE 12 0 3.333E+07
+CE 12 0 1.579E-12
+* INTERMEDIATE 
+GCM 0 8 12 0 2.841E-11
+GA 8 0 80 90 1.131E-04
+R2 8 0 1.000E+05
+* EXTERNAL COMP CAP USED FOR C2 (SEE NOTE ABOVE).
+GB 1 0 8 0 1.960E+02
+* OUTPUT 
+RO1 1 6 1.000E+02
+RO2 1 0 9.000E+02
+RC 17 0 6.802E-05
+GC 0 17 6 0 1.470E+04
+D1 1 17 DM1 
+D2 17 1 DM1 
+D3 6 13 DM2 
+D4 14 6 DM2 
+VC 7 13 1.774E+00
+VE 14 4 1.774E+00
+IP 7 4 3.740E-04
+DSUB 4 7 DM2 
+* MODELS 
+.MODEL QM1 NPN (IS=8.000E-16 BF=6.667E+04)
+.MODEL QM2 NPN (IS=8.009E-16 BF=2.000E+05)
+.MODEL DM1 D (IS=4.276E-12)
+.MODEL DM2 D (IS=8.000E-16)
+.ENDS LT1008
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1993
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+*LT1206 MODEL BY BILL JETT     JULY 15, 1993
+*
+.SUBCKT LT1206 3 2 7 4 6 8
+*
+Q2A 4 3 10 QPI 
+Q3A 11 10 200 QNI
+Q4A 11 11 7 QPI
+Q5A 9 11A 7 QPI 0.55
+Q6A 13 11A 7 QPI
+RBC 11 11A 60 
+Q7A 4 9 12 QPI
+Q8A 12 12 13 QPI
+Q9A 7  13 14 QNI
+Q10A 4 9 14  QPI
+Q11A 7 15 16 QNI 24
+RSCA 16 6 1.2
+RBA 14 15 50
+IBA 7 10 DC 750U
+ROA 7 10 73K
+DIA 10 7 DCC 2
+*
+Q2B 7 3 110 QNI 
+Q3B 111 110 200 QPI
+Q4B 111 111 4 QNI
+Q5B 9 111B 4 QNI 0.55
+Q6B 113 111B 4 QNI
+RBD 111 111B 60 
+Q7B 7 9 112 QNI
+Q8B 112 112 113 QNI 
+Q9B 4 113 114 QPI 
+Q10B 7 9 114  QNI 
+Q11B 4 115 116 QPI 24
+RSCB 6 116  1.2
+RBB 114 115 50
+IBB 110 4 DC 750U
+ROB 110 4 73K
+DIB 4 110 DCC 2
+*
+CM1 7 11 70PF
+CM2 111 4 70PF
+CM3 9 0 2PF
+CM4 9 18 8PF
+*
+RIB 7 11 75K
+RC 2 200 10
+R9 9 0 250K
+R10 18 8 500
+R11 8 17 100
+D1 9 6 DCC
+D2 6 9 DCC
+D3 9 7 DCC 1.4
+D4 4 9 DCC 1.4
+*
+EC 17 0 9 0 1
+*
+.MODEL DC D
+.MODEL DCC D CJO=3PF VJ=0.62 M=0.44 
+*
+.MODEL QNI NPN BF=150 TF=400P
+.MODEL QPI PNP BF=150 TF=400P
+*
+.ENDS LT1206
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1993
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- ** 
+* Linear Technology LT1222 op amp model  
+* Written: 2-01-1993 14:14:22 Type: Bipolar NPN input, external comp.
+* Modified by G.F. to add Cload compensation network and freq. shaping
+* Typical specs: 
+* Vos=1.0E-04, Ib=1.0E-07, Ios=1.0E-07, GBP=500E+06Hz, Phase mar.= 45 deg Av=10, 
+* SR(-)=200V/us, SR(+)=200V/us, Av= 106dB, CMRR=120dB, 
+* Vsat(+)=2.00V, Vsat(-)=2.50V, Isc=+40/-40mA, Rout=50ohms, Iq=8.00mA.
+* 
+* Connections: + - V+V-O COMP
+.SUBCKT LT1222 3 2 7 4 6 8
+* INPUT
+RC1 7  80 1E+03
+RC2 7  90 1E+03
+Q1  80 2  10 QM1 
+Q2  90 3  11 QM2 
+CIN 2  3  2.0000E-12
+C1  80 90 0.265E-12
+*INPUT POLE AT 300MHZ
+RE1 10 12 8.5
+RE2 11 12 8.5
+*	RE1, RE2 REDUCED VS LT1220 TO REFLECT HIGHER GM
+IEE 12 4  1.2E-03
+RE  12 0  2.3E+05
+CE  12 0  2E-12
+*CE ADDED TO GIVE ASSYMETRICAL SLEW FOR NON-INVERTING GAINS
+* INTERMEDIATE
+*MODS: GA DEPENDENCE INVERTED (POLARITY SWAPPED)
+*      R2 INCREASED TO 30MOHM (ALL GAIN IN ONE STAGE)
+*      C2 TIED TO GROUND (WAS NODE 1), REDUCED TO 3.11PF FROM 3.54PF 
+*      GB POLARITY REVERSED, GB=1/R02 FOR GAIN OF 1 
+*      RF, CF ADDED FOR CLOAD NETWORK (REDUCES VALUE OF C2)
+*      REVERSE POLARITY OF GNL,GPL,GCL,GCM FOR LIMITING BECAUSE OF GA REVERSAL
+*      ADD MULTIPLE POLES AND A ZERO BETWEEN GA STAGE AND GB STAGE
+GCM 8  0  12 0  19.8E-09
+GA  8  0  90 80 1.0E-3
+R2  8  0  10.9E+06
+C2  8  0  5.65E-12
+*POLE AT 180MHZ
+GX1 0  28 8  0  1E-06
+RX1 28 0  1E+06
+CX1 28 0  0.885E-15
+*POLE AT 180MHZ
+GX2 0  38 28 0  1E-06
+RX2 38 0  1E+06
+CX2 38 0  0.885E-15
+*POLE AT 180MHZ
+GX3 0  48 38 0  1E-06
+RX3 48 0  1E+06
+CX3 48 0  0.885E-15  
+*ZERO AT 60MHZ
+GX4 0  58 48 0  1E-06
+RX4 58 59 1E+06
+LX4 59 0  2.65E-03
+*POLE AT 240MHZ
+GX5 0  68 58 0  1E-06
+RX5 68 0 1E+06
+CX5 68 0 .663E-15
+*POLE AT 360MHZ
+GX6 0  78 68 0  1E-06
+RX6 78 0  1E+06
+CX6 78 0  .443E-15
+*
+GB  0  1  78 0  20.4E-03
+RO2 1  0  49
+RF  8  99 2400
+CF  99 6  5E-12
+* OUTPUT 
+RSO 1  6  1.0000E+00
+ECL 18 0  1  6  2.3987E+01
+GCL 8  0  20 0  1.0000E+00
+RCL 20 0  1.0000E+01
+D1  18 19 DM1  
+VOD1 19 20 5.9605E-08
+D2  20 21 DM1  
+VOD2 21 18 5.9605E-08
+* 
+D3A 131 70 DM3 
+D3B 13 131 DM3 
+GPL 8  0  70 7  1.0000E+00
+VC  13 6  3.4909E+00
+RPLA 7  70 1.0000E+01
+RPLB 7  131 1.0000E+03
+D4A 60 141 DM3 
+D4B 141 14  DM3 
+GNL 8  0  60 4  1.0000E+00
+VE  6  14 3.9909E+00
+RNLA 60 4  1.0000E+01
+RNLB 141 4  1.0000E+03
+* 
+IP  7  4  6.8E-03
+DSUB 4  7  DM2  
+* MODELS 
+.MODEL QM1 NPN (IS=8.0E-16 BF=12E+03)
+.MODEL QM2 NPN (IS=8.033E-16 BF=4E+03)
+.MODEL DM1  D   (IS=1.0000E-20)
+.MODEL DM2  D   (IS=8.0000E-16 BV=4.3200E+01)
+.MODEL DM3  D   (IS=1.0000E-16)
+.ENDS LT1222

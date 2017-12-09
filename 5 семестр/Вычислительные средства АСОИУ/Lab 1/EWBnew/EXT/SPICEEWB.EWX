@@ -1,0 +1,234 @@
+Electronics Workbench Extension
+
+$
+
+$
+!17
+R=%l %0 %1 %j #0
+
+!17
+R=%l %0 %1 #0 %m
+<scan>=.MODEL <%m> R(TC1=#1|TC2=#2|%j=%j)
+%v
+
+!17
+R=%l %0 %1 #0
+
+!18
+C=%l %0 %1 %j #0
+
+!18
+C=%l %0 %1 #0
+
+!20
+L=%l %0 %1 #0
+
+!28
+E=%l %3 %2 %^4POLY%0 %1 #0
+
+!30
+G=%l %3 %2 %^4POLY%0 %1 #0
+
+!31
+H=%l %3 %2 %^4POLY%c_0_1 #0
+
+!29
+F=%l %3 %2 %^4POLY%c_0_1 #0
+
+!0
+U=%l BUF %j %j %0 %1 %m %o %n_0
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!1
+U=%l BUF3 %j %j %0 %1 %2 %m %o %n_1
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!2
+U=%l INV %j %j %0 %1 %m %o %n_2
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!3
+U=%l XOR %j %j %0 %1 %2 %m %o %n_3
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!4
+U=%l NXOR %j %j %0 %1 %2 %m %o %n_4
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!5
+U=%l DFF 1 %j %j %2 %3 %1 %0 %4 %5 %m %o %n_Digital:DN
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!6
+U=%l JKFF 1 %j %j %3 %4 %1 %0 %2 %5 %6 %m %o %n_6
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!7
+U=%l SRFF 1 %j %j %j %j %1 %0 %2 %3 %m %o %n_7
+<scan>=.MODEL <%m> UGATE(TPLHTY=#14|TPHLTY=#15|%j=%j)
+
+!33
+W=%l %2 %3 %c_0_1 %m %n_33
+<scan>=.MODEL <%m> ISWITCH #*4_1(ION=#0|IOFF=#1|RON=#2|ROFF=#3 #*4_0|%j=%j)
+
+!32
+S=%l %2 %3 %0 %1 %m %n_32
+<scan>=.MODEL <%m> VSWITCH #*4_1(VON=#0|VOFF=#1|RON=#2|ROFF=#3 #*4_0|%j=%j)
+
+!19
+D=%l %0 %1 %m %n_19
+<scan>=.MODEL <%m> D(Is=#0|Rs=#1|Cjo=#2|Vj=#3|Tt=#4|M=#5|Bv=#6|N=#7|EG=#8|XTI=#9|KF=#10|AF=#11|FC=#12|IBV=#13|TNOM=#14|%j=%j)
+
+!24
+J=%l %1 %0 %2 %m %n_24
+<scan>=.MODEL <%m> NJF(VTO=#-0|BETA=#1|LAMBDA=#2|Rd=#3|Rs=#4|Cgd=#6|Cgs=#7|PB=#8|IS=#5|B=#9|KF=#10|AF=#11|FC=#12|TNOM=#13|%j=%j)
+
+!25
+J=%l %1 %0 %2 %m %n_25
+<scan>=.MODEL <%m> PJF(VTO=#-0|BETA=#1|LAMBDA=#2|Rd=#3|Rs=#4|Cgd=#6|Cgs=#7|PB=#8|IS=#5|B=#9|KF=#10|AF=#11|FC=#12|TNOM=#13|%j=%j)
+
+!26
+M=%l %1 %0 %2 %3 %m %n_26
+<scan>=.MODEL <%m> NMOS(VTO=#+0|KP=#1|LAMBDA=#2|PHI=#3|GAMMA=#4|Rd=#5|Rs=#6|IS=#7|Cgbo=#8|Cgdo=#9|Cgso=#10|Cbd=#11|Cbs=#12|PB=#13|RSH=#14|CJ=#15|MJ=#16|CJSW=#17|MJSW=#18|JS=#19|TOX=#20|NSUB=#21|NSS=#22|TPG=#23|LD=#24|U0=#25|KF=#26|AF=#27|FC=#28|TNOM=#29|%j=%j)
+
+!27
+M=%l %1 %0 %2 %3 %m %n_27
+<scan>=.MODEL <%m> PMOS(VTO=#+0|KP=#1|LAMBDA=#2|PHI=#3|GAMMA=#4|Rd=#5|Rs=#6|IS=#7|Cgbo=#8|Cgdo=#9|Cgso=#10|Cbd=#11|Cbs=#12|PB=#13|RSH=#14|CJ=#15|MJ=#16|CJSW=#17|MJSW=#18|JS=#19|TOX=#20|NSUB=#21|NSS=#22|TPG=#23|LD=#24|U0=#25|KF=#26|AF=#27|FC=#28|TNOM=#29|%j=%j)
+
+!22
+Q=%l %1 %0 %2 %j %m %n_22 %e39
+<scan>=.MODEL <%m> NPN(Is=#0|BF=#1|BR=#2|Rb=#3|Re=#4|Rc=#5|Cjs=#6|Cje=#7|Cjc=#8|Vje=#9|Vjc=#10|Tf=#11|Tr=#12|mje=#13|mjc=#14|VA=#15|ISE=#16|IKF=#17|Ne=#18|NF=#19|NR=#20|VAR=#21|IKR=#22|ISC=#23|NC=#24|IRB=#25|RBM=#26|XTF=#27|VTF=#28|ITF=#29|PTF=#30|XCJC=#31|VJS=#32|MJS=#33|XTB=#34|EG=#35|XTI=#36|KF=#37|AF=#38|FC=#39|TNOM=#40|%j=%j)
+
+!22
+Q=%l %1 %0 %2 %m %n_22
+<scan>=.MODEL <%m> NPN(Is=#0|BF=#1|BR=#2|Rb=#3|Re=#4|Rc=#5|Cjs=#6|Cje=#7|Cjc=#8|Vje=#9|Vjc=#10|Tf=#11|Tr=#12|mje=#13|mjc=#14|VA=#15|ISE=#16|IKF=#17|Ne=#18|NF=#19|NR=#20|VAR=#21|IKR=#22|ISC=#23|NC=#24|IRB=#25|RBM=#26|XTF=#27|VTF=#28|ITF=#29|PTF=#30|XCJC=#31|VJS=#32|MJS=#33|XTB=#34|EG=#35|XTI=#36|KF=#37|AF=#38|FC=#39|TNOM=#40|%j=%j)
+
+!23
+Q=%l %1 %0 %2 %j %m %n_23 %e39
+<scan>=.MODEL <%m> PNP(Is=#0|BF=#1|BR=#2|Rb=#3|Re=#4|Rc=#5|Cjs=#6|Cje=#7|Cjc=#8|Vje=#9|Vjc=#10|Tf=#11|Tr=#12|mje=#13|mjc=#14|VA=#15|ISE=#16|IKF=#17|Ne=#18|NF=#19|NR=#20|VAR=#21|IKR=#22|ISC=#23|NC=#24|IRB=#25|RBM=#26|XTF=#27|VTF=#28|ITF=#29|PTF=#30|XCJC=#31|VJS=#32|MJS=#33|XTB=#34|EG=#35|XTI=#36|KF=#37|AF=#38|FC=#39|TNOM=#40|%j=%j)
+
+!23
+Q=%l %1 %0 %2 %m %n_23
+<scan>=.MODEL <%m> PNP(Is=#0|BF=#1|BR=#2|Rb=#3|Re=#4|Rc=#5|Cjs=#6|Cje=#7|Cjc=#8|Vje=#9|Vjc=#10|Tf=#11|Tr=#12|mje=#13|mjc=#14|VA=#15|ISE=#16|IKF=#17|Ne=#18|NF=#19|NR=#20|VAR=#21|IKR=#22|ISC=#23|NC=#24|IRB=#25|RBM=#26|XTF=#27|VTF=#28|ITF=#29|PTF=#30|XCJC=#31|VJS=#32|MJS=#33|XTB=#34|EG=#35|XTI=#36|KF=#37|AF=#38|FC=#39|TNOM=#40|%j=%j)
+
+!GAIN
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> gain(gain=#0|in_offset=#1|out_offset=#2|%j=%j)
+%v
+
+!LIM
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> limit(in_offset=#0|gain=#1|out_lower_limit=#2|out_upper_limit=#3|limit_range=#4|%j=%j)
+%v
+
+!SUM
+A=%l %a3[(<%vd> %2 %j|<%v> %2|%2)* (<%vd> %0 %j|<%v> %0|%0)* (<%vd> %1 %j|<%v> %1|%1)*] (<%vd> %3 %j|<%v> %3|%3)* %m
+<scan>=.MODEL <%m> summer(in_offset=%a3[#2 #0 #1]|in_gain=%a3[#5 #3 #4]|out_gain=#6|out_offset=#7|%j=%j)
+%v
+
+!DIFF
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> d_dt(gain=#0|out_offset=#1|out_lower_limit=#2|out_upper_limit=#3|limit_range=#4|%j=%j)
+%v
+
+!INT
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> int(in_offset=#0|gain=#1|out_lower_limit=#2|out_upper_limit=#3|limit_range=#4|out_ic=#5|%j=%j)
+%v
+
+!TRAN
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$1_0|%$3_2)* %m
+<scan>=.MODEL <%m> s_xfer(in_offset=#0|gain=#1|num_coeff=%a4[#4 #5 #6 #7]|den_coeff=%a4[#8 #9 #10 #11]|int_ic=%a1[#2]|denormalized_freq=#3|%j=%j)
+
+!LOTRA
+O=%l %0 %1 %2 %3 %m
+<scan>=.MODEL <%m> LTRA #*8_0 #*9_0 #*10_0 #*11_0 #*12_0 #*13_0 #*14_0 #*16_0 #*17_0 #*19_0(LEN=#0|R=#2|L=#3|C=#4|G=#5|REL=#6|ABS=#7|NOSTEPLIMIT#*8_1|NOCONTROL#*9_1|LININTERP#*10_1|MIXEDINTERP#*11_1|TRUNCNR#*12_1|TRUNCDONTCUT#*13_1|COMPACTREL#*14_1=#?v16_0_1#15|COMPACTABS#*17_1=#?v19_0_1#18|%j=%j)
+
+!TRANS
+T=%l %0 %1 %2 %3 #*2_0 #*3_0(Z0=#0|TD#*2_1=#1|F#*3_1=#4|NL=#5) %m_trans
+
+!MULT
+A=%l %a2[(<%vd> %0 %j|<%v> %0|%0)* (<%vd> %1 %j|<%v> %1|%1)*] (<%vd> %2 %j|<%v> %2|%2)* %m
+<scan>=.MODEL <%m> mult(in_offset=%a2[#2 #4]|in_gain=%a2[#3 #5]|out_gain=#0|out_offset=#1|%j=%j)
+%v
+
+!DIV
+A=%l (<%vd> %0 %j|<%v> %0|%0)* (<%vd> %1 %j|<%v> %1|%1)* (<%vd> %2 %j|<%v> %2|%2)* %m
+<scan>=.MODEL <%m> divide(num_offset=#2|num_gain=#3|den_offset=#4|den_gain=#5|den_lower_limit=#6|den_domain=#7|out_gain=#0|out_offset=#1|%j=%j)
+%v
+
+!PWL
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> pwl(x_array=%a5[#1 #3 #5 #7 #9]|y_array=%a5[#2 #4 #6 #8 #10]|input_domain=@11_100|%j=%j)
+%b0
+
+!ZENER
+A=%l (<%gd> %0 %1|%0 %1)* %m
+<scan>=.MODEL <%m> zener(v_breakdown=#0|i_breakdown=#1|r_breakdown=#2|i_rev=#3|i_sat=#4|n_forward=#5|%j=%j)
+
+!LCOUPLE
+A=%l (<%hd> %1 %0|<%h> %$1_0|%1 %0)* (<%hd> %3 %2|<%h> %$3_2|%3 %2)* %m
+<scan>=.MODEL <%m> lcouple(num_turns=#0|%j=%j)
+%v
+
+!MCORE
+A=%l (<%gd> %0 %1|<%g> %$0_1|%0 %1)* %m
+<scan>=.MODEL <%m> core(h_array=%a15[#4 #6 #8 #10 #12 #14 #16 #18 #20 #22 #24 #26 #28 #30 #32]|b_array=%a15[#5 #7 #9 #11 #13 #15 #17 #19 #21 #23 #25 #27 #29 #31 #33]|area=#0|length=#1|input_domain=@2_100|%j=%j)
+%b3
+
+!SINEWAVE
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> sine(cntl_array=%a5[#3 #5 #7 #9 #11]|freq_array=%a5[#4 #6 #8 #10 #12]|out_low=#0|out_high=#1|%j=%j)
+%b2
+
+!TRIWAVE
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> triangle(cntl_array=%a5[#4 #6 #8 #10 #12]|freq_array=%a5[#5 #7 #9 #11 #13]|out_low=#0|out_high=#1|duty_cycle=#2|%j=%j)
+%b3
+
+!SQRWAVE
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> square(cntl_array=%a5[#6 #8 #10 #12 #14]|freq_array=%a5[#7 #9 #11 #13 #15]|out_low=#0|out_high=#1|duty_cycle=#2|rise_time=#3|fall_time=#4|%j=%j)
+%b5
+
+!CON1SHOT
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* (<%vd> %5 %4|<%v> %$5_4|%$5_4)* (<%vd> %7 %6|<%v> %$7_6|%$7_6)* %m
+<scan>=.MODEL <%m> oneshot(clk_trig=#0|cntl_array=%a5[#8 #10 #12 #14 #16]|pw_array=%a5[#9 #11 #13 #15 #17]|out_low=#1|out_high=#2|rise_delay=#3|fall_delay=#4|rise_time=#5|fall_time=#6|%j=%j)
+%b7
+
+!CURLIMIT
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%gd> %3 %j|<%g> %3|%3)* (<%gd> %2 %j|<%g> %2|%2)* (<%gd> %5 %4|<%g> %$5_4|%$5_4)* %m
+<scan>=.MODEL <%m> ilimit(in_offset=#0|gain=#1|r_out_source=#2|r_out_sink=#3|i_limit_source=#4|i_limit_sink=#5|v_pwr_range=#6|i_source_range=#7|i_sink_range=#8|r_out_domain=#9|%j=%j)
+%v
+
+!HYST
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> hyst(in_low=#0|in_high=#1|hyst=#2|out_lower_limit=#3|out_upper_limit=#4|input_domain=#5|%j=%j)
+%v
+
+!SLEW
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* %m
+<scan>=.MODEL <%m> slew(rise_slope=#0|fall_slope=#1|%j=%j)
+%v
+
+!ANALOGSW
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%gd> %3 %2|%3 %2)* %m
+<scan>=.MODEL <%m> aswitch(cntl_off=#0|cntl_on=#1|r_off=#2|r_on=#3|%j=%j)
+%v
+
+!CONLIMIT
+A=%l (<%vd> %1 %0|<%v> %$1_0|%$1_0)* (<%vd> %3 %2|<%v> %$3_2|%$3_2)* (<%vd> %5 %4|<%v> %$5_4|%$5_4)* (<%vd> %7 %6|<%v> %$7_6|%$7_6)* %m
+<scan>=.MODEL <%m> climit(in_offset=#0|gain=#1|upper_delta=#2|lower_delta=#3|limit_range=#4|%j=%j)
+%v
+
+!NMESFET
+Z=%l %1 %0 %2 %m
+<scan>=.MODEL <%m> nmf(vto=#0|beta=#1|b=#2|alpha=#3|lambda=#4|rd=#5|rs=#6|cgs=#7|cgd=#8|pb=#9|kf=#10|af=#11|fc=#12|%j=%j)
+
+!PMESFET
+Z=%l %1 %0 %2 %m
+<scan>=.MODEL <%m> pmf(vto=#0|beta=#1|b=#2|alpha=#3|lambda=#4|rd=#5|rs=#6|cgs=#7|cgd=#8|pb=#9|kf=#10|af=#11|fc=#12|%j=%j)
+
+!EOF_TEMPLATE_FILE
+$
+ewx_hdr          $   spiceewb.ini &      spiceewb.tpl *   Û#   $  Éªª

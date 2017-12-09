@@ -1,0 +1,258 @@
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1993
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- ** LINEAR TECHNOLOGY LT1251 VIDEO FADER MACROMODEL  
+* WRITTEN: 3-11-1994 BY WILLIAM H. GROSS. 
+* 
+* CONNECTIONS: AS PER DATASHEET PINOUT
+*1=FIRST NON-INVERTING INPUT
+*2=FIRST INVERTING INPUT
+*3=CONTROL VOLTAGE INPUT
+*4=CONTROL CURRENT INPUT
+*5=CONTROL RESISTOR, RC
+*6=NULL INPUT
+*7=NEGATIVE SUPPLY
+*8=OUTPUT
+*9=POSITIVE SUPPLY
+*10=FULL SCALE RESISTOR, RFS
+*11=FULL SCALE CURRENT INPUT
+*12=FULL SCALE VOLTAGE INPUT
+*13=SECOND INVERTING INPUT
+*14=SECOND NON-INVERTING INPUT
+*
+.SUBCKT LT1251 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+*
+*FIRST INPUT STAGE
+IB1    1    0   500NA
+RI1    1    0   17MEG
+C1     1    0   1.5PF
+E1    2A    0   VALUE={LIMIT (V(1),V(8N)+0.4,V(8P)-0.4)+V(EN)/30}
+VOS1  2A   2B   2.5MV 
+R1    2B    2   27
+C2     2    0   1PF
+*
+*SECOND INPUT STAGE
+IB2   14    0   450NA
+RI2   14    0   17MEG
+C14   14    0   1.5PF
+E2   13A    0   VALUE={LIMIT (V(14),V(8N)+0.4,V(8P)-0.4)+V(EN)/30}
+VOS2 13A  13B   1.5MV
+R2   13B   13   27
+C13   13    0   1PF
+*
+*CONTROL AMP
+IBC    3    0   -300NA
+RIC    3    0   100MEG
+C3     3    0   1PF
+R3     3   3A   1600
+CBWC  3A    0   10PF
+EC    3B    0   3A   0   1.0
+VOSC  3B    4   5MV
+C4     4    0   1PF
+RC     4    5   5K
+C5     5    0   1PF
+*
+*FULL SCALE AMP
+IBFS  12    0   -300NA
+RIFS  12    0   100MEG
+C12   12    0   1PF
+R12   12  12A   1600
+CBWFS 12A   0   10PF
+EFS   12B   0   12A   0   1.0
+VOSFS 12B  11   -5MV
+C11   11    0   1PF
+RFS   11   10   5K
+C10   10    0   1PF
+*
+*GENERATING K
+EK K 0 TABLE {I(VOSC)/I(VOSFS)} = (-100,0)    (0.04,0)   (0.1,0.11)
++                                 (0.9,0.907) (0.95,1.0) (100,1.0)
+RDUMMY    K     0  1MEG
+RNOISE1    EN    0  200K
+RNOISE2	   EN    0  200K
+*GENERATES 40.7NV/RTHZ
+*
+*NULL CIRCUIT
+GNULL  7 6A  VALUE={I(VOSFS)}
+RN1   6A  7  200
+VNULL 6A 6B  0.0V
+RN2   6B  6  400
+C6     6  7  1PF
+*
+*OUTPUT STAGE
+E6   8A    0
++VALUE={1.8MEG*(I(VOS1)*V(K)+I(VOS2)*(1-V(K))-I(VNULL)+0.10UA+0.0007*V(EN))}
+RG   8A   8B   1.8MEG
+CG   8B    0   3.4PF
+E8   8C    0   8B  0  1.0
+V8   8C   8D   0.0V
+R8   8D    8   11
+*
+*OUTPUT SWING AND CURRENT LIMIT
+DP  8B 8P D1
+VDP 8P 9 -1.4V
+DN  8N 8B D1
+VDN 8N 7  1.4V
+.MODEL D1 D
+GCL 8B 0 TABLE {I(V8)}=(-1,-1) (-0.04,0) (0.04,0) (1,1)
+*
+*SUPPLY CURRENT
+GQ  9  7 VALUE={1MA+24*I(VOSFS)+(V(7)-V(9))/20K}
+GCC 9  0 TABLE {I(V8)}=(-1,0) (0,0) (1,1)
+GEE 7  0 TABLE {I(V8)}=(-1,-1) (0,0) (1,0)
+*
+.ENDS LT1251
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1993
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- ** LINEAR TECHNOLOGY LT1256 VIDEO FADER MACROMODEL  
+* WRITTEN: 3-11-1994 BY WILLIAM H. GROSS. 
+* 
+* CONNECTIONS: AS PER DATASHEET PINOUT
+*1=FIRST NON-INVERTING INPUT
+*2=FIRST INVERTING INPUT
+*3=CONTROL VOLTAGE INPUT
+*4=CONTROL CURRENT INPUT
+*5=CONTROL RESISTOR, RC
+*6=NULL INPUT
+*7=NEGATIVE SUPPLY
+*8=OUTPUT
+*9=POSITIVE SUPPLY
+*10=FULL SCALE RESISTOR, RFS
+*11=FULL SCALE CURRENT INPUT
+*12=FULL SCALE VOLTAGE INPUT
+*13=SECOND INVERTING INPUT
+*14=SECOND NON-INVERTING INPUT
+*
+.SUBCKT LT1256 1 2 3 4 5 6 7 8 9 10 11 12 13 14
+*
+*FIRST INPUT STAGE
+IB1    1    0   500NA
+RI1    1    0   17MEG
+C1     1    0   1.5PF
+E1    2A    0   VALUE={LIMIT (V(1),V(8N)+0.4,V(8P)-0.4)+V(EN)/30}
+VOS1  2A   2B   2.5MV 
+R1    2B    2   27
+C2     2    0   1PF
+*
+*SECOND INPUT STAGE
+IB2   14    0   450NA
+RI2   14    0   17MEG
+C14   14    0   1.5PF
+E2   13A    0   VALUE={LIMIT (V(14),V(8N)+0.4,V(8P)-0.4)+V(EN)/30}
+VOS2 13A  13B   1.5MV
+R2   13B   13   27
+C13   13    0   1PF
+*
+*CONTROL AMP
+IBC    3    0   -300NA
+RIC    3    0   100MEG
+C3     3    0   1PF
+R3     3   3A   1600
+CBWC  3A    0   10PF
+EC    3B    0   3A   0   1.0
+VOSC  3B    4   5MV
+C4     4    0   1PF
+RC     4    5   5K
+C5     5    0   1PF
+*
+*FULL SCALE AMP
+IBFS  12    0   -300NA
+RIFS  12    0   100MEG
+C12   12    0   1PF
+R12   12  12A   1600
+CBWFS 12A   0   10PF
+EFS   12B   0   12A   0   1.0
+VOSFS 12B  11   -5MV
+C11   11    0   1PF
+RFS   11   10   5K
+C10   10    0   1PF
+*
+*GENERATING K
+EK K 0 TABLE {I(VOSC)/I(VOSFS)} = (-100,0)    (0,0)   (0.2,0.21)
++                                 (0.9,0.9) (1.0,1.0) (100,1.0)
+RDUMMY    K     0  1MEG
+RNOISE1    EN    0  200K
+RNOISE2	   EN    0  200K
+*GENERATES 40.7NV/RTHZ
+*
+*NULL CIRCUIT
+GNULL  7 6A  VALUE={I(VOSFS)}
+RN1   6A  7  200
+VNULL 6A 6B  0.0V
+RN2   6B  6  400
+C6     6  7  1PF
+*
+*OUTPUT STAGE
+E6   8A    0
++VALUE={1.8MEG*(I(VOS1)*V(K)+I(VOS2)*(1-V(K))-I(VNULL)+0.10UA+0.0007*V(EN))}
+RG   8A   8B   1.8MEG
+CG   8B    0   3.4PF
+E8   8C    0   8B  0  1.0
+V8   8C   8D   0.0V
+R8   8D    8   11
+*
+*OUTPUT SWING AND CURRENT LIMIT
+DP  8B 8P D1
+VDP 8P 7 -1.4V
+DN  8N 8B D1
+VDN 8N 9  1.4V
+.MODEL D1 D
+GCL 8B 0 TABLE {I(V8)}=(-1,-1) (-0.04,0) (0.04,0) (1,1)
+*
+*SUPPLY CURRENT
+GQ  9  7 VALUE={1MA+24*I(VOSFS)+(V(7)-V(9))/20K}
+GCC 9  0 TABLE {I(V8)}=(-1,0) (0,0) (1,1)
+GEE 7  0 TABLE {I(V8)}=(-1,-1) (0,0) (1,0)
+*
+.ENDS LT1256

@@ -1,0 +1,128 @@
+*****************************************************************
+* SIEMENS Small Signal Semiconductors                           *
+* SPICE Library Version 4.0                 11.09.1996          *
+*                                                               *
+* This library contains the following SIEMENS Diodes:           *
+*                                                               *
+*       BAS40           BAS70           BAS125                  *
+*       BAT62           BAT68           BAT18                   *
+*       BA582           BA592           BB804                   *
+*       BAS116          BAS16           BAS21                   *
+*       BAT64           BAW56           BAW58                   *
+*       BB814           BB515           BAT17                   *
+*       BAT14           BAT15                                   *
+*****************************************************************
+.MODEL BAT17 D(IS=4n RS=3.3 N=1.03 XTI=2 EG=.65
++ CJO=415f M=.156 VJ=.115 FC=.5 BV=12 IBV=5U TT=25p)
+* Chip parameters; for higher frequencies package must be added
+*****************************************************************
+.MODEL BAT15 D(IS=130n RS=4.5 N=1.08 XTI=1.8 EG=.68
++ CJO=260f M=.047 VJ=.11 FC=.5 BV=4 IBV=10U TT=25p)
+* Chip parameters for one chip; package must be added
+* Valid for all Types: BAT15-099R, BAT15-099, BAT15-03W, BAT15-04,...
+*****************************************************************
+.MODEL BAT14 D(IS=77p RS=4 N=1.027 XTI=1.8 EG=.68
++ CJO=270f M=.078 VJ=.25 FC=.5 BV=4 IBV=5U TT=25p)
+* Chip parameters for one chip; package must be added
+* Valid for all Types: BAT14-099R, BAT14-099, BAT14-03W, BAT14-04,...
+*****************************************************************
+*** DIODE MODELS INCLUDING PACKAGE CAPACITANCE ******************
+*****************************************************************
+.MODEL BAS40   D(IS=8N RS=7.8 N=1.04 XTI=1.8 EG=.68 
++ CJO=3P M=.42 VJ=.4 FC=.5 BV=40 IBV=100n TT=25P)
+* ISR=5n NR=1k IKF=10m
+* for 27C reverse current simulation use: GMIN=1e-9
+* 17.12.1993 SIEMENS PD1 KURTH
+*****************************************************************
+.MODEL BAS70   D(IS=3N N=1.06 RS=29 XTI=1.8 EG=.68 
++ CJO=1.55P M=.29 VJ=.36 FC=.5 BV=70 IBV=100n TT=25P)
+* ISR=2.5n NR=1k IKF=5m
+* for 27C reverse current simulation use: GMIN=.5e-9
+* 17.12.1993 SIEMENS PD1 KURTH
+*****************************************************************
+.MODEL BAS125   D(IS=1.45N RS=12 N=1.03 XTI=1.6 EG=.68
++ CJO=.95P M=.2 VJ=.24 FC=.5 BV=25 IBV=100n TT=25P)
+* ISR=15n NR=4k IKF=10m
+* for 27C reverse current simulation use GMIN=1e-9
+* 17.12.1993 SIEMENS PD1 KURTH
+*****************************************************************
+.MODEL BAT62   D(IS=120N RS=200 N=1.04 XTI=1.8 EG=.68
++ CJO=.35P M=.14 VJ=.4 FC=.5 BV=40 IBV=5U TT=25P)
+* for 27C reverse current simulation use: GMIN=3e-8
+* 20.12.1993 SIEMENS PD1 KURTH
+*****************************************************************
+.MODEL BAT68   D(IS=8N RS=2 N=1.05 XTI=1.8 EG=.68
++ CJO=.77P M=.075 VJ=.1 FC=.5 BV=8 IBV=1U TT=25P)
+* 23.12.1993 SIEMENS PD1 KURTH
+*****************************************************************
+.MODEL BAT18 D (IS=185F RS=.15 N=1.305 BV=70 IBV=.1N
++ CJO=1.17P VJ=.12 M=.096 TT=125N)
+* SIEMENS 40 Volt 130ns  Si-PIN-Switch  17-12-1993 Kurth
+*****************************************************************
+.MODEL BA582 D (IS=185F RS=.15 N=1.305 BV=70 IBV=.1N
++ CJO=1.17P VJ=.12 M=.096 TT=125N)
+* SIEMENS 40 Volt 130ns  Si-PIN-Switch  17-12-1993 Kurth
+*****************************************************************
+.MODEL BA592 D (IS=185F RS=.15 N=1.305 BV=70 IBV=.1N
++ CJO=1.17P VJ=.12 M=.096 TT=125N)
+* SIEMENS 40 Volt 130ns  Si-PIN-Switch  17-12-1993 Kurth
+*****************************************************************
+.MODEL BB804 D(IS=48F N=1.13 RS=.18 XTI=3 EG=1.11 CJO=80.6P
++              M=.47 VJ=.8 FC=.5 BV=20 IBV=.1U TT=137N)
+* T=27C 
+* BB804-typical (group 2), SIEMENS HL EH PD1 KTH 25.07.94
+*****************************************************************
+.MODEL BB814 D(IS=7f N=1.012 RS=.18 XTI=3 EG=1.11 CJO=83.9p M=.775
++               VJ=1.6 FC=.5 BV=20 IBV=100n TT=137n)
+*  IKF=1 ISR=10p NR=1K
+* hyperabrupt Diode, M=f(VR)! C-curve approximated between VR=1..9V
+* BB814-typical, SIEMENS HL EH PD1 KTH 
+*****************************************************************
+.MODEL BB515 D (IS=2F RS=.05 N=1.045 BV=32 IBV=100N XTI=3 EG=1.11
++ CJO=25.5P VJ=2.5 M=1 TT=14.4N)
+* Hyperabrupt Diode, M = f(VR)! Above approximation for Capacitance 
+* in VR-range 1..28V
+* VR-range 0..6V: CJO=25.82P VJ=1.59 M=0.722
+* VR-range 0..5V: CJO=25.86P VJ=1.38 M=0.66
+* VR-range 0..3V: CJO=25.87P VJ=1.167 M=0.59
+* Reverse current simulation: ISR=4.1p NR=2
+* For Capacitance Q-factor add RS=0.5 externally or (degrades VF/IF) 
+* internally
+* chip D190. 25.08.1994 SIEMENS HL EH PD1 Kurth
+*****************************************************************
+.MODEL BAS116 D(
++       AF= 1.00E+00    BV= 7.50E+01   CJO= 1.83E-12    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 1.48E-13    KF= 0.00E+00
++        M= 2.62E-01     N= 1.33E+00    RS= 8.48E-01    TT= 8.66E-09
++       VJ= 3.44E-01   XTI= 3.00E+00) 
+*****************************************************************
+.MODEL BAS16 D(
++       AF= 1.00E+00    BV= 7.50E+01   CJO= 6.87E-13    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 2.07E-09    KF= 0.00E+00
++        M= 1.00E-01     N= 1.83E+00    RS= 1.02E+00    TT= 8.66E-09
++       VJ= 2.00E+00   XTI= 3.00E+00)
+*****************************************************************
+.MODEL BAS21 D(
++       AF= 1.00E+00    BV= 2.50E+02   CJO= 6.64E-13    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 6.42E-09    KF= 0.00E+00
++        M= 1.00E-01     N= 1.98E+00    RS= 9.12E-01    TT= 7.21E-08
++       VJ= 2.00E+00   XTI= 3.00E+00)
+*****************************************************************
+.MODEL BAT64 D(
++       AF= 1.00E+00    BV= 3.00E+01   CJO= 6.59E-12    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 6.97E-09    KF= 0.00E+00
++        M= 3.96E-01     N= 1.01E+00    RS= 1.84E+00    TT= 1.00E-10
++       VJ= 3.42E-01   XTI= 3.00E+00)
+*****************************************************************
+.MODEL BAW56 D(
++       AF= 1.00E+00    BV= 7.00E+01   CJO= 1.76E-12    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 4.90E-10    KF= 0.00E+00
++        M= 2.66E-01     N= 1.64E+00    RS= 1.32E+00    TT= 8.66E-09
++       VJ= 6.26E-01   XTI= 3.00E+00)
+*****************************************************************
+.MODEL BAW78D D(
++       AF= 1.00E+00    BV= 4.00E+02   CJO= 5.40E-12    EG= 1.11E+00
++       FC= 5.00E-01   IBV= 1.00E-04    IS= 3.08E-11    KF= 0.00E+00
++        M= 4.62E-01     N= 1.51E+00    RS= 4.04E-01    TT= 1.44E-06
++       VJ= 8.00E-01   XTI= 3.00E+00)
+****************************DF8CA********************************

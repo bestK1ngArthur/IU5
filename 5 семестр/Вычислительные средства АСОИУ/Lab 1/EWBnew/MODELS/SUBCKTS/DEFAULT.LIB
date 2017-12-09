@@ -1,0 +1,6 @@
+.SUBCKT VoltageSources PULSE+ PULSE- SIN+ SIN- PWL+ PWL- FM+ FM-
+VClock PULSE+ PULSE- PULSE( 0 5 0.5e-3 1e-6 1e-6 0.5e-3 1e-3 )
+v2 SIN+ SIN- SIN( 0 5 1000 0 0 )
+v3 PWL+ PWL- PWL( 1e-4 0 2e-4 1 3e-4 1 4e-4 2 5e-4 3 6e-4 5 7e-4 8 )
+v4 FM+ FM- SFFM( 0 5 1000 5 100 )
+.ENDS

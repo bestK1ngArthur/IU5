@@ -1,0 +1,16 @@
+
+.MODEL ideal PMF (
++   VTO =  -2
++   BETA =  0.0001
++   B =  0.3
++   ALPHA =  2
++   LAMBDA =  0
++   RD =  0
++   RS =  0
++   CGS =  0
++   CGD =  0
++   PB =  1
++   KF =  0
++   AF =  1
++   FC =  0.5
+)

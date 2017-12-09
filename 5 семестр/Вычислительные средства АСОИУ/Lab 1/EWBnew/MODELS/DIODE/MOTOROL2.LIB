@@ -1,0 +1,1248 @@
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                        MBR10100                           *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                 Motorola Power Rectifier                  *        * 
+*        *                       10 AMPERES                          *        *
+*        *                       100 VOLTS                           *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model MBR10100 d
++ is= 1.567e-07
++ rs= 0.01853
++ n= 1.031
++ tt= 2e-08
++ cjo= 1.22e-09
++ vj= 0.5408
++ m= 0.4941
++ eg= 0.6
++ xti= 8
++ fc= 0.5
++ bv= 122
++ ibv= 0.001
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                           mbr1060                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         10 AMPERES                        *        *
+*        *                          60 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr1060 d
++ is= 2.112e-06
++ rs= 0.01986
++ n= 1.066
++ tt= 1e-09
++ cjo= 8.095e-10
++ vj= 0.4425
++ m= 0.4331
++ eg= 0.6
++ xti= 4.37
++ fc= 0.5
++ bv= 72
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbr1545ct                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                        7.5 AMPERES                        *        *
+*        *                         45 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr1545ct d
++ is= 1.416e-06
++ rs= 0.0168
++ n= 1.046
++ tt= 3e-07
++ cjo= 9.703e-10
++ vj= 0.4783
++ m= 0.4664
++ eg= 0.6
++ xti= 3.557
++ fc= 0.5
++ bv= 52
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbr2535ctl                        *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         30 AMPERES                        *        *
+*        *                          35 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr2535ctl d
++ is= 1.37902e-05
++ rs= 0.00413455
++ n= 1.01936
++ tt= 1.04e-07
++ cjo= 3.40938e-09
++ vj= 0.500649
++ m= 0.471628
++ eg= 0.6
++ xti= 3.411
++ fc= 0.5
++ bv= 48
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbr2545ct                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         30 AMPERES                        *        *
+*        *                          45 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr2545ct d
++ is= 3.80194e-06
++ rs= 0.00701321
++ n= 1.08441
++ tt= 1e-08
++ cjo= 2.20065e-09
++ vj= 0.510868
++ m= 0.467541
++ eg= 0.6
++ xti= 4.547
++ fc= 0.5
++ bv= 54
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                          mbr340                           *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         3 AMPERES                         *        *
+*        *                         40 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr340 d
++ is= 7.20356e-07
++ rs= 0.0292105
++ n= 1.03833
++ tt= 4e-07
++ cjo= 4.96118e-10
++ vj= 0.475291
++ m= 0.440738
++ eg= 0.6
++ xti= 3.135
++ fc= 0.5
++ bv= 52
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbr7030wtl                        *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         35 AMPERES                        *        *
+*        *                          30 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbr7030wtl d
++ is= 1.648e-05
++ rs= 0.002772
++ n= 1.049
++ tt= 1e-09
++ cjo= 1.03088e-08
++ vj= 0.55876
++ m= 0.483724
++ eg= 0.6
++ xti= 5.411
++ fc= 0.5
++ bv= 44
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                        mbrb3030ctl                        *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         30 AMPERES                        *        *
+*        *                          30 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrb3030ctl d
++ is= 1.783e-05
++ rs= 0.003214
++ n= 1.029
++ tt= 1e-09
++ cjo= 3.876e-09
++ vj= 0.4848
++ m= 0.4638
++ eg= 0.6
++ xti= 3.911
++ fc= 0.5
++ bv= 44
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                        mbrb3030ct                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         30 AMPERES                        *        *
+*        *                          30 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrb3030ct d
++ is= 6.208e-06
++ rs= 0.003257
++ n= 1.035
++ tt= 1e-09
++ cjo= 4.44e-09
++ vj= 0.548
++ m= 0.4804
++ eg= 0.6
++ xti= 5
++ fc= 0.5
++ bv= 40
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbrb4030                          *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         40 AMPERES                        *        *
+*        *                          30 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrb4030 d
++ is= 1.442e-05
++ rs= 0.003622
++ n= 1.034
++ tt= 1e-09
++ cjo= 8.504e-09
++ vj= 0.5423
++ m= 0.4777
++ eg= 0.6
++ xti= 3.911
++ fc= 0.5
++ bv= 42
++ ibv= 0.1
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbrd1035ctl                       *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         10 AMPERES                        *        *
+*        *                          35 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrd1035ctl d
++ is= 3.47e-06
++ rs= 0.01184
++ n= 1.03
++ tt= 1e-09
++ cjo= 1.003e-09
++ vj= 0.5131
++ m= 0.4701
++ eg= 0.6
++ xti= 3.711
++ fc= 0.5
++ bv= 43
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                          mbrd835l                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         8 AMPERES                         *        *
+*        *                         35 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrd835 d
++ is= 6.084e-06
++ rs= 0.0095
++ n= 1.038
++ tt= 3e-07
++ cjo= 1.486e-09
++ vj= 0.4884
++ m= 0.4629
++ eg= 0.6
++ xti= 4.135
++ fc= 0.5
++ bv= 45
++ ibv= 0.1
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbrs130lt3                        *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                        1.0 AMPERES                        *        *
+*        *                          30 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrs130lt3 d
++ is= 8.007e-06
++ rs= 0.03018
++ n= 1.027
++ tt= 1e-12
++ cjo= 2.433e-10
++ vj= 0.5002
++ m= 0.4559
++ eg= 0.6
++ xti= 2
++ fc= 0.5
++ bv= 39.8
++ ibv= 0.005
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbrs140t3                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         1.0 AMPERES                       *        *
+*        *                          40 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrs140t3 d
++ is= 4.41547e-06
++ rs= 0.103922
++ n= 1.03751
++ tt= 1e-12
++ cjo= 1.598e-10
++ vj= 0.4934
++ m= 0.4258
++ eg= 0.6
++ xti= 3.29768
++ fc= 0.5
++ bv= 48
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mbrs340t3                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         3 AMPERES                         *        *
+*        *                         40 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mbrs340t3 d
++ is= 1.924e-05
++ rs= 0.03512
++ n= 1.034
++ tt= 1e-08
++ cjo= 4.92299e-10
++ vj= 0.451454
++ m= 0.443167
++ eg= 0.6
++ xti= 2
++ fc= 0.5
++ bv= 55
++ ibv= 0.1
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         mur10150e                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         10 AMPERES                        *        *
+*        *                         1500 VOLTS                        *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mur10150e d
++ is= 5.949e-09
++ rs= 0.07678
++ n= 1.322
++ tt= 1.47e-07
++ cjo= 4.687e-10
++ vj= 0.4898
++ m= 0.465
++ eg= 1.11
++ xti= 0
++ fc= 0.5
++ bv= 1650
++ ibv= 0.01
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                           mur420                          *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         4 AMPERES                         *        *
+*        *                         200 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model mur420 d
++ is= 1.192e-10
++ rs= 0.02348
++ n= 1.095
++ tt= 8e-09
++ cjo= 1.075e-10
++ vj= 0.38
++ m= 0.3493
++ eg= 1.11
++ xti= 0.1
++ fc= 0.5
++ bv= 270
++ ibv= 0.0001
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         murd620ct                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         6 AMPERES                         *        *
+*        *                         200 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model murd620ct d
++ is= 6.038e-11
++ rs= 0.04696
++ n= 1.126
++ tt= 1e-08
++ cjo= 4.352e-11
++ vj= 0.38
++ m= 0.3527
++ eg= 1.11
++ xti= 1
++ fc= 0.5
++ bv= 280
++ ibv= 1e-06
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         murs110t3                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         1 AMPERES                         *        *
+*        *                         100 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model murs110t3 d
++ is= 6.736e-11
++ rs= 0.09652
++ n= 1.138
++ tt= 2.5e-08
++ cjo= 4.206e-11
++ vj= 0.38
++ m= 0.3747
++ eg= 1.11
++ xti= 0.1
++ fc= 0.5
++ bv= 280
++ ibv= 0.0001
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         murs310t3                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         3 AMPERES                         *        *
+*        *                         100 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model murs310t3 d
++ is= 1.714e-10
++ rs= 0.03554
++ n= 1.123
++ tt= 1.7e-08
++ cjo= 1.225e-10
++ vj= 0.3851
++ m= 0.3979
++ eg= 1.11
++ xti= 0.1
++ fc= 0.5
++ bv= 290
++ ibv= 0.0001
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         murs320t3                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         3 AMPERES                         *        *
+*        *                         200 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model murs320t3 d
++ is= 1.33e-10
++ rs= 0.03648
++ n= 1.098
++ tt= 1.3e-08
++ cjo= 1.349e-10
++ vj= 0.3811
++ m= 0.39
++ eg= 1.11
++ xti= 0.1
++ fc= 0.5
++ bv= 260
++ ibv= 0.001
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         xbr0520l                          *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                        0.5 AMPERES                        *        *
+*        *                         20 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model xbr0520l d
++ is= 4.365e-06
++ rs= 0.07868
++ n= 1.024
++ tt= 1e-12
++ cjo= 1.71e-10
++ vj= 0.5608
++ m= 0.4558
++ eg= 0.6
++ xti= 2.867
++ fc= 0.5
++ bv= 36
++ ibv= 0.1
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                          xbr0530                          *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                        0.5 AMPERES                        *        *
+*        *                         30 VOLTS                          *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model xbr0530 d
++ is= 6.803e-07
++ rs= 0.07775
++ n= 1.033
++ tt= 1e-12
++ cjo= 1.713e-10
++ vj= 0.4556
++ m= 0.4408
++ eg= 0.6
++ xti= 4.135
++ fc= 0.5
++ bv= 42
++ ibv= 0.1
++ kf= 0
++ af= 1
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        *************************************************************        *
+*        *                                                           *        *
+*        *                         xgr2018ct                         *        * 
+*        *                                                           *        *
+*        *                                                           *        *
+*        *                  Motorola Power Rectifier                 *        * 
+*        *                         20 AMPERES                        *        *
+*        *                         180 VOLTS                         *        *
+*        *                                                           *        *
+*        *               This model was developed by                 *        *
+*        *                      Analogy, Inc.                        *        *
+*        *                    9205 SW Gemini Dr.                     *        *
+*        *                   Beaverton, OR  97005                    *        *
+*        *               Copyright 1994 Analogy, Inc.                *        *
+*        *                  All Rights Reserved                      *        *
+*        *                                                           *        *
+*        *    The content of this model is subject to change         *        *
+*        *    without notice and may not be modified or altered      *        *
+*        *    without permission from Motorola, Inc.  This model     *        *
+*        *    has been carefully checked and is believed to be       *        *
+*        *    accurate, however neither Analogy nor Motorola         *        *
+*        *    assume liability for the use of this model or the      *        *
+*        *    results obtained from using it.                        *        *
+*        *                                                           *        *
+*        *    For more information regarding modeling services,      *        *
+*        *    model libraries or simulation products, please         *        *
+*        *    call Analogy, Inc. (503) 626-9700.                     *        *
+*        *                                                           *        *
+*        *************************************************************        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+.model xgr2018ct d
++ is= 6.51123e-10
++ rs= 0.03973
++ n= 1.11279
++ tt= 3e-08
++ cjo= 4.05827e-10
++ vj= 0.646338
++ m= 0.4664
++ eg= 0.6
++ xti= 14.91
++ fc= 0.5
++ bv= 215
++ ibv= 0.001
++ kf= 0
++ af= 1

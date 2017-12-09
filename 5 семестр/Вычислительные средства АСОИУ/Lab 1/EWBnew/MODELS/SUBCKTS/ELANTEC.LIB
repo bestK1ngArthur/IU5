@@ -1,0 +1,109 @@
+* COPYRIGHT OF ELANTEC, INC.
+*
+*This library of macromodels is being supplied to users as an  aid 
+*to   circuit  designs.    While  it  reflects  reasonably   close 
+*similarity  to the actual device in terms of performance,  it  is 
+*not  suggested  as a replacement for  breadboarding.   Simulation 
+*should be used as a forerunner or a supplement to traditional lab 
+*testing.
+*
+*Users  should very carefully note the following factors regarding 
+*these models:
+*
+*Model performance in general will reflect typical baseline  specs 
+*for a given device, and certain aspects of performance may not be 
+*modeled  fully  to  keep  the model as simple  as  possible  thus 
+*minimizing  computer running time.  For example,  PSRR  and  CMRR 
+*effects,  parametric variation with temperature,  operation under 
+*output short circuit conditions,  and input noise sources are not 
+*included in the models.
+*
+*While  reasonable  care has been taken in their  preparation,  we 
+*cannot  be  responsible for correct application on  any  and  all 
+*computer  systems.  Model  users are hereby notified  that  these 
+*models  are  supplied  "as  is",   with  no  direct  or   implied 
+*responsibility on the part of Elantec,  Inc.  for their operation 
+*within  a  customer circuit or  system.   Further,  Elantec  Inc. 
+*reserves the right to change these models without prior notice.
+* 
+*In all cases, the current data sheet information for a given real 
+*device  is  your final design guideline,  and is the only  actual 
+*performance guarantee.   For further technical information, refer 
+*to individual device data sheets.
+*
+*The  Elantec  Engineering staff is in the  process  of  improving 
+*these  models,   and  we  welcome  your  comments  and  feedback. 
+*Inquiries should be made to:
+*
+*                  Applications Engineering Manager
+*                  Elantec, Inc.
+*                  1996 Tarob Ct. 
+*                  Milpitas, CA 95035
+*
+*Voice Telephone:  (800) 333-6314, ext. 311
+*
+*FAX: (408) 945-9305   
+*
+*TELEX: 910-997-0649            
+*EP2015 Model
+*
+* Connections     q1c 
+*                  |  q1b 
+*                  |   |  q1e 
+*                  |   |   |  q2c 
+*                  |   |   |   |  q2b 
+*                  |   |   |   |   |  q2e 
+*                  |   |   |   |   |   |  q3c 
+*                  |   |   |   |   |   |   |  q3b 
+*                  |   |   |   |   |   |   |   |  q3e 
+*                  |   |   |   |   |   |   |   |   |  q4c 
+*                  |   |   |   |   |   |   |   |   |   |  q4b 
+*                  |   |   |   |   |   |   |   |   |   |   |  q4e
+*                  |   |   |   |   |   |   |   |   |   |   |   |
+.subckt EP2015/EL  1   2   3   7   6   5   8   9   10  14  13  12 
+*
+* Models 
+*
+.model ep2015 pnp (is=8e-15 bf=300 va=47 ikf=30mA xtb=1.3 br=4.5 tf=0.3nS 
++tr=280nS rb=230 rc=170 ise=1e-15 ne=1.24 ccs=2pF cjc=3.7pF pc=0.5 
++mc=0.45 cje=5.4pF pe=0.6 me=0.33 ptf=15)
+* 
+* Transistors 
+*
+q1  1   2   3 ep2015
+q2  7   6   5 ep2015
+q3  8   9  10 ep2015
+q4 14  13  12 ep2015
+* 
+.ends
+*EN2016 Model
+*
+* Connections     q1c 
+*                  |  q1b 
+*                  |   |  q1e 
+*                  |   |   |  q2c 
+*                  |   |   |   |  q2b 
+*                  |   |   |   |   |  q2e 
+*                  |   |   |   |   |   |  q3c 
+*                  |   |   |   |   |   |   |  q3b 
+*                  |   |   |   |   |   |   |   |  q3e 
+*                  |   |   |   |   |   |   |   |   |  q4c 
+*                  |   |   |   |   |   |   |   |   |   |  q4b 
+*                  |   |   |   |   |   |   |   |   |   |   |  q4e
+*                  |   |   |   |   |   |   |   |   |   |   |   |
+.subckt EN2016/EL  1   2   3   7   6   5   8   9   10  14  13  12 
+*
+* Models 
+*
+.model en2016 npn (is=4e-15 bf=250 va=80 ikf=120mA xtb=1.1 br=10 tf=0.35nS 
++tr=80nS rb=200 rc=150 ise=3e-14 ne=2 ccs=0.7pF cjc=2.4pF xcjc=0.3 pc=0.32
++mc=0.19 cje=6pF pe=0.63 me=0.30 ptf=15)
+* 
+* Transistors 
+*
+q1  1   2   3 en2016
+q2  7   6   5 en2016
+q3  8   9  10 en2016
+q4 14  13  12 en2016
+* 
+.ends

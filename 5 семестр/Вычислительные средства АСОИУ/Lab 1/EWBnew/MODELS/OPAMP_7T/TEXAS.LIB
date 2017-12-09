@@ -1,0 +1,260 @@
+* COPYRIGHT OF TEXAS INSTRUMENTS
+*
+* UA748 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 09/01/89 at 13:14
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt UA748	 1 2 3 4 5 6 7
+*
+  c1   11 12 7.977E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 42.44E6 -40E6 40E6 40E6 -40E6
+  ga    6  0 11 12 188.5E-6
+  gcm   0  6 10 99 3.352E-9
+  iee  10  4 dc 15.14E-6
+  hlim 90  0 vlim 1K
+  q1   11  2 13 qx
+  q2   12  1 14 qx
+  r2    6  9 100.0E3
+  rc1   3 11 5.305E3
+  rc2   3 12 5.305E3
+  re1  13 10 1.839E3
+  re2  14 10 1.839E3
+  ree  10 99 13.21E6
+  ro1   8  5 50
+  ro2   7 99 25
+  rp    3  4 16.81E3
+  vb    9  0 dc 0
+  vc	3 53 dc 2.600
+  ve   54  4 dc 2.600
+  vlim  7  8 dc 0
+  vlp  91  0 dc 25
+  vln   0 92 dc 25
+.model dx D(Is=800.0E-18)
+.model qx NPN(Is=800.0E-18 Bf=107.1)
+.ends
+* LT1008 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 08/29/89 at 13:20
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt LT1008   1 2 3 4 5 6 7
+*
+  c1   11 12 6.887E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 141.5E6 -100E6 100E6 100E6 -100E6
+  ga    6  0 11 12 113.1E-6
+  gcm   0  6 10 99 15.98E-12
+  iee  10  4 dc 6.000E-6
+  hlim 90  0 vlim 1K
+  q1   11  2 13 qx
+  q2   12  1 14 qx
+  r2    6  9 100.0E3
+  rc1   3 11 8.841E3
+  rc2   3 12 8.841E3
+  re1  13 10 219.5
+  re2  14 10 219.5
+  ree  10 99 33.33E6
+  ro1   8  5 125
+  ro2   7 99 125
+  rp    3  4 80.21E3
+  vb    9  0 dc 0
+  vc	3 53 dc 1.600
+  ve   54  4 dc 1.600
+  vlim  7  8 dc 0
+  vlp  91  0 dc 8
+  vln   0 92 dc 8
+.model dx D(Is=800.0E-18)
+.model qx NPN(Is=800.0E-18 Bf=100.0E3)
+.ends
+* TL060 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 09/22/89 at 13:08
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt TL060    1 2 3 4 5 6 7
+*
+  c1   11 12 2.332E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 477.4E3 -500E3 500E3 500E3 -500E3
+  ga    6  0 11 12 62.84E-6
+  gcm	0  6 10 99 2.178E-9
+  iss   3 10 dc 35.00E-6
+  hlim 90  0 vlim 1K
+  j1   11  2 10 jx
+  j2   12  1 10 jx
+  r2    6  9 100.0E3
+  rd1   4 11 15.91E3
+  rd2   4 12 15.91E3
+  ro1   8  5 200
+  ro2   7 99 200
+  rp    3  4 150.0E3
+  rss  10 99 5.714E6
+  vb    9  0 dc 0
+  vc	3 53 dc 2.130
+  ve   54  4 dc 2.130
+  vlim  7  8 dc 0
+  vlp  91  0 dc 15
+  vln   0 92 dc 15
+.model dx D(Is=800.0E-18)
+.model jx PJF(Is=15.00E-12 Beta=64E-6 Vto=-1)
+.ends
+* TL070 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 09/22/89 at 09:52
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt TL070    1 2 3 4 5 6 7
+*
+  c1   11 12 5.197E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 3.929E6 -4E6 4E6 4E6 -4E6
+  ga	6  0 11 12 361.3E-6
+  gcm   0  6 10 99 1.908E-9
+  iss   3 10 dc 234.0E-6
+  hlim 90  0 vlim 1K
+  j1   11  2 10 jx
+  j2   12  1 10 jx
+  r2    6  9 100.0E3
+  rd1   4 11 2.947E3
+  rd2   4 12 2.947E3
+  ro1   8  5 150
+  ro2   7 99 150
+  rp    3  4 21.43E3
+  rss  10 99 854.7E3
+  vb    9  0 dc 0
+  vc	3 53 dc 2.180
+  ve   54  4 dc 2.180
+  vlim  7  8 dc 0
+  vlp  91  0 dc 25
+  vln   0 92 dc 25
+.model dx D(Is=800.0E-18)
+.model jx PJF(Is=32.50E-12 Beta=311E-6 Vto=-1)
+.ends
+* TL080 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 09/15/89 at 12:46
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt TL080    1 2 3 4 5 6 7
+*
+  c1   11 12 5.197E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 3.803E6 -4E6 4E6 4E6 -4E6
+  ga	6  0 11 12 377.6E-6
+  gcm   0  6 10 99 9.882E-9
+  iss   3 10 dc 234.0E-6
+  hlim 90  0 vlim 1K
+  j1   11  2 10 jx
+  j2   12  1 10 jx
+  r2    6  9 100.0E3
+  rd1   4 11 2.852E3
+  rd2   4 12 2.852E3
+  ro1   8  5 150
+  ro2   7 99 150
+  rp    3  4 21.43E3
+  rss  10 99 854.7E3
+  vb    9  0 dc 0
+  vc	3 53 dc 2.200
+  ve   54  4 dc 2.200
+  vlim  7  8 dc 0
+  vlp  91  0 dc 25
+  vln   0 92 dc 25
+.model dx D(Is=800.0E-18)
+.model jx PJF(Is=15.00E-12 Beta=332E-6 Vto=-1)
+.ends
+* NE5534 operational amplifier "macromodel" subcircuit
+* created using Parts release 4.01 on 04/10/89 at 12:41
+* (REV N/A)
+* connections:   non-inverting input
+*                | inverting input
+*                | | positive power supply
+*                | | | negative power supply
+*                | | | | output
+*                | | | | |  compensation
+*                | | | | | / \
+.subckt NE5534   1 2 3 4 5 6 7
+*
+  c1   11 12 7.703E-12
+  dc    5 53 dx
+  de   54  5 dx
+  dlp  90 91 dx
+  dln  92 90 dx
+  dp    4  3 dx
+  egnd 99  0 poly(2) (3,0) (4,0) 0 .5 .5
+  fb    7 99 poly(5) vb vc ve vlp vln 0 2.893E6 -3E6 3E6 3E6 -3E6
+  ga    6  0 11 12 1.382E-3
+  gcm   0  6 10 99 13.82E-9
+  iee  10  4 dc 133.0E-6
+  hlim 90  0 vlim 1K
+  q1   11  2 13 qx
+  q2   12  1 14 qx
+  r2    6  9 100.0E3
+  rc1   3 11 723.3
+  rc2   3 12 723.3
+  re1  13 10 329
+  re2  14 10 329
+  ree  10 99 1.504E6
+  ro1   8  5 50
+  ro2   7 99 25
+  rp    3  4 7.757E3
+  vb    9  0 dc 0
+  vc    3 53 dc 2.700
+  ve   54  4 dc 2.700
+  vlim  7  8 dc 0
+  vlp  91  0 dc 38
+  vln   0 92 dc 38
+.model dx D(Is=800.0E-18)
+.model qx NPN(Is=800.0E-18 Bf=132)
+.ends
