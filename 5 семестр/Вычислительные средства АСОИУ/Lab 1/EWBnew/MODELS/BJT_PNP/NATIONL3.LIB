@@ -1,0 +1,561 @@
+* COPYRIGHT OF NATIONAL SEMICONDUCTOR
+*
+.model MPSA55   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=91.63 Ne=1.531
++               Ise=12.27p Ikf=1.009 Xtb=1.5 Br=1.287 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=496.3n Tf=865.8p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model MPSA56   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=91.63 Ne=1.531
++               Ise=12.27p Ikf=1.009 Xtb=1.5 Br=1.287 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=496.3n Tf=865.8p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model MPSA70   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=144.4 Ne=1.655
++               Ise=6.734f Ikf=.1765 Xtb=1.5 Br=2.795 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.7n Tf=467.3p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model MPSA92   PNP(Is=218.9f Xti=3 Eg=1.11 Vaf=100 Bf=99 Ne=1.307 Ise=218.9f
++               Ikf=.2016 Xtb=1.5 Br=24.67 Nc=2 Isc=0 Ikr=0 Rc=7 Cjc=19.88p
++               Mjc=.4876 Vjc=.75 Fc=.5 Cje=81.49p Mje=.3493 Vje=.75 Tr=516.9p
++               Tf=1.395n Itf=1.5 Vtf=22 Xtf=270 Rb=10)
+*               Motorola        pid=MPSA92      case=TO92
+*               88-09-14 bam    creation
+
+.model MPSA93   PNP(Is=218.9f Xti=3 Eg=1.11 Vaf=100 Bf=99 Ne=1.307 Ise=218.9f
++               Ikf=.2016 Xtb=1.5 Br=24.67 Nc=2 Isc=0 Ikr=0 Rc=7 Cjc=19.88p
++               Mjc=.4876 Vjc=.75 Fc=.5 Cje=81.49p Mje=.3493 Vje=.75 Tr=516.9p
++               Tf=1.395n Itf=1.5 Vtf=22 Xtf=270 Rb=10)
+*               Motorola        pid=MPSA92      case=TO92
+*               88-09-14 bam    creation
+
+.model MPSL51   PNP(Is=21.48f Xti=3 Eg=1.11 Vaf=100 Bf=116.7 Ne=1.362
++               Ise=21.48f Ikf=.1803 Xtb=1.5 Br=3.728 Nc=2 Isc=0 Ikr=0 Rc=1.6
++               Cjc=21.16p Mjc=.5312 Vjc=.75 Fc=.5 Cje=73.39p Mje=.3777 Vje=.75
++               Tr=1.487n Tf=639.1p Itf=0 Vtf=0 Xtf=0 Rb=10)
+*               National        pid=74          case=TO92
+*               88-09-09 bam    creation
+
+.model MPSW51   PNP(Is=24.64f Xti=3 Eg=1.11 Vaf=100 Bf=154.5 Ne=1.5 Ise=0
++               Ikf=1.25 Xtb=1.5 Br=1.424 Nc=2 Isc=0 Ikr=0 Rc=.6 Cjc=63.67p
++               Mjc=.4749 Vjc=.75 Fc=.5 Cje=132.4p Mje=.4174 Vje=.75 Tr=5.721n
++               Tf=645.4p Itf=.8 Vtf=6 Xtf=4.5 Rb=10)
+*               Motorola        pid=MPSW51      case=TO92
+*               88-09-14 bam    creation
+
+.model MPSW51A  PNP(Is=24.64f Xti=3 Eg=1.11 Vaf=100 Bf=154.5 Ne=1.5 Ise=0
++               Ikf=1.25 Xtb=1.5 Br=1.424 Nc=2 Isc=0 Ikr=0 Rc=.6 Cjc=63.67p
++               Mjc=.4749 Vjc=.75 Fc=.5 Cje=132.4p Mje=.4174 Vje=.75 Tr=5.721n
++               Tf=645.4p Itf=.8 Vtf=6 Xtf=4.5 Rb=10)
+*               Motorola        pid=MPSW51      case=TO92
+*               88-09-14 bam    creation
+
+.model MPSW55   PNP(Is=9.348f Xti=3 Eg=1.11 Vaf=100 Bf=166.8 Ne=1.459
++               Ise=12.45f Ikf=10.29 Xtb=1.5 Br=8.369 Nc=2 Isc=0 Ikr=0 Rc=.38
++               Cjc=48p Mjc=.5152 Vjc=.75 Fc=.5 Cje=105.6p Mje=.4351 Vje=.75
++               Tr=1.021n Tf=685.2p Itf=.3 Vtf=4 Xtf=10 Rb=10)
+*               Motorola        pid=MPSW55      case=TO92
+*               88-09-14 bam    creation
+
+.model MPSW56   PNP(Is=9.348f Xti=3 Eg=1.11 Vaf=100 Bf=166.8 Ne=1.459
++               Ise=12.45f Ikf=10.29 Xtb=1.5 Br=8.369 Nc=2 Isc=0 Ikr=0 Rc=.38
++               Cjc=48p Mjc=.5152 Vjc=.75 Fc=.5 Cje=105.6p Mje=.4351 Vje=.75
++               Tr=1.021n Tf=685.2p Itf=.3 Vtf=4 Xtf=10 Rb=10)
+*               Motorola        pid=MPSW55      case=TO92
+*               88-09-14 bam    creation
+
+.model MPS3638A PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=164.7 Ne=1.834
++               Ise=80.13f Ikf=1.082 Xtb=1.5 Br=3.654 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.8n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS3644  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS3702  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=133.8 Ne=1.832
++               Ise=97.16f Ikf=1.081 Xtb=1.5 Br=3.73 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=114.1n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS3703  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=66.92 Ne=1.829
++               Ise=189.7f Ikf=1.079 Xtb=1.5 Br=4.197 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=120.6n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS6516  PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=97.44 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=5.419 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=34.81n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS6517  PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=175.4 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.991 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.47n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS6518  PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=292.3 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.802 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=32.79n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+.model MPS6523  PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=446.6 Ne=1.83
++               Ise=6.734f Ikf=.2112 Xtb=1.5 Br=2.624 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=9.802n Tf=468p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model MPS6533  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=77.22 Ne=1.829
++               Ise=164.4f Ikf=1.079 Xtb=1.5 Br=4.061 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=118.9n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS6534  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=173.2 Ne=1.851
++               Ise=85.79f Ikf=1.103 Xtb=1.5 Br=3.637 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.6n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS6562  PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=121 Ne=1.573 Ise=12.27p
++               Ikf=1.05 Xtb=1.5 Br=1.238 Nc=2 Isc=0 Ikr=0 Rc=.6 Cjc=48.28p
++               Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75 Tr=486n
++               Tf=866.3p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model MPS8598  PNP(Is=10.68f Xti=3 Eg=1.11 Vaf=100 Bf=187.7 Ne=1.401
++               Ise=26.07f Ikf=.2203 Xtb=1.5 Br=1.833 Nc=2 Isc=0 Ikr=0 Rc=.8
++               Cjc=14.16p Mjc=.5585 Vjc=.75 Fc=.5 Cje=25.11p Mje=.3626 Vje=.75
++               Tr=358.6n Tf=591.1p Itf=1.5 Vtf=12 Xtf=50 Rb=10)
+*               Motorola        pid=MPS8598     case=TO92
+*               88-09-13 bam    creation
+
+.model PN2906   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=94.38 Ne=1.829
++               Ise=134.5f Ikf=1.079 Xtb=1.5 Br=3.912 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=116.8n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN2906A  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=94.38 Ne=1.829
++               Ise=134.5f Ikf=1.079 Xtb=1.5 Br=3.912 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=116.8n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN2907   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN2907A  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN3638   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=63.49 Ne=1.829
++               Ise=200f Ikf=1.079 Xtb=1.5 Br=4.254 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=121.3n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN3638A  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=164.7 Ne=1.834
++               Ise=80.13f Ikf=1.082 Xtb=1.5 Br=3.654 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.8n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN3640   PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=59.22 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.438 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.123n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model PN3644   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN3645   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4121   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=122.2 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=5.215 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=34.2n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4122   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=219.7 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.894 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.13n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4143   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4248   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=122.3 Ne=1.635
++               Ise=6.734f Ikf=.1759 Xtb=1.5 Br=2.843 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.95n Tf=467.3p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4249   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=161.4 Ne=1.672
++               Ise=6.734f Ikf=.1806 Xtb=1.5 Br=2.767 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.54n Tf=467.4p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4250   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=388.2 Ne=1.806
++               Ise=6.734f Ikf=.205 Xtb=1.5 Br=2.635 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=9.861n Tf=467.9p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4250A  PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=388.2 Ne=1.806
++               Ise=6.734f Ikf=.205 Xtb=1.5 Br=2.635 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=9.861n Tf=467.9p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4258   PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=61.42 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.426 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.109n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4258A  PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=61.42 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.426 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.109n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model PN4354   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=154.9 Ne=1.611
++               Ise=12.27p Ikf=1.085 Xtb=1.5 Br=1.206 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=479.2n Tf=866.6p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4355   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=194.8 Ne=1.649
++               Ise=12.27p Ikf=1.123 Xtb=1.5 Br=1.184 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=474.5n Tf=867p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4356   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=110.2 Ne=1.558
++               Ise=12.27p Ikf=1.036 Xtb=1.5 Br=1.252 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=489.1n Tf=866.1p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4916   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=77.95 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=5.693 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=35.56n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN4917   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=219.7 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.894 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.13n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN5138   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=274.6 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.82 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=32.86n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN5139   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=235.6 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.869 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.04n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model PN5142   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=65.21 Ne=1.829
++               Ise=194.7f Ikf=1.079 Xtb=1.5 Br=4.225 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=120.9n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model PN5910   PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=59.22 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.438 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.123n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model ST5771-1 PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=66.9 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.4 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.078n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model TIS93    PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=168.2 Ne=1.831
++               Ise=76.95f Ikf=1.081 Xtb=1.5 Br=3.647 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.7n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model TN2905   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO237
+*               88-09-09 bam    creation
+
+.model TN2905A  PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=231.7 Ne=1.829
++               Ise=54.81f Ikf=1.079 Xtb=1.5 Br=3.563 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.3n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO237
+*               88-09-09 bam    creation
+
+.model TN4036   PNP(Is=12.27p Xti=3 Eg=1.11 Vaf=100 Bf=82.34 Ne=1.515
++               Ise=12.27p Ikf=.9931 Xtb=1.5 Br=1.311 Nc=2 Isc=0 Ikr=0 Rc=.6
++               Cjc=48.28p Mjc=.5615 Vjc=.75 Fc=.5 Cje=106.7p Mje=.5168 Vje=.75
++               Tr=501.2n Tf=865.7p Itf=.2 Vtf=2 Xtf=.8 Rb=10)
+*               National        pid=67          case=TO237
+*               88-09-09 bam    creation
+
+.model 2N3702   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=133.8 Ne=1.832
++               Ise=97.16f Ikf=1.081 Xtb=1.5 Br=3.73 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=114.1n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N3703   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=66.92 Ne=1.829
++               Ise=189.7f Ikf=1.079 Xtb=1.5 Br=4.197 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=120.6n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N3905   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=90.35 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=5.502 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=35.05n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N3906   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=180.7 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.977 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.42n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N4058   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=185.8 Ne=1.692
++               Ise=6.734f Ikf=.1845 Xtb=1.5 Br=2.736 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.38n Tf=568.9p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N4061   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=161.4 Ne=1.672
++               Ise=6.734f Ikf=.1806 Xtb=1.5 Br=2.767 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.54n Tf=467.4p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N4062   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=319.9 Ne=1.776
++               Ise=6.734f Ikf=.2013 Xtb=1.5 Br=2.654 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=9.956n Tf=467.9p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N4125   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=85.04 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=5.576 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=35.25n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N4126   PNP(Is=1.41f Xti=3 Eg=1.11 Vaf=18.7 Bf=203.7 Ne=1.5 Ise=0
++               Ikf=80m Xtb=1.5 Br=4.924 Nc=2 Isc=0 Ikr=0 Rc=2.5 Cjc=9.728p
++               Mjc=.5776 Vjc=.75 Fc=.5 Cje=8.063p Mje=.3677 Vje=.75 Tr=33.23n
++               Tf=179.3p Itf=.4 Vtf=4 Xtf=6 Rb=10)
+*               National        pid=66          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N4289   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=278.4 Ne=1.755
++               Ise=6.734f Ikf=.1985 Xtb=1.5 Br=2.671 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.04n Tf=467.8p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N4291   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=207.6 Ne=1.829
++               Ise=61.15f Ikf=1.079 Xtb=1.5 Br=3.588 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.7n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N4402   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=108 Ne=1.86
++               Ise=146.9f Ikf=1.115 Xtb=1.5 Br=3.83 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=115.7n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N4403   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=216.2 Ne=1.829
++               Ise=58.72f Ikf=1.079 Xtb=1.5 Br=3.578 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=111.6n Tf=603.7p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5086   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=254.1 Ne=1.741
++               Ise=6.734f Ikf=.1962 Xtb=1.5 Br=2.683 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.1n Tf=467.8p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N5087   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=254.1 Ne=1.741
++               Ise=6.734f Ikf=.1962 Xtb=1.5 Br=2.683 Nc=2 Isc=0 Ikr=0 Rc=1.67
++               Cjc=6.2p Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75
++               Tr=10.1n Tf=467.8p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N5226   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=138.8 Ne=1.856
++               Ise=111.2f Ikf=1.109 Xtb=1.5 Br=3.713 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=113.9n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5227   PNP(Is=6.734f Xti=3 Eg=1.11 Vaf=45.7 Bf=198 Ne=1.702 Ise=6.734f
++               Ikf=.1863 Xtb=1.5 Br=2.724 Nc=2 Isc=0 Ikr=0 Rc=1.67 Cjc=6.2p
++               Mjc=.301 Vjc=.75 Fc=.5 Cje=7.5p Mje=.2861 Vje=.75 Tr=10.32n
++               Tf=467.5p Itf=.17 Vtf=5 Xtf=8 Rb=10)
+*               National        pid=62          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N5354   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=66.92 Ne=1.829
++               Ise=189.7f Ikf=1.079 Xtb=1.5 Br=4.197 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=120.6n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5355   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=166.3 Ne=1.853
++               Ise=90.78f Ikf=1.105 Xtb=1.5 Br=3.649 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.8n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5365   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=66.92 Ne=1.829
++               Ise=189.7f Ikf=1.079 Xtb=1.5 Br=4.197 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=120.6n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5366   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=166.3 Ne=1.853
++               Ise=90.78f Ikf=1.105 Xtb=1.5 Br=3.649 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=112.8n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5400   PNP(Is=21.48f Xti=3 Eg=1.11 Vaf=100 Bf=93.44 Ne=1.344
++               Ise=21.48f Ikf=.1798 Xtb=1.5 Br=3.874 Nc=2 Isc=0 Ikr=0 Rc=1.6
++               Cjc=17.63p Mjc=.5312 Vjc=.75 Fc=.5 Cje=73.39p Mje=.3777 Vje=.75
++               Tr=1.512n Tf=641.5p Itf=0 Vtf=0 Xtf=0 Rb=10)
+*               National        pid=74          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5401   PNP(Is=21.48f Xti=3 Eg=1.11 Vaf=100 Bf=132.1 Ne=1.375
++               Ise=21.48f Ikf=.1848 Xtb=1.5 Br=3.661 Nc=2 Isc=0 Ikr=0 Rc=1.6
++               Cjc=17.63p Mjc=.5312 Vjc=.75 Fc=.5 Cje=73.39p Mje=.3777 Vje=.75
++               Tr=1.476n Tf=641.9p Itf=0 Vtf=0 Xtf=0 Rb=10)
+*               National        pid=74          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5447   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=133.8 Ne=1.832
++               Ise=97.16f Ikf=1.081 Xtb=1.5 Br=3.73 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=114.1n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+
+.model 2N5771   PNP(Is=545.6E-18 Xti=3 Eg=1.11 Vaf=100 Bf=76.77 Ne=1.5 Ise=0
++               Ikf=50m Xtb=1.5 Br=1.365 Nc=2 Isc=0 Ikr=0 Rc=3.75 Cjc=2.77p
++               Mjc=.1416 Vjc=.75 Fc=.5 Cje=2.65p Mje=.3083 Vje=.75 Tr=4.033n
++               Tf=118.5p Itf=.5 Vtf=3 Xtf=6 Rb=10)
+*               National        pid=65          case=TO92
+*               88-09-08 bam    creation
+
+.model 2N5817   PNP(Is=650.6E-18 Xti=3 Eg=1.11 Vaf=115.7 Bf=127 Ne=1.829
++               Ise=99.99f Ikf=1.079 Xtb=1.5 Br=3.752 Nc=2 Isc=0 Ikr=0 Rc=.715
++               Cjc=14.76p Mjc=.5383 Vjc=.75 Fc=.5 Cje=19.82p Mje=.3357 Vje=.75
++               Tr=114.4n Tf=761.3p Itf=.65 Vtf=5 Xtf=1.7 Rb=10)
+*               National        pid=63          case=TO92
+*               88-09-09 bam    creation
+

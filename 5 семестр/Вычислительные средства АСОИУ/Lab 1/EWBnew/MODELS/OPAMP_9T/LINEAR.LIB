@@ -1,0 +1,168 @@
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1990
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- *
+*
+* Linear Technology LT1101 instrumentation amplifier model
+* Written: 10-23-89 Type: Bipolar pnp input, single supply.
+* LT1101 updated from original model on 06-20-1990
+* Typical specs:
+* Ref. LT1101 data sheet, LTC 1990 databook p13-36
+*
+* Comments: Uses nested LT1078 model.
+*
+* Connections: (+)(_)V+ V- Out G10a G10b Gnd
+.SUBCKT LT1101 6 3 5 4 8 2 7 1
+*
+R90A 1 2 828E3
+R9A 2 100 82.8E3
+RA 100 101 9.2E3
+RB 101 102 9.2E3
+R9B 102 7 82.8E3
+R90B 7 8 828E3
+*
+XA 3 100 5 4 101 LT1078
+XB 6 102 5 4 8 LT1078
+*
+RINA 3 0 7E9
+RINB 6 0 7E9
+*
+.ENDS LT1101
+***
+*         (C) COPYRIGHT LINEAR TECHNOLOGY CORPORATION 1993
+*                       All rights reserved.
+* 
+*   Linear Technology Corporation hereby grants the users of this
+* macromodel a non-exclusive, nontransferrable license to use this
+*            macromodel under the following conditions:
+* 
+* The user agrees that this macromodel is licensed from Linear
+* Technology and agrees that the macromodel may be used, loaned,
+* given away or included in other model libraries as long as this
+* notice and the model in its entirety and unchanged is included.
+* No right to make derivative works or modifications to the
+* macromodel is granted hereby.  All such rights are reserved.
+* 
+* This model is provided as is.  Linear Technology makes no
+* warranty, either expressed or implied about the suitability or
+* fitness of this model for any particular purpose.  In no event
+* will Linear Technology be liable for special, collateral,
+* incidental or consequential damages in connection with or arising
+* out of the use of this macromodel.  It should be remembered that
+* models are a simplification of the actual circuit.
+* 
+* Linear Technology reserves the right to change these macromodels
+* without prior notice.  Contact Linear Technology at 1630 McCarthy
+* Blvd., Milpitas, CA, 95035-7487 or telephone 408/432-1900 for
+* datasheets on the actual amplifiers or the latest macromodels.
+* 
+* ----------------------------------------------------------------------- ** 
+* Linear Technology LT1228 op amp model  
+* Written: 11-05-1992. Type: Current Feedback Amplifier
+* 
+* Connections: as per datasheet pinout
+*1=gm block output/current feedback amplifier non-inverting input
+*2=gm block inverting input
+*3=gm block non-inverting input
+*4=negative supply
+*5=set current
+*6=current feedback amplifier output
+*7=positive supply
+*8=current feedback amplifier inverting input
+*
+.SUBCKT LT1228 3 2 7 4 6 1 8 5
+*
+* THE OTA
+Q11 5 5 21 QN 10
+Q12 21 21 22 QN 10
+VC 22 4 DC 0
+F1 26 4 VC 0.375
+F2 27 4 VC 0.25
+F3 28 4 VC 0.375
+F4 7 23 VC 1.6
+F5 7 24 VC 1.6
+VB 7 25 DC 1.4
+CE1 23 7 11PF
+CE2 24 7 11PF
+RE13 23 32 120
+RE14 24 33 120
+Q13 29 25 32 QPI
+Q14 1 25 33 QPI
+Q15 23 3 28 QNI 9
+Q16 23 3 27 QNI
+Q17 23 3 26 QNI
+Q18 24 2 26 QNI 9
+Q19 24 2 27 QNI
+Q20 24 2 28 QNI
+VM 29 4 DC 1.4
+FM 1 4 VM 1
+DM 29 1 DC
+C1 1 7 5PF
+*
+* THE CFA
+Q2A 4 1 10 QP 0.5
+Q3A 11 10 200 QN
+Q4A 11 11 7 QP
+Q5A 9 11 7 QP
+Q6A 12 11 7 QP
+Q7A 4 9 12 QP
+Q8A 7 12 13 QN 10
+RSCA 13 6 10
+IBA 7 10 DC 300U
+*
+Q2B 7 1 110 QN 0.5
+Q3B 111 110 200 QP
+Q4B 111 111 4 QN
+*
+Q5B 9 111 4 QN
+Q6B 112 111 4 QN
+Q7B 7 9 112 QN
+Q8B 4 112 113 QP 10
+RSCB 6 113  10
+IBB 110 4 DC 300U
+*
+RC 8 200 20
+R9 9 0 201600
+D1 9 6 DC
+D2 6 9 DC
+*
+.MODEL DC D
+*
+.MODEL QNI NPN
+*
+.MODEL QN NPN (IS=168E-18 BF=150 ISC=40E-18 NC=1 RB=250 RE=8 RC=100
++CJE=0.37P VJE=0.65 MJE=0.33 FC=0.7 CJC=0.8P VJC=0.62 MJC=0.44
++TF=300P
+*
+.MODEL QPI PNP
+*
+.MODEL QP PNP (IS=230E-18 BF=150 ISC=113E-18 NC=1 RB=250 RE=8 RC=100
++CJE=0.34P VJE=0.75 MJE=0.40 FC=0.7 CJC=0.8P VJC=0.5 MJC=0.36
++TF=300P
+*
+.ENDS LT1228

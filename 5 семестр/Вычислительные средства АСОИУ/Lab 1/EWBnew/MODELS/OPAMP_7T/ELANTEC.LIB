@@ -1,0 +1,708 @@
+* COPYRIGHT OF ELANTEC, INC.
+*
+*This library of macromodels is being supplied to users as an  aid 
+*to   circuit  designs.    While  it  reflects  reasonably   close 
+*similarity  to the actual device in terms of performance,  it  is 
+*not  suggested  as a replacement for  breadboarding.   Simulation 
+*should be used as a forerunner or a supplement to traditional lab 
+*testing.
+*
+*Users  should very carefully note the following factors regarding 
+*these models:
+*
+*Model performance in general will reflect typical baseline  specs 
+*for a given device, and certain aspects of performance may not be 
+*modeled  fully  to  keep  the model as simple  as  possible  thus 
+*minimizing  computer running time.  For example,  PSRR  and  CMRR 
+*effects,  parametric variation with temperature,  operation under 
+*output short circuit conditions,  and input noise sources are not 
+*included in the models.
+*
+*While  reasonable  care has been taken in their  preparation,  we 
+*cannot  be  responsible for correct application on  any  and  all 
+*computer  systems.  Model  users are hereby notified  that  these 
+*models  are  supplied  "as  is",   with  no  direct  or   implied 
+*responsibility on the part of Elantec,  Inc.  for their operation 
+*within  a  customer circuit or  system.   Further,  Elantec  Inc. 
+*reserves the right to change these models without prior notice.
+* 
+*In all cases, the current data sheet information for a given real 
+*device  is  your final design guideline,  and is the only  actual 
+*performance guarantee.   For further technical information, refer 
+*to individual device data sheets.
+*
+*The  Elantec  Engineering staff is in the  process  of  improving 
+*these  models,   and  we  welcome  your  comments  and  feedback. 
+*Inquiries should be made to:
+*
+*                  Applications Engineering Manager
+*                  Elantec, Inc.
+*                  1996 Tarob Ct. 
+*                  Milpitas, CA 95035
+*
+*Voice Telephone:  (800) 333-6314, ext. 311
+*
+*FAX: (408) 945-9305   
+*
+*TELEX: 910-997-0649            
+*EL2018 Macromodel
+* Connections:       +input
+*                      |  -input
+*                      |    |   +V
+*                      |    |    |   -V     
+*                      |    |    |    | Output __    
+*                      |    |    |    |    |   CS    __
+*                      |    |    |    |    |    |    LE  
+*                      |    |    |    |    |    |    |  
+*                      |    |    |    |    |    |    |
+.subckt EL2018/EL      2    3    8    4    7    5    6
+*
+*Input Stage 
+*
+i1 8 10 700uA
+r1 13 4 1K
+r2 14 4 1K
+q1  8 3 11  qn
+q2  8 2 12  qn
+q3 13 11 10 qp 
+q4 14 12 10 qp 
+i2 11 4 200uA
+i3 12 4 200uA          
+*
+* 2nd Stage & Flip Flop
+*
+*i4 8 24 700uA  
+i4 8 24 1mA
+q9  22  6 24 qp
+q10 18 17 24 qp
+v1 17 0 2.5V
+q5 15 14 22 qp 
+q6 16 13 22 qp
+r3 15 4 1K
+r4 16 4 1K
+q7 16 15 18 qp
+q8 15 16 18 qp
+*
+* Output Stage  
+* 
+i7 8 35 2mA
+s1 35 20 5 0 sw
+d2 35 8 ds
+i6 26 34 5mA
+s2 34 4 5 0 sw
+d3 34 26 ds
+q19 8 20 21 qn 2
+q20 4 19  7 qp 2
+r8 21  7 60
+r7 20 19 4K
+q17 19 16 26 qn 5
+q18  0 15 26 qn 5
+q22 20 20 30 qn 5
+q23 19 19 30 qp 8
+d1 0 19 ds
+q21 0 17 19 qp
+*
+* Power Supply Current
+*
+ips 8 4 4mA
+*
+* Models 
+*
+.model qn npn(is=2e-15 bf=400 tf=0.05nS cje=0.3pF cjc=0.2pF ccs=0.2pF)
+.model qp pnp(is=0.6e-15 bf=60 tf=0.3nS cje=0.5pF cjc=0.5pF ccs=0.4pF)
+.model ds d(is=2e-12 tt=0.05nS eg=0.62V vj=0.58)
+.model sw vswitch(von=0.4v voff=2.5v)
+.ends
+*EL2019 Marcromodel
+* Connections:        +input
+*                       |  -input
+*                       |    |    +V
+*                       |    |    |   -V    
+*                       |    |    |    | Output __    
+*                       |    |    |    |    |   CS 
+*                       |    |    |    |    |    |   Cpin 
+*                       |    |    |    |    |    |    |  
+*                       |    |    |    |    |    |    |
+.subckt EL2019/EL       2    3    8    4    7    5    6
+*
+*Input Stage 
+*
+i1 8 10 700uA
+r1 13 4 1K
+r2 14 4 1K
+q1  8 3 11  qn
+q2  8 2 12  qn
+q3 13 11 10 qp 
+q4 14 12 10 qp 
+i2 11 4 200uA
+i3 12 4 200uA          
+*
+* 2nd Stage & Flip Flop
+*
+*i4 8 24 700uA  
+i4 8 24 1mA
+q9  22  6 24 qp
+q10 18 17 24 qp
+v1 17 0 2.5V
+q5 15 14 22 qp 
+q6 16 13 22 qp
+r3 15 4 1K
+r4 16 4 1K
+q7 16 15 18 qp
+q8 15 16 18 qp
+i5 8 40 500uA
+q11 41 17 40 qp
+q12 42  6 40 qp
+q13 43 16 41 qp
+q14 44 15 41 qp  
+q15 44 43 42 qp
+q16 43 44 42 qp
+r5 43 4 1K
+r6 44 4 1K
+*
+* Output Stage  
+* 
+i7 8 35 2mA
+s1 35 20 5 0 sw
+d2 35 8 ds
+i6 26 34 5mA
+s2 34 4 5 0 sw
+d3 34 26 ds
+q19 8 20 21 qn 2
+q20 4 19  7 qp 2
+r8 21 7 60
+r7 20 19 4K
+q17 19 44 26 qn 5
+q18  0 43 26 qn 5
+q22 20 20 30 qn 5
+q23 19 19 30 qp 8
+d1 0 19 ds
+q21 0 17 19 qp
+*
+* Power Supply Current
+*
+ips 8 4 4mA
+*
+* Models 
+*
+.model qn npn(is=2e-15 bf=400 tf=0.05nS cje=0.3pF cjc=0.2pF ccs=0.2pF)
+.model qp pnp(is=0.6e-15 bf=60 tf=0.3nS cje=0.5pF cjc=0.5pF ccs=0.4pF)
+.model ds d(is=2e-12 tt=0.05nS eg=0.62V vj=0.58)
+.model sw vswitch(von=0.4v voff=2.5v)
+.ends
+*EL2022 Macromodel 
+* Connections:          +input
+*                       | -input
+*                       |    |  +Vcc    
+*                       |    |    | -Vee 
+*                       |    |    |    | Ootput
+*                       |    |    |    |    |  Vcc coll
+*                       |    |    |    |    |    |  -Vcc coil
+*                       |    |    |    |    |    |    |
+.subckt EL2022/EL       6    5    1    9    11   12   10
+*
+* Input Stage 
+*
+e1 30 0 6 0 1.0
+r1 5 43 25  
+l1 43 42 29nH
+vis 30 41 0V 
+h4 41 42 v1 1.0
+h1 31 0 vis 1.0
+r2 31 0 1K
+v1 40 0 0v
+r4 40 0 1K
+ivos 0 40 5mA
+*
+* High Frequency Pole  
+*
+e2 32 0 31 0 1.0  
+r5 32 0 1K
+r6 32 33 1K
+l2 33 34 0.1uH
+c1 34 0 0.2pF
+*
+* Transimpedance Stage
+* 
+gm 0 35 34 0 1.0
+rol 35 0 130K
+c2 35 0 4pF
+*
+* Output Stage 
+*
+q1 9 35 36 qp 
+q2 1 35 39 qn 
+q3 12 36 37 qn 
+q4 10 39 38 qp 
+r7 37 11 2 
+r8 38 11 2
+ios1 1 36 2.5mA
+ios2 39 9 2.5mA
+*
+* Supply & Bias Current
+*
+ips 1 9 14mA
+iin- 6 0 5uA
+iin+ 0 5 10uA 
+*
+* Models
+*
+.model qn npn(is=5e-15 bf=100 tf=0.1nS)
+.model qp pnp(is=5e-15 bf=100 tf=0.1nS)
+*
+.ends
+* EL2157/EL2257 Macromodel 
+* Revision A, July 1995
+* Applications Hints:
+* When not being used, the clamp pin, pin 1, should be connected to Vcc.
+*
+* connections:        +input
+*                       |  -input
+*                       |    | +Vsupply
+*                       |    |    | -Vsupply
+*                       |    |    |    |  output  
+*                       |    |    |    |    |   clamp
+*                       |    |    |    |    |     |
+.subckt EL2157/EL       3    2    7    4    6     1 
+*
+* Input stage 
+*
+i1  7 10 250uA
+i2  7 11 250uA
+r1 10 11 4K
+q1 12  2 10 qp
+q2 13  3 11 qpa
+r2 12  4 100
+r3 13  4 100
+*
+* Second Stage & Compensation
+*
+gm 15 4 13 12 4.6m   
+r4 15 4 15Meg
+c1 15 4 0.36pF
+*
+* Poles
+*
+e1 17  4 15 4 1.0
+r6 17 25 0.4K
+c3 25  4 1pF
+r7 25 18 0.5K  
+c4 18  4 1pF  
+*
+* Output Stage & Clamp
+* 
+i3 20 4 1.0mA
+v1 23 4 1.0v   
+q3  7 23 20 qn
+q4  7 18 19 qn
+q5  7 18 21 qn 
+q6  4 20 22 qp
+q7  7 23 18 qn
+d1 19 20 da
+d2 18  1 da
+r8 21 6 2
+r9 22 6 2
+r10 18 21 10k
+*
+* Power Supply Current
+*
+ips 7 4 3.2mA
+*
+* Models 
+*
+.model qn  npn(is=800e-18 bf=150 tf=0.02nS)
+.model qpa pnp(is=810e-18 bf=50 tf=0.02nS)
+.model qp  pnp(is=800e-18 bf=54 tf=0.02nS)
+.model da d(tt=0nS)
+.ends
+*EL2252 Marcromodel
+* Connections:        +input
+*                       |  -input
+*                       |    |    +V
+*                       |    |    |    -V    
+*                       |    |    |    | Output ___  
+*                       |    |    |    |    |   TTL
+*                       |    |    |    |    |    |   HYS  
+*                       |    |    |    |    |    |    |  
+*                       |    |    |    |    |    |    |
+.subckt EL2252/EL       2    3    14   7    13   5    4 
+*
+* Application Hints:
+*
+* Connect pin 4 to ground through 1000 Megohm resistor to inhibit
+* Hysteresis; to invoke Hysteresis, connect pin 4 to V-.
+*
+* Connect pin 5 to ground to invoke TTL Voh; pin 5 may left open
+* for CMOS Voh.
+*
+* To faciltate .OP, set itl1 = 200, itl2 = 200, set node 27 to 13.8
+* volts, and node 30 to -12 volts.  As an example, if you called your
+* subckt x1, then the following statement should be added to your deck:
+* 
+* .NODESET V(x1.27)=13.8 V(x1.30)=-12
+*
+*Input Stage 
+*
+i1  22  7 1.7mA
+r1  14 20 300
+r2  14 21 300
+q1  20  2 22 qn
+q2  21  3 22 qn
+q3  20 26 23 qn 
+q4  21 25 23 qn
+q13 25 27 20 qp
+q14 26 27 21 qp
+v1  14 27 1.2v 
+r3  23 24 1.4K
+d1  24 4 ds
+r4  25 33 700
+r5  26 33 700
+q16 33 33 34 qn
+q17 34 34 37 qn
+v4  37 7 1.2v         
+*
+* 2nd Stage 
+*
+i2 30 7  3mA   
+i3 14 28 1.5mA
+q7  0 35 28 qp
+v2  44 0 1.2V
+s1  44 35 5 0 swa
+s2  45 35 5 0 swb
+rsw 14 5 10K
+v3  45 0 2.5v
+q5  0 26 30 qn
+q6 28 25 30 qn 
+d3 0 28 ds
+*
+* Output Stage  
+* 
+i4 14 38 1mA
+q8 38 38 39 qn
+q9 32 32 39 qp
+q10 7 28 32 qp
+q11 14 38 40 qn 2
+q12  7 28 13 qp 2
+r6 40 13 50
+c1 28 0 3pF
+*
+* Models 
+*
+.model qn npn(is=2e-15 bf=120 tf=0.2nS cje=0.2pF cjc=0.2pF ccs=0.2pF)
+.model qp pnp(is=0.6e-15 bf=60 tf=0.2nS cje=0.5pF cjc=0.3pF ccs=0.2pF)
+.model ds d(is=3e-12 tt=0.05nS eg=0.72V vj=0.58)
+.model swa vswitch(von=0v voff=2.5v)
+.model swb vswitch(von=2.5 voff= 0v) 
+.ends
+*EHA2500 Macromodel 
+* Connections:        +input
+*                       |  -input
+*                       |    | +Vsupply
+*                       |    |    | -Vsupply
+*                       |    |    |    |  output
+*                       |    |    |    |    |   comp
+*                       |    |    |    |    |    |
+.subckt EL2500/EL       3    2    7    4    6    8
+*
+*Input Stage 
+*
+ie 37 4 425uA
+r6 36 37 1.6K
+r7 38 37 1.6K
+rc1 7 30 1.7K
+rc2 7 39 1.7K
+q1 30 3 36 qn
+q2 39 2 38 qna
+ediff 33 0 39 30 1.00
+rdiff 33 0 1Meg
+*
+* Compensation Section 
+*
+ga 0 8 33 0 0.5m
+rh 8 0 79.6Meg
+ch 8 0 9pF
+rc 8 40 1K
+cc 40 0 1pF
+*
+* Poles
+*
+ep 41 0 40 0 1
+rpa 41 42 1K
+cpa 42 0 2pF
+rpb 42 43 1K
+cpb 43 0 4pF
+*
+* Output Stage 
+* 
+ios1 7 50 1.0mA
+ios2 51  4 1.0mA
+q3  4 43 50 qp 
+q4 7 43 51 qn
+q5 7 50 52 qn
+q6 4 51 53 qp 
+ros1 52 6 25
+ros2 6 53 25
+*
+* Power Supply Current
+*
+ips 7 4 1mA
+*
+* Models  
+*
+.model qn npn(is=800e-18 bf=2e3 tf=0.2nS)
+.model qna npn(is=864e-18 bf=2.5e3 tf=0.2nS)
+.model qp pnp(is=800e-18 bf=2e3 tf=0.2nS)
+.ends
+*EHA2520 Macromodel 
+* Connections:        +input
+*                       | -input
+*                       |    | +Vsupply
+*                       |    |    | -Vsupply
+*                       |    |    |    |  output
+*                       |    |    |    |    |   comp
+*                       |    |    |    |    |    |
+.subckt EL2520/EL       3    2    7    4    6    8
+*
+*Input Stage 
+*
+ie 37 4 425uA
+r6 36 37 1.6K
+r7 38 37 1.6K
+rc1 7 30 1.7K
+rc2 7 39 1.7K
+q1 30 3 36 qn
+q2 39 2 38 qna
+ediff 33 0 39 30 1.00
+rdiff 33 0 1Meg
+*
+* Compensation Section 
+*
+ga 0 8 33 0 0.5m
+rh 8 0 79.6Meg
+ch 8 0 1.5pF
+rc 8 40 1K
+cc 40 0 1pF
+*
+* Poles
+*
+ep 41 0 40 0 1
+rpa 41 42 1K
+cpa 42 0 2pF
+rpb 42 43 1K
+cpb 43 0 4pF
+*
+* Output Stage 
+* 
+ios1 7 50 1.0mA
+ios2 51  4 1.0mA
+q3  4 43 50 qp 
+q4 7 43 51 qn
+q5 7 50 52 qn
+q6 4 51 53 qp 
+ros1 52 6 25
+ros2 6 53 25
+*
+* Power Supply Current
+*
+ips 7 4 1mA
+*
+* Models  
+*
+.model qn npn(is=800e-18 bf=2e3 tf=0.2nS)
+.model qna npn(is=864e-18 bf=2.5e3 tf=0.2nS)
+.model qp pnp(is=800e-18 bf=2e3 tf=0.2nS)
+.ends
+*EHA2600 Macromodel 
+* Connections:        +input
+*                       |  -input
+*                       |    | +Vsupply
+*                       |    |    | -Vsupply
+*                       |    |    |    |  output
+*                       |    |    |    |    |   comp
+*                       |    |    |    |    |    |
+.subckt EL2600/EL       3    2    7    4    6    8
+*
+*Input Stage 
+*
+ie 37 4 26uA
+r6 36 37 1K
+r7 38 37 1K
+rc1 7 30 3K
+rc2 7 39 3K
+q1 30 3 36 qn
+q2 39 2 38 qna
+ediff 33 0 39 30 1.00
+rdiff 33 0 1Meg
+*
+* Compensation Section 
+*
+ga 0 8 33 0 1m
+rh 8 0 150Meg
+ch 8 0 6pF
+rc 8 40 1K
+cc 40 0 4pF
+*
+* Poles
+*
+ep 41 0 40 0 1
+rpa 41 42 200
+cpa 42 0 8pF
+rpb 42 43 1K
+cpb 43 0 8pF
+*
+* Output Stage 
+* 
+ios1 7 50 1.0mA
+ios2 51 4 1.0mA
+q3  4 43 50 qp 
+q4 7 43 51 qn
+q5 7 50 52 qn
+q6 4 51 53 qp 
+ros1 52 6 25
+ros2 6 53 25
+*
+* Power Supply Current
+*
+ips 7 4 0.5mA
+*
+* Models  
+*
+.model qn  npn(is=800e-18 bf=5e3 tf=0.2nS)
+.model qna npn(is=864e-18 bf=6e3 tf=0.2nS)
+.model qp  pnp(is=800e-18 bf=5e3 tf=0.2nS)
+.ends
+*EHA2620 Macromodel 
+* Connections:          +input
+*                       | -input
+*                       |    | +Vsupply
+*                       |    |    |    -Vsupply
+*                       |    |    |    |  output
+*                       |    |    |    |    |   comp
+*                       |    |    |    |    |    |
+.subckt EL2620/EL       3    2    7    4    6    8
+*
+*Input Stage 
+*
+ie 37 4 26uA
+r6 36 37 1K
+r7 38 37 1K
+rc1 7 30 3K
+rc2 7 39 3K
+q1 30 3 36 qn
+q2 39 2 38 qna
+ediff 33 0 39 30 1.00
+rdiff 33 0 1Meg
+*
+* Compensation Section 
+*
+ga 0 8 33 0 1m
+rh 8 0 150Meg
+ch 8 0 1.5pF
+rc 8 40 5K
+cc 40 0 1pF
+*
+* Poles
+*
+ep 41 0 40 0 1
+rpa 41 42 200
+cpa 42 0 8pF
+rpb 42 43 1K
+cpb 43 0 8pF
+*
+* Output Stage 
+* 
+ios1 7 50 1.0mA
+ios2 51  4 1.0mA
+q3  4 43 50 qp 
+q4 7 43 51 qn
+q5 7 50 52 qn
+q6 4 51 53 qp 
+ros1 52 6 25
+ros2 6 53 25
+*
+* Power Supply Current
+*
+ips 7 4 0.5mA
+*
+* Models  
+*
+.model qn npn(is=800e-18 bf=5e3 tf=0.2nS)
+.model qna npn(is=864e-18 bf=6e3 tf=0.2nS)
+.model qp pnp(is=800e-18 bf=5e3 tf=0.2nS)
+.ends
+*EL4089 Macromodel
+* Revision A, July 24 1994
+*
+* Connections:    Vin+
+*                 | Vin-
+*                 |  | +Vsupply
+*                 |  |  | -Vsupply
+*                 |  |  |  | Vout    
+*                 |  |  |  |  | Ref 
+*                 |  |  |  |  |  | Hold    
+*                 |  |  |  |  |  |  |
+.subckt EL4089/EL 2  1  8  6  7  3  4
+********Restore section
+g10 2 0 xx 0 430u
+e10 yy 0 ww 3 4.66
+Rfl 7 ww 8K
+Cfl ww 0 20p
+Rd yy ss 100 
+d10 xx 0 dd
+d20 0 xx dd
+s1 xx ss 4 0 swno
+s2 0 xx 4 0 swnc
+rcl 3 0 999K
+Rhh 4 0 100K
+.model swno vswitch (von=0.8 voff=2.4)
+.model swnc vswitch (von=2.4 voff=0.8)
+********************** 
+* Input Stage 
+e1 10 0 2 0 1.0
+vis 10 9 0V
+h2 9 12 Vxx 1.0
+r1 1 11 20
+l1 11 12 20nH
+iinp 2 0 1u
+iinn 1 0 18u
+r12 2 0 2MEG
+* Slew Rate Limiting
+h1 13 0 vis 600
+r2 13 14 1k
+d1 14 0 dd
+d2 0 14 dd
+* High Frequency Pole
+e2 30 0 14 0 0.00166666666
+l3 30 17 1.47u
+c5 17 0 0.47p
+r5 17 0 700
+* Transimpedance Stage
+g1 0 18 17 0 1.0
+rol 18 0 800k
+cdp 18 0 11p
+* Output Stage
+q1 6 18 19 qp
+q2 8 18 20 qn
+q3 8 19 21 qn
+q4 6 20 22 qp
+r7 21 7 3
+r8 22 7 3
+ios1 8 19 2mA
+iso2 20 6 2mA
+* Supply Current
+ips 8 6 6.5mA
+* Error Term
+iovs 0 23 12m
+Vxx 23 0 0V
+e4 24 0 2 0 1.0
+e5 25 0 8 0 1.0
+e6 26 0 6 0 1.0
+r9 23 24 560
+r10 25 23 1k
+r11 26 23 1k
+* Models
+.model qn npn (is=5e-15, bf=100, tf=0.1ns)
+.model qp pnp (is=5e-15, bf=100, tf=0.1ns)
+.model dclamp d(is=1e-20, ibv=0.266, bv=2.24, n=4) 
+.model dd d rs=2  
+.ends

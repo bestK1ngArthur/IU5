@@ -1,0 +1,168 @@
+* NDS9956A ELECTRICAL MODEL  (SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9956A  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=1.791072  KP=7.172
++ THETA=0.086  VMAX=5E5  LEVEL=3)
+Cgs     1    3    350p
+Rd     20    4    10m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=30.048   M=0.35  CJO=290p   VJ=0.9)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=70n)
+Ra      4    2    10m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    500p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.325   CJO=500p   VJ=0.039)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9956A
+***********************************************************************
+* NDS9959 ELECTRICAL MODEL  (SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9959  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=3.684608  KP=1.934
++ THETA=0.056  VMAX=5E5  LEVEL=3)
+Cgs     1    3    175p
+Rd     20    4    95m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=50.06   M=0.35  CJO=290p   VJ=0.9)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=70n)
+Ra      4    2    90m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    200p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.325   CJO=200p   VJ=0.039)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9959
+***********************************************************************
+* NDS8936 ELECTRICAL MODEL  (SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS8936  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=1.591296   KP=12.356
++ THETA=0.086  VMAX=5E5  LEVEL=3)
+Cgs     1    3    400p
+Rd     20    4    5m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=30.048   M=0.35  CJO=290p   VJ=0.9)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=70n)
+Ra      4    2    5m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1250p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.325   CJO=1250p   VJ=0.039)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS8936
+************************************************************************
+* NDS9936 ELECTRICAL MODEL  ( SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9936  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=1.49184   KP=8.46
++  THETA=0.086  VMAX=5E5  LEVEL=3)
+Cgs     1    3    359p
+Rd     20    4    10m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=20.032   M=0.35  CJO=290p   VJ=0.9)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=70n)
+Ra      4    2    21m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1050p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.325   CJO=1050p   VJ=0.039)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9936
+************************************************************************
+* NDS9955 ELECTRICAL MODEL  ( SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9955  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=1.49184   KP=6.97
++   THETA=0.086  VMAX=3E5  LEVEL=3)
+Cgs     1    3    405p
+Rd     20    4    24m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=60.096   M=0.3  CJO=252p   VJ=0.8)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=43m   TT=52n)
+Ra      4    2    28m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    700p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.53   CJO=700p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9955
+*********************************************************************
+* NDS9956 ELECTRICAL MODEL  (SO-8 Dual N-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9956  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS NMOS (VTO=1.49256  KP=7.172
++   THETA=0.086  VMAX=5E5  LEVEL=3)
+Cgs     1    3    359p
+Rd     20    4    10m 
+Dds     3    4    DDS
+.MODEL     DDS    D(BV=20.032   M=0.35  CJO=290p   VJ=0.9)
+Dbody   3   20    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=70n)
+Ra      4    2    21m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    NMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1050p
+Rcgd    7    4    10meg
+Dgd     6    4    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.325   CJO=1050p   VJ=0.039)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9956
+*************************************************************************

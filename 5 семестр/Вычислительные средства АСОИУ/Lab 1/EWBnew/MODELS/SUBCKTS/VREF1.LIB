@@ -1,0 +1,3852 @@
+* REF193 SPICE MACROMODEL                   1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF193  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8089E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.32295E-13
+GLDR 4 10 22 6 2.5999E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.93E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 122.317E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF194G SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF194 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF194G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.7958E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.5424E-13
+GLDR 4 10 22 6 2.557E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.23E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 225.975E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF194E SPICE MACROMODEL                   1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF194 model simulates the worst-case
+* parameters of the 'E' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF194E  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.806206E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.3112E-13
+GLDR 4 10 22 6 2.6434E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.23E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 225.975E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF194 SPICE MACROMODEL                   1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF194  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8089E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 1.1556E-13
+GLDR 4 10 22 6 2.6864E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.23E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 225.975E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF194F SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF194 model simulates the worst-case
+* parameters of the 'F' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF194F  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8023E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.6371E-13
+GLDR 4 10 22 6 2.556E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.23E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 225.975E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF195G SPICE MACROMODEL                 12/95, Rev. B
+*                                            (AAG /ADSC)
+*
+* Revision history:
+*    R1 was changed to model voltage reference output noise
+*    I1 was changed commensurate with R1
+*    CL1 was changed commensurate with R1
+*    GLDR was adjusted for correct load current transient response
+*    R8 was adjusted for correct dropout voltage at 10 mA and at 30 mA
+*    TC(R1) was adjusted for correct output voltage tempco
+*    V2 and R11 were adjusted for correct shutdown mode supply current
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF195 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF195G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.7977E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.646E-13
+GLDR 4 10 22 6 2.707E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHz
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 54E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.6E6
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.49E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 260.5E3
+R7 21 4 85E3
+RDO 22 6 25.5
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF195 SPICE MACROMODEL                  12/95, Rev. B
+*                                             (AAG/ADSC)
+*
+* Revision history:
+*    R1 was changed to model voltage reference output noise
+*    I1 was changed commensurate with R1
+*    CL1 was changed commensurate with R1
+*    GLDR was adjusted for correct load current transient response
+*    R8 was adjusted for correct dropout voltage at 10 mA and at 30 mA
+*    TC(R1) was adjusted for correct output voltage tempco
+*    V2 and R11 were adjusted for correct shutdown mode supply current
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF195  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8095E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 1.1615E-13
+GLDR 4 10 22 6 2.686E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.37E6
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 9.49E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 260.5E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF195E SPICE MACROMODEL                   12/95, Rev. B
+*                                               (AAG/ADSC)
+*
+* Revision history:
+*    R1 was changed to model voltage reference output noise
+*    I1 was changed commensurate with R1
+*    CL1 was changed commensurate with R1
+*    GLDR was adjusted for correct load current transient response
+*    R8 was adjusted for correct dropout voltage at 10 mA and at 30 mA
+*    TC(R1) was adjusted for correct output voltage tempco
+*    V2 and R11 were adjusted for correct shutdown mode supply current
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF195 model simulates the worst-case
+* parameters of the 'E' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF195E  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.806675E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.323E-13
+GLDR 4 10 22 6 2.807E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHz
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 54E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.33E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.49E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 260.5E3
+R7 21 4 85E3
+RDO 22 6 25.5
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF195F SPICE MACROMODEL                12/95, Rev. B
+*                                            (AAG/ADSC)
+*
+* Revision history:
+*    R1 was changed to model voltage reference output noise
+*    I1 was changed commensurate with R1
+*    CL1 was changed commensurate with R1
+*    GLDR was adjusted for correct load current transient response
+*    R8 was adjusted for correct dropout voltage at 10 mA and at 30 mA
+*    TC(R1) was adjusted for correct output voltage tempco
+*    V2 and R11 were adjusted for correct shutdown mode supply current
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF195 model simulates the worst-case
+* parameters of the 'F' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF195F  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8035E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.646E-13
+GLDR 4 10 22 6 2.731E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHz
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 54E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.33E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.49E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 260.5E3
+R7 21 4 85E3
+RDO 22 6 25.5
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF196 SPICE MACROMODEL                   1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF196  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8089E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.2966E-13
+GLDR 4 10 22 6 2.5999E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 2.12E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 143.048E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF196G SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF196 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF196G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.79115E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.6079E-13
+GLDR 4 10 22 6 2.407E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 2.12E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 143.048E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF198G SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF198 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF198G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.7945E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.6321E-13
+GLDR 4 10 22 6 2.5924E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.18E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 198.056E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF198 SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF198  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8089E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 1.1615E-13
+GLDR 4 10 22 6 2.6865E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.18E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 198.056E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF198E SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF198 model simulates the worst-case
+* parameters of the 'E' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF198E  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.806E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.323E-13
+GLDR 4 10 22 6 2.6435E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.18E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 198.056E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF198F SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF198 model simulates the worst-case
+* parameters of the 'F' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF198F  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8017E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.323E-13
+GLDR 4 10 22 6 2.5574E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 3.18E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.5E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 198.056E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* AD680 SPICE Macromodel 5/94, Rev. A
+* AAG / ADSC
+*
+* Copyright 1994 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  
+* Use of this model indicates your acceptance with 
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*              VIN
+*              |  TEMP
+*              |  |  GND
+*              |  |  |  VOUT
+*              |  |  |  |
+.SUBCKT AD680  2  3  4  6
+*
+* BANDGAP REFERENCE
+*
+IBG 4 10 DC 1.2864651E-3
+RBG 10 4 1E3 
+EN 10 11 14 0 1
+G1 4 11 2 4 2.0584285E-8
+F1 4 11 VLR 4.116857E-5
+Q1 2 11 12 QT
+I1 12 4 DC 50E-6
+R1 12 3 11.486E3
+I2 3 4 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 13 0 DC 2
+DN1 13 14 DEN
+DN2 14 15 DEN
+VN2 0 15 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 0.2 Hz
+*
+G2 4 16 11 24 2.513274E-4
+R2 16 4 7.957747E9
+C1 16 4 1E-10
+D1 16 17 DX
+V1 2 17 DC 1.3
+*
+* SECONDARY POLE @ 300 kHz
+*
+G3 4 18 16 4 1E-6
+R3 18 4 1E6
+C2 18 4 5.3051647E-13
+*
+* OUTPUT STAGE
+*
+ISY 2 4 8.693E-5
+FSY 2 4 V1 -1
+RSY 2 4 2.5E6
+*
+G4 4 21 18 4 1E-3
+R4 21 4 1E3
+FSC 21 4 VSC 1
+VSC 2 19 DC 0
+Q2 19 2 20 QN
+RSC 2 20 26
+Q3 20 21 22 QN
+R5 22 24 21.6E3
+R6 24 4 22.9E3
+VLR 23 22 DC 0
+L1 23 6 1E-7
+*
+.MODEL QT NPN(IS=1.5E-16 BF=1E3 XTI=7.2)
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=1.98709E+06 AF=1 KF=1.21245E-16)
+.ENDS AD680
+* AD581 SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*              10.0 V
+*              |  GND
+*              |  |  VIN
+*              |  |  | 
+.SUBCKT AD581  1  4  8
+*
+* BANDGAP REFERENCE
+*
+I1 4 10 DC 1.21485E-3
+R1 10 4 1E3 
+EN 10 11 41 0 1
+G1 4 11 8 4 2.430243E-8
+F1 4 11 POLY(2) VS1 VS2 (0,2.43024E-5,2.43024E-5)
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+CN 41 0 50E-12
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 5 Hz
+*
+G2 4 7 11 6 1E-3
+R2 7 4 1E8
+C1 7 4 3.1831E-10
+D1 7 12 DX
+V1 8 12 DC 1.5
+*
+* SECONDARY POLE @ 1 MHz
+*
+G3 4 13 7 4 1E-6
+R3 13 4 1E6
+C2 13 4 1.5915E-13
+*
+* OUTPUT STAGE
+*
+ISY 8 4 3.5027E-4
+FSY 8 4 V1 -1
+*
+G4 4 14 13 4 20E-6
+R4 14 4 50E3
+FSC 14 4 VSC 1
+Q1 4 14 5 QP
+I2 8 5 DC 100E-6
+VSC 8 15 DC 0
+QSC 15 8 16 QN
+RSC 8 16 24.5
+Q2 16 5 17 QN
+VS1 19 17 DC 0
+Q3 4 5 18 QP
+VS2 18 19 DC 0
+R5 19 2 16.667E3
+R6 2 3 8.3333E3
+R7 3 6 4.2827E3
+R8 6 4 4.05E3
+LO 19 1 1E-7
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=4.56436E5 AF=1 KF=2.81234E-17)
+.ENDS AD581
+* AD587T SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'T' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587T  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.99565E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587T
+* AD587J SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'J' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587J  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.9923E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587J
+* AD587K SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'K' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587K  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.99565E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587K
+* AD587L SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'L' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587L  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.99565E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587L
+* AD587U SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'U' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587U  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.99565E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587U
+* AD587 SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*              VIN
+*              |  GND
+*              |  |  TRIM
+*              |  |  |  VOUT
+*              |  |  |  |  NOISE REDUCTION
+*              |  |  |  |  |
+.SUBCKT AD587  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.9995E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 1E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 23
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587
+* AD587S SPICE Macromodel 11/93, Rev. A
+* AAG / PMI
+*
+* This version of the AD587 voltage reference model simulates the worst case
+* parameters of the 'S' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1993 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |  NOISE REDUCTION
+*               |  |  |  |  |
+.SUBCKT AD587S  2  4  5  6  8
+*
+* BURIED ZENER REFERENCE
+*
+I1 4 50 DC 6.9923E-3
+R1 50 4 1E3 
+EN 10 50 41 0 1
+G1 4 10 2 4 7E-8
+F1 4 10 POLY(2) VS1 VS2 (0,7E-5,7E-5)
+R2 10 8 4E3
+I2 8 0 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 40 0 DC 2
+DN1 40 41 DEN
+DN2 41 42 DEN
+VN2 0 42 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 1.5 Hz
+*
+G2 4 11 8 26 1E-3
+R3 11 4 3.1623E8
+C1 11 4 3.3553E-10
+D1 11 12 DX
+V1 2 12 DC 2.2
+*
+* SECONDARY POLE @ 3 MHz
+*
+G3 4 13 11 4 1E-6
+R4 13 4 1E6
+C2 13 4 5.3052E-14
+*
+* OUTPUT STAGE
+*
+ISY 2 4 3E-3
+FSY 2 4 V1 -1
+RSY 2 4 77.778E3
+*
+G4 4 14 13 4 1E-5
+R5 14 4 1E5
+FSC1 14 4 VSC1 1
+R7 20 21 13.35
+R8 21 22 10
+FSC2 14 4 VSC2 1
+Q1 4 14 15 QP
+I3 2 15 DC 100E-6
+Q2 2 15 17 QN
+I4 17 4 DC 100E-6
+Q3 4 15 18 QP
+I5 2 18 DC 100E-6
+Q4 2 18 19 QN
+VS1 20 19 DC 0
+VS2 22 23 DC 0
+Q5 25 17 23 QP
+RF 22 26 6E3
+RT 26 5 140E3
+RI 26 4 14E3
+LO 22 6 1E-7
+*
+* SHORT-CIRCUIT CURRENT LIMITING
+*
+VSC1 2 24 DC 0
+QSC1 24 20 21 QN
+*
+VSC2 2 16 DC 0
+QSC2 16 25 4 QN
+R9 25 4 10
+*
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL QP PNP(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=5.77069E5 AF=1 KF=1.87644E-15)
+.ENDS AD587S
+* AD680A SPICE Macromodel 5/94, Rev. A
+* AAG / ADSC
+*
+* This version of the AD680A voltage reference model simulates the worst case
+* parameters of the 'A' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1994 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  
+* Use of this model indicates your acceptance with 
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  TEMP
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT AD680A  2  3  4  6
+*
+* BANDGAP REFERENCE
+*
+IBG 4 10 DC 1.2838922E-3
+RBG 10 4 1E3 
+EN 10 11 14 0 1
+G1 4 11 2 4 2.0584285E-8
+F1 4 11 VLR 5.14607125E-5
+Q1 2 11 12 QT
+I1 12 4 DC 50E-6
+R1 12 3 11.486E3
+I2 3 4 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 13 0 DC 2
+DN1 13 14 DEN
+DN2 14 15 DEN
+VN2 0 15 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 0.2 Hz
+*
+G2 4 16 11 24 2.513274E-4
+R2 16 4 7.957747E9
+C1 16 4 1E-10
+D1 16 17 DX
+V1 2 17 DC 1.3
+*
+* SECONDARY POLE @ 300 kHz
+*
+G3 4 18 16 4 1E-6
+R3 18 4 1E6
+C2 18 4 5.3051647E-13
+*
+* OUTPUT STAGE
+*
+ISY 2 4 1.4193E-4
+FSY 2 4 V1 -1
+RSY 2 4 2.5E6
+*
+G4 4 21 18 4 1E-3
+R4 21 4 1E3
+FSC 21 4 VSC 1
+VSC 2 19 DC 0
+Q2 19 2 20 QN
+RSC 2 20 16
+Q3 20 21 22 QN
+R5 22 24 21.6E3
+R6 24 4 22.9E3
+VLR 23 22 DC 0
+L1 23 6 1E-7
+*
+.MODEL QT NPN(IS=1.5E-16 BF=1E3 XTI=7.2)
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=1.98709E+06 AF=1 KF=2.41620E-16)
+.ENDS AD680A
+* AD680J SPICE Macromodel 5/94, Rev. A
+* AAG / ADSC
+*
+* This version of the AD680J voltage reference model simulates the worst case
+* parameters of the 'J' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.  This macro model applies to the 'JN'
+* and 'JR' versions of the AD680.
+*
+* Copyright 1994 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  
+* Use of this model indicates your acceptance with 
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  TEMP
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT AD680J  2  3  4  6
+*
+* BANDGAP REFERENCE
+*
+IBG 4 10 DC 1.2813192E-3
+RBG 10 4 1E3 
+EN 10 11 14 0 1
+G1 4 11 2 4 2.0584285E-8
+F1 4 11 VLR 5.14607125E-5
+Q1 2 11 12 QT
+I1 12 4 DC 50E-6
+R1 12 3 11.486E3
+I2 3 4 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 13 0 DC 2
+DN1 13 14 DEN
+DN2 14 15 DEN
+VN2 0 15 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 0.2 Hz
+*
+G2 4 16 11 24 2.513274E-4
+R2 16 4 7.957747E9
+C1 16 4 1E-10
+D1 16 17 DX
+V1 2 17 DC 1.3
+*
+* SECONDARY POLE @ 300 kHz
+*
+G3 4 18 16 4 1E-6
+R3 18 4 1E6
+C2 18 4 5.3051647E-13
+*
+* OUTPUT STAGE
+*
+ISY 2 4 1.4193E-4
+FSY 2 4 V1 -1
+RSY 2 4 2.5E6
+*
+G4 4 21 18 4 1E-3
+R4 21 4 1E3
+FSC 21 4 VSC 1
+VSC 2 19 DC 0
+Q2 19 2 20 QN
+RSC 2 20 16
+Q3 20 21 22 QN
+R5 22 24 21.6E3
+R6 24 4 22.9E3
+VLR 23 22 DC 0
+L1 23 6 1E-7
+*
+.MODEL QT NPN(IS=1.5E-16 BF=1E3 XTI=7.2)
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=1.98709E+06 AF=1 KF=2.41620E-16)
+.ENDS AD680J
+* AD680JT SPICE Macromodel 5/94, Rev. A
+* AAG / ADSC
+*
+* This version of the AD680JT voltage reference model simulates the worst case
+* parameters of the 'JT' grade.  The worst case parameters used correspond
+* to those parameters in the data sheet.
+*
+* Copyright 1994 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  
+* Use of this model indicates your acceptance with 
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  TEMP
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT AD680JT  2  3  4  6
+*
+* BANDGAP REFERENCE
+*
+IBG 4 10 DC 1.2813192E-3
+RBG 10 4 1E3 
+EN 10 11 14 0 1
+G1 4 11 2 4 2.0584285E-8
+F1 4 11 VLR 5.14607125E-5
+Q1 2 11 12 QT
+I1 12 4 DC 50E-6
+R1 12 3 11.486E3
+I2 3 4 DC 0
+*
+* NOISE VOLTAGE GENERATOR
+*
+VN1 13 0 DC 2
+DN1 13 14 DEN
+DN2 14 15 DEN
+VN2 0 15 DC 2
+*
+* INTERNAL OP AMP AND DOMINANT POLE @ 0.2 Hz
+*
+G2 4 16 11 24 2.513274E-4
+R2 16 4 7.957747E9
+C1 16 4 1E-10
+D1 16 17 DX
+V1 2 17 DC 1.3
+*
+* SECONDARY POLE @ 300 kHz
+*
+G3 4 18 16 4 1E-6
+R3 18 4 1E6
+C2 18 4 5.3051647E-13
+*
+* OUTPUT STAGE
+*
+ISY 2 4 1.4193E-4
+FSY 2 4 V1 -1
+RSY 2 4 2.5E6
+*
+G4 4 21 18 4 1E-3
+R4 21 4 1E3
+FSC 21 4 VSC 1
+VSC 2 19 DC 0
+Q2 19 2 20 QN
+RSC 2 20 16
+Q3 20 21 22 QN
+R5 22 24 21.6E3
+R6 24 4 22.9E3
+VLR 23 22 DC 0
+L1 23 6 1E-7
+*
+.MODEL QT NPN(IS=1.5E-16 BF=1E3 XTI=7.2)
+.MODEL QN NPN(IS=1E-15 BF=1E3)
+.MODEL DX D(IS=1E-15)
+.MODEL DEN D(IS=1E-12 RS=1.98709E+06 AF=1 KF=2.41620E-16)
+.ENDS AD680JT
+* REF01E SPICE MACROMODEL                    5/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF01 model simulates the worst case 
+* parameters of the 'E' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF01E  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   537.719E-9
+R1     10  4   2.284E6  
+G1     4  10   2  4  54.0E-12
+F1     4  10   VS  43.2E-9
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.1E-10
+D1     11 12   DX
+V1     2  12   2.0
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   1.2E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.78E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   14.2114E3
+R8     19  4   2E3
+R9     19  5   52.97E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   21
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-15)
+.ENDS
+* REF01C SPICE MACROMODEL                    5/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF01 model simulates the worst case 
+* parameters of the 'C' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF01C  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   386.887E-9
+R1     10  4   3.172E6  
+G1     4  10   2  4  58.74E-12
+F1     4  10   VS  58.74E-9
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.1E-10
+D1     11 12   DX
+V1     2  12   2.0
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   1.2E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.98E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   14.0976E3
+R8     19  4   2E3
+R9     19  5   46.87E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   21
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-15)
+.ENDS
+* REF01H SPICE MACROMODEL                    5/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF01 model simulates the worst case 
+* parameters of the 'H' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF01H  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   537.717E-9
+R1     10  4   2.284E6  
+G1     4  10   2  4  54.10E-12
+F1     4  10   VS  54.1E-9
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.1E-10
+D1     11 12   DX
+V1     2  12   2.0
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   1.2E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.78E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   14.1789E3
+R8     19  4   2E3
+R9     19  5   49.83E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   21
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-15)
+.ENDS
+* REF01A SPICE MACROMODEL                    5/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF01 model simulates the worst case 
+* parameters of the 'A' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF01A  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   537.719E-9
+R1     10  4   2.284E6  
+G1     4  10   2  4  54.0E-12
+F1     4  10   VS  43.2E-9
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.1E-10
+D1     11 12   DX
+V1     2  12   2.0
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   1.2E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.78E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   14.2114E3
+R8     19  4   2E3
+R9     19  5   52.97E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   21
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-15)
+.ENDS
+* REF01 SPICE MACROMODEL                     5/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF01   2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   1.22889E-6
+R1     10  4   1000E3  
+G1     4  10   2  4  73.9E-12
+F1     4  10   VS  61.5E-9
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.1E-10
+D1     11 12   DX
+V1     2  12   1.3
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   1.2E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.38E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   14.2602E3
+R8     19  4   2E3
+R9     19  5   50E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   21
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-15)
+.ENDS
+* REF02E SPICE MACROMODEL                    9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF02 model simulates the worst case 
+* parameters of the 'E' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02E  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   5.3398E-7
+R1     10  4   2300E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  53.45E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  53.45
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.9
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.785E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   6.1057E3
+R8     19  4   2E3
+R9     19  5   44.5E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF02C SPICE MACROMODEL                    9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF02 model simulates the worst case 
+* parameters of the 'C' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02C  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   3.6095E-7
+R1     10  4   3400E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  54.6E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  54.6
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.9
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.985E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   6.0488E3
+R8     19  4   2E3
+R9     19  5   56.0E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF02 SPICE MACROMODEL                     9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02   2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   1.22889E-6
+R1     10  4   1000E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  61.5E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  73.8
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.3
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.385E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   6.13008E3
+R8     19  4   2E3
+R9     19  5   25E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF02H SPICE MACROMODEL                    9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF02 model simulates the worst case 
+* parameters of the 'H' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02H  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   5.3398E-7
+R1     10  4   2300E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  53.48E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  53.48
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.9
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.785E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   6.0894E3
+R8     19  4   2E3
+R9     19  5   44.5E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF02D SPICE MACROMODEL                    9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF02 model simulates the worst case 
+* parameters of the 'D' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02D  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   3.5959E-7
+R1     10  4   3400E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  144.7E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  144.7
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.9
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   1.385E-3
+FSY    2   4   V1  -1
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   5.9675E3
+R8     19  4   2E3
+R9     19  5   76.1E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF02A SPICE MACROMODEL                    9/91, Rev. A
+*                                            (JCB / PMI)    
+*
+* This version of the REF02 model simulates the worst case 
+* parameters of the 'A' grade.  The worst case parameters
+* used correspond to those in the data sheet.
+*
+* Copyright 1991 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.  Use of this model
+* indicates your acceptance with the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  GND
+*               |  |  TRIM
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF02A  2  4  5  6
+*
+* 1.23V REFERENCE
+*
+I1     4  10   5.3398E-7
+R1     10  4   2300E3  
+G1     4  10   21  4  1E-6
+F1     4  10   VS  53.45E-9
+*
+* LINE REGULATION ZERO
+*
+E1     20  4   2  4  53.45
+R11    20 21   1E6
+R12    21  4   1
+C4     20 21   27E-8
+*
+* INTERNAL OP AMP
+*
+G2     4  11   10  19  2E-3
+R2     4  11   150E6
+C1     4  11   2.6E-10
+D1     11 12   DX
+V1     2  12   1.9
+*
+* SECONDARY POLE
+*
+G3     4  13   11  4  1E-6
+R3     4  13   1E6
+C2     4  13   2.4E-13
+*
+* OUTPUT STAGE
+*
+ISY    2   4   0.785E-3
+FSY    2   4   V1  -1 
+G4     4  14   13  4  25E-6
+R4     4  14   40E3
+R7     17 19   6.1057E3
+R8     19  4   2E3
+R9     19  5   44.5E3
+R10    5   4   1E12
+Q1     16 14   17   QN
+VS     18 17   DC 0
+L1     18  6   1E-7
+*
+* OUTPUT CURRENT LIMIT
+*
+Q2     15  2   16  QN
+R6     2  16   19
+R5     2  15   18E3
+C3     2  15   1E-6
+G5     14  4   2  15  1
+*
+.MODEL  QN  NPN(IS=1E-15  BF=1000)
+.MODEL  DX  D(IS=1E-18)
+.ENDS
+* REF191F SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* This version of the REF191 model simulates the worst-case
+* parameters of the 'F' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature.
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF191F  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.7946E-8
+R1 10 4 21.18E6  
+GLR 4 10 2 4 4.6287E-13
+GLDR 4 10 22 6 4.376E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 56.528E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF191E SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* This version of the REF191 model simulates the worst-case
+* parameters of the 'E' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature.
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF191E  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8031E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.323E-13
+GLDR 4 10 22 6 2.54E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 56.528E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF191 SPICE MACROMODEL                   12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF191  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8088E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 1.1615E-13
+GLDR 4 10 22 6 2.785E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 54E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 56.528E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF191G SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* This version of the REF191 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature.
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF191G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.7804E-8
+R1 10 4 21.18E6  
+GLR 4 10 2 4 4.6287E-13
+GLDR 4 10 22 6 9.64E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 56.528E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF192G SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF192 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF192G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.785474E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.62677E-13
+GLDR 4 10 22 6 2.405E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 87.765E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF192E SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF192 model simulates the worst-case
+* parameters of the 'E' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF192E  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.80413E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 2.3215E-13
+GLDR 4 10 22 6 2.532E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 87.765E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF192 SPICE MACROMODEL                  12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*               VIN
+*               |  SHUTDOWN
+*               |  |  GND
+*               |  |  |  VOUT
+*               |  |  |  |
+.SUBCKT REF192  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.8088E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 1.1615E-13
+GLDR 4 10 22 6 2.643E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 87.765E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+* REF192F SPICE MACROMODEL                 12/95, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1995 by Analog Devices, Inc.
+*
+* This version of the REF192 model simulates the worst-case
+* parameters of the 'F' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF192F  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.79709E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.6384E-13
+GLDR 4 10 22 6 2.405E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.97E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 87.765E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+* REF193G SPICE MACROMODEL                  1/96, Rev. A
+*                                            (AAG /ADSC)
+*
+* Copyright 1996 by Analog Devices, Inc.
+*
+* This version of the REF193 model simulates the worst-case
+* parameters of the 'G' grade.  The worst-case parameters
+* used correspond to those in the data sheet at room temperature
+*
+* Refer to "README.DOC" file for License Statement.
+* Use of this model indicates your acceptance with
+* the terms and provisions in the License Statement.
+*
+*  NODE NUMBERS
+*                VIN
+*                |  SHUTDOWN
+*                |  |  GND
+*                |  |  |  VOUT
+*                |  |  |  |
+.SUBCKT REF193G  2  3  4  6
+*
+* 1.23V REFERENCE
+*
+I1 4 10 DC 5.78938E-8
+R1 10 4 21.18E6 
+GLR 4 10 2 4 4.6459E-13
+GLDR 4 10 22 6 2.407E-10
+C1 4 10 4.7214E-13
+*
+* OPEN-LOOP GAIN
+*
+G2 4 11 10 21 1E-4
+R2 4 11 1E6
+*
+* 3 POLES AT 2 MHZ
+*
+G3 4 12 11 4 1E-6
+R3 4 12 1E6
+C2 4 12 0.0796E-12
+*
+G4 4 13 12 4 1E-6
+R4 4 13 1E6
+C3 4 13 0.0796E-12
+*
+GX5 4 17 13 4 1E-6
+RX5 4 17 1E6
+CX3 4 17 0.0796E-12
+*
+* SHORT CIRCUIT LIMIT
+*
+G5 14 4 17 4 1E-4
+R10 14 4 1E4
+D1 4 14 DX
+G6 15 4 4 14 100E-6
+GSC 4 15 22 6 51E-6
+D2 16 15 DX
+V1 4 16 DC 0
+D3 15 4 DX
+F1 4 15 V3 100
+*
+* SHUTDOWN CIRCUIT
+*
+R12 2 3 10E6
+Q2 2 3 30 QN
+V2 30 31 DC 0
+R11 31 4 1.93E5
+F3 4 32 POLY(1) V2 5E-6 -1000
+D4 32 33 DX
+V3 33 4 DC 0
+D5 4 32 DX
+*
+* OUTPUT STAGE
+*
+ISY 2 4 DC 14.67E-6
+F2 20 4 V1 1
+R5 2 20 200E3
+Q1 22 20 2 QP 80
+R6 6 21 122.317E3
+R7 21 4 85E3
+RDO 22 6 27
+*
+.MODEL QP PNP(IS=1E-15 BF=10000)
+.MODEL QN NPN(BF=100000)
+.MODEL DX D(IS=1E-15)
+.ENDS
+
+

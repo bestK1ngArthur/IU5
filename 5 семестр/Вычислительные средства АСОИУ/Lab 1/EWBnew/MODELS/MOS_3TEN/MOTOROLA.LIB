@@ -1,0 +1,2298 @@
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                         MTD3055V                          #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        12 AMPERES                         #        *
+*        #                         60 VOLTS                          #        *
+*        #                    RDS(on) = .15 OHMS                     #        *
+*        #                     Package = TO220                       #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MTD3055V 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mtd3055vG for Berkley 2G.6 and compatible simulators.
+*                    mtd3055vD for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mtd3055vP for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mtd3055vX
+* 
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                         MTD3055V                          #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        12 AMPERES                         #        *
+*        #                         60 VOLTS                          #        *
+*        #                    RDS(on) = .15 OHMS                     #        *
+*        #                     Package = TO220                       #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MTD3055V 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mtd3055vG for Berkley 2G.6 and compatible simulators.
+*                    mtd3055vD for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mtd3055vP for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mtd3055vX
+* 
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                        MTD1N60E                           #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        1 AMPERES                          #        *
+*        #                        600 VOLTS                          #        *
+*        #                     RDS(on) = 8.0 OHMS                    #        *
+*        #                     Package = TO-220                      #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MTD1N60E 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mtd1n60eG for Berkley 2G.6 and compatible simulators.
+*                    mtd1n60eD for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mtd1n60eP for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mtd1n60eX
+* 
+***** BERKLEY 3C.X, 3D.X AND HSPICE(tm) SIMULATORS ***************************
+**************************  INSTANTIATION   **********************************
+.subckt mtd1n60eC 10 20 30 
+*
+* 10 = Drain 20 = Gate 30 = Source
+*
+******************************************************************************
+*
+*------------------------ EXTERNAL PARASITICS --------------------------------
+* PACKAGE INDUCTANCE
+*
+LDRAIN  10  11  4.5e-09
+LGATE   20  21  7.5e-09
+LSOURCE 30  31  7.5e-09
+*
+* RESISTANCES
+*
+RDRAIN1    4  11 6.853 RDRAIN
+RDRAIN2    4   5 0.088 RDRAIN
+RSOURCE   31   6 0.1 RSOURCE 
+RDBODY     8  30 0.061  RDBODY
+*
+RGATE      21   2 5
+*
+*--------------------------------------------------------------------------
+*
+*--------------- CAPACITANCES AND BODY DIODE ------------------------------
+*
+DBODY       8  11 DBODY
+DGD         3  11 DGD
+CGDMAX      2   3 3e-10
+RGDMAX      2   3 1e+08
+CGS         2   6 2.2e-10 
+*
+*--------------------------------------------------------------------------
+*
+*----------------------- CORE MOSFET --------------------------------------
+*
+M1       5  2  6  6  MAIN
+*
+*--------------------------------------------------------------------------
+*
+*.MODEL RDRAIN  R  (
+*+TC1     = 0.008186
+*+TC2     = 1.74896e-05)
+*
+*.MODEL RSOURCE  R  (
+*+TC1     = -0.001057
+*+TC2     = 6.14713e-05)
+*
+*.MODEL RDBODY  R  (
+*+TC1     = 0.002026
+*+TC2     = 1.49534e-05)
+*
+*
+.MODEL MAIN NMOS  ( 
++LEVEL   = 3
++VTO     = 3.89
++KP      = 1.75
++GAMMA   = 3
++PHI     = 0.6
++LAMBDA  = 0.0001
++RD      = 0
++RS      = 0
++CBD     = 0
++CBS     = 0
++IS      = 1e-14
++PB      = 0.8
++CGSO    = 0
++CGDO    = 0
++CGBO    = 0
++RSH     = 0
++CJ      = 0
++MJ      = 0.5
++CJSW    = 0
++MJSW    = 0.33
++JS      = 1e-14
++TOX     = 1e-07
++NSUB    = 1e+15
++NSS     = 0
++NFS     = 1.1e+12
++TPG     = 1
++XJ      = 0
++LD      = 0
++UO      = 600
++UCRIT   = 1000
++UEXP    = 0
++UTRA    = 0
++VMAX    = 0
++NEFF    = 1
++KF      = 0
++AF      = 1
++FC      = 0.5
++DELTA   = 0
++THETA   = 0
++ETA     = 0
++KAPPA   = 0.2)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DGD D  ( 
++IS      = 1e-15
++RS      = 0
++N       = 1000
++TT      = 0
++CJO     = 1.403e-10
++VJ      = 0.1366
++M       = 0.6185
++EG      = 1.11
++XTI     = 3
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 10000
++IBV     = 0.001)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DBODY D  ( 
++IS      = 1.891e-11
++RS      = 0
++N       = 1.196
++TT      = 5e-07
++CJO     = 1.364e-10
++VJ      = 0.9158
++M       = 0.6082
++EG      = 1.11
++XTI     = 4.5
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 658.9
++IBV     = 0.00025)
+.ENDS
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                        MTD1N80E                           #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        1 AMPERES                          #        *
+*        #                       undef VOLTS                         #        *
+*        #                    RDS(on) = undef OHMS                   #        *
+*        #                      Package = TO220                      #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MTD1N80E 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mtd1n80eG for Berkley 2G.6 and compatible simulators.
+*                    mtd1n80eD for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mtd1n80eP for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mtd1n80eX
+* 
+***** BERKLEY 3C.X, 3D.X AND HSPICE(tm) SIMULATORS ***************************
+**************************  INSTANTIATION   **********************************
+.subckt mtd1n80eC 10 20 30 
+*
+* 10 = Drain 20 = Gate 30 = Source
+*
+******************************************************************************
+*
+*------------------------ EXTERNAL PARASITICS --------------------------------
+* PACKAGE INDUCTANCE
+*
+LDRAIN  10  11  4.5e-09
+LGATE   20  21  7.5e-09
+LSOURCE 30  31  7.5e-09
+*
+* RESISTANCES
+*
+RDRAIN1    4  11 10.44 RDRAIN
+RDRAIN2    4   5 1e-06 RDRAIN
+RSOURCE   31   6 0.1 RSOURCE 
+RDBODY     8  30 0.08893  RDBODY
+*
+RGATE      21   2 5
+*
+*--------------------------------------------------------------------------
+*
+*--------------- CAPACITANCES AND BODY DIODE ------------------------------
+*
+DBODY       8  11 DBODY
+DGD         3  11 DGD
+CGDMAX      2   3 4e-10
+RGDMAX      2   3 1e+08
+CGS         2   6 2.8e-10 
+*
+*--------------------------------------------------------------------------
+*
+*----------------------- CORE MOSFET --------------------------------------
+*
+M1       5  2  6  6  MAIN
+*
+*--------------------------------------------------------------------------
+*
+*.MODEL RDRAIN  R  (
+*+TC1     = 0.008218
+*+TC2     = 1.54831e-05)
+*
+*.MODEL RSOURCE  R  (
+*+TC1     = -0.008374
+*+TC2     = 6.14713e-05)
+*
+*.MODEL RDBODY  R  (
+*+TC1     = 0.004636
+*+TC2     = 8.04719e-06)
+*
+*
+.MODEL MAIN NMOS  ( 
++LEVEL   = 3
++VTO     = 3.9
++KP      = 2.2
++GAMMA   = 2.5
++PHI     = 0.6
++LAMBDA  = 0.001
++RD      = 0
++RS      = 0
++CBD     = 0
++CBS     = 0
++IS      = 1e-14
++PB      = 0.8
++CGSO    = 0
++CGDO    = 0
++CGBO    = 0
++RSH     = 0
++CJ      = 0
++MJ      = 0.5
++CJSW    = 0
++MJSW    = 0.33
++JS      = 1e-14
++TOX     = 1e-07
++NSUB    = 1e+15
++NSS     = 0
++NFS     = 6.676e+11
++TPG     = 1
++XJ      = 0
++LD      = 0
++UO      = 600
++UCRIT   = 0
++UEXP    = 0
++UTRA    = 0
++VMAX    = 0
++NEFF    = 1
++KF      = 0
++AF      = 1
++FC      = 0.5
++DELTA   = 0
++THETA   = 0
++ETA     = 500
++KAPPA   = 0.2)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DGD D  ( 
++IS      = 1e-15
++RS      = 0
++N       = 1000
++TT      = 0
++CJO     = 7.371e-10
++VJ      = 0.1398
++M       = 0.9
++EG      = 1.11
++XTI     = 3
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 10000
++IBV     = 0.001)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DBODY D  ( 
++IS      = 6.384e-12
++RS      = 0
++N       = 1.055
++TT      = 9e-08
++CJO     = 1.66e-10
++VJ      = 1.097
++M       = 0.6814
++EG      = 1.11
++XTI     = 4
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 995.3
++IBV     = 0.00025)
+.ENDS
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                         MTD20N06                          #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        20 AMPERES                         #        *
+*        #                         60 VOLTS                          #        *
+*        #                     RDS(on) = .05 OHMS                    #        *
+*        #                      Package = TO-220                     #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MHD20N06 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mhd20n06G for Berkley 2G.6 and compatible simulators.
+*                    mhd20n06D for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mhd20n06P for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mhd20n06X
+* 
+***** BERKLEY 3C.X, 3D.X AND HSPICE(tm) SIMULATORS ***************************
+**************************  INSTANTIATION   **********************************
+.subckt mhd20n06C 10 20 30 
+*
+* 10 = Drain 20 = Gate 30 = Source
+*
+******************************************************************************
+*
+*------------------------ EXTERNAL PARASITICS --------------------------------
+* PACKAGE INDUCTANCE
+*
+LDRAIN  10  11  4.5e-09
+LGATE   20  21  7.5e-09
+LSOURCE 30  31  7.5e-09
+*
+* RESISTANCES
+*
+RDRAIN1    4  11 0.02023 RDRAIN
+RDRAIN2    4   5 1e-06 RDRAIN
+RSOURCE   31   6 0.004 RSOURCE 
+RDBODY     8  30 0.0102  RDBODY
+*
+RGATE      21   2 5
+*
+*--------------------------------------------------------------------------
+*
+*--------------- CAPACITANCES AND BODY DIODE ------------------------------
+*
+DBODY       8  11 DBODY
+DGD         3  11 DGD
+CGDMAX      2   3 1.7e-09
+RGDMAX      2   3 1e+08
+CGS         2   6 5.4e-10 
+*
+*--------------------------------------------------------------------------
+*
+*----------------------- CORE MOSFET --------------------------------------
+*
+M1       5  2  6  6  MAIN
+*
+*--------------------------------------------------------------------------
+*
+*.MODEL RDRAIN  R  (
+*+TC1     = 0.01033
+*+TC2     = -1.10923e-06)
+*
+*.MODEL RSOURCE  R  (
+*+TC1     = -0.0178
+*+TC2     = 8.03093e-05)
+*
+*.MODEL RDBODY  R  (
+*+TC1     = 0.001754
+*+TC2     = 3.88813e-06)
+*
+*
+.MODEL MAIN NMOS  ( 
++LEVEL   = 3
++VTO     = 3.8
++KP      = 16.2
++GAMMA   = 3
++PHI     = 0.6
++LAMBDA  = 0.00275
++RD      = 0
++RS      = 0
++CBD     = 0
++CBS     = 0
++IS      = 1e-14
++PB      = 0.8
++CGSO    = 0
++CGDO    = 0
++CGBO    = 0
++RSH     = 0
++CJ      = 0
++MJ      = 0.5
++CJSW    = 0
++MJSW    = 0.33
++JS      = 1e-14
++TOX     = 1e-07
++NSUB    = 1e+15
++NSS     = 0
++NFS     = 6.668e+11
++TPG     = 1
++XJ      = 0
++LD      = 0
++UO      = 600
++UCRIT   = 1000
++UEXP    = 0
++UTRA    = 0
++VMAX    = 0
++NEFF    = 1
++KF      = 0
++AF      = 1
++FC      = 0.5
++DELTA   = 0
++THETA   = 0
++ETA     = 2000
++KAPPA   = 0.2)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DGD D  ( 
++IS      = 1e-15
++RS      = 0
++N       = 1000
++TT      = 0
++CJO     = 5.291e-10
++VJ      = 1.642
++M       = 0.8287
++EG      = 1.11
++XTI     = 3
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 10000
++IBV     = 0.001)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DBODY D  ( 
++IS      = 1.341e-12
++RS      = 0
++N       = 1.007
++TT      = 1e-08
++CJO     = 8.433e-10
++VJ      = 0.9657
++M       = 0.5177
++EG      = 1.11
++XTI     = 3.7
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 68.29
++IBV     = 0.00025)
+.ENDS
+
+*******************************************************************************
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*        #############################################################        *
+*        #                                                           #        *
+*        #                         MTD3055V                          #        *
+*        #                                                           #        *
+*        #                 Motorola TMOS Power FET                   #        *
+*        #                        12 AMPERES                         #        *
+*        #                         60 VOLTS                          #        *
+*        #                    RDS(on) = .15 OHMS                     #        *
+*        #                     Package = TO220                       #        * 
+*        #                                                           #        *
+*        #               This model was developed by                 #        *
+*        #                      Analogy, Inc.                        #        *
+*        #                    9205 SW Gemini Dr.                     #        *
+*        #                   Beaverton, OR  97005                    #        *
+*        #               Copyright 1994 Analogy, Inc.                #        *
+*        #                  All Rights Reserved                      #        *
+*        #                                                           #        *
+*        #    The content of this model is subject to change         #        *
+*        #    without notice and may not be modified or altered      #        *
+*        #    without permission from Motorola, Inc.  This model     #        *
+*        #    has been carefully checked and is believed to be       #        *
+*        #    accurate, however neither Analogy nor Motorola         #        *
+*        #    assume liability for the use of this model or the      #        *
+*        #    results obtained from using it.                        #        *
+*        #                                                           #        *
+*        #    For more information regarding modeling services,      #        *
+*        #    model libraries or simulation products, please         #        *
+*        #    Analogy, Inc. (503) 626-9700.                          #        *
+*        #                                                           #        *
+*        #############################################################        *
+*                                                                             *
+*                                                                             *
+*                                                                             *
+*******************************************************************************
+* There are four simulation models provided on this disk for the MTD3055V 
+* power mosfet.  Three of the models are for use with SPICE based simulators 
+* and the fourth model is for use with the SABER(TM) simulator from Analogy.
+*
+* The three SPICE models have identical parameter values and model structure 
+* however the syntax is slightly modified in each model to support a variety 
+* of SPICE simulators. The SPICE model is based on the available elements 
+* in SPICE based electrical simulators and may have limited accuracy and 
+* convergence capabilities due to fundamental limitations in SPICE based 
+* simulators. Specifically, this model DOES NOT produce an accurate prediction 
+* of some non-linear capacitance effects, non-linear leakage characteristics, 
+* soft-knee breakdown, weak inversion characteristics, body diode forward and 
+* reverse recovery  mechanisms, and maximum device ratings.
+*
+* The SABER model is a more accurate model that includes all non-linear 
+* capacitances, non-linear leakage characteristics, soft-knee breakdown, weak 
+* inversion characteristics, body diode forward and reverse recovery mechanisms, 
+* and maximum stress ratings. The model is available for use with the SABER(tm) 
+* simulator from Analogy and is written in MAST(tm), an Analog Hardware 
+* Description Language (AHDL). The SABER model is well suited for power circuit 
+* simulation. 
+********************************************************************************
+*
+********************************************************************************
+*
+* The model for this device is a subcircuit and can be used in the one of the
+* following formats in any spice compatible simulator.
+*
+* This model file contains 3 subcircuits with correct syntax for SPICE2G.6, 
+* SPICE3C/D.X, HSPICE(tm) and PSPICE(tm). The user must call the proper subcircuit
+* in their netlist depending on the simulator they are using, e.g.:
+*
+* X<name> Nodes<N1, N2, N3> Model_Name
+*
+* where X<name> is the circuit specific name, Nodes<N1, N2, N3> are the
+* connection points for the device and Model_Name is the name of the model
+* provided in this model file.
+*
+* There are 3 nodes for this device.
+* The first is the Drain, the second is the Gate, and the third is the Source.
+* The Model_Name is: mtd3055vG for Berkley 2G.6 and compatible simulators.
+*                    mtd3055vD for Berkley 3C.X, 3D.X and HSPICE(tm) simulators.
+*                    mtd3055vP for Microsim PSPICE(tm) simulator. 
+* Example: X1 1 2 3 mtd3055vX
+* 
+***** BERKLEY 3C.X, 3D.X AND HSPICE(tm) SIMULATORS ***************************
+**************************  INSTANTIATION   **********************************
+.subckt mtd3055vC 10 20 30 
+*
+* 10 = Drain 20 = Gate 30 = Source
+*
+******************************************************************************
+*
+*------------------------ EXTERNAL PARASITICS --------------------------------
+* PACKAGE INDUCTANCE
+*
+LDRAIN  10  11  4.5e-09
+LGATE   20  21  7.5e-09
+LSOURCE 30  31  7.5e-09
+*
+* RESISTANCES
+*
+RDRAIN1    4  11 0.05751 RDRAIN
+RDRAIN2    4   5 1e-06 RDRAIN
+RSOURCE   31   6 0.038 RSOURCE 
+RDBODY     8  30 0.0166  RDBODY
+*
+RGATE      21   2 5
+*
+*--------------------------------------------------------------------------
+*
+*--------------- CAPACITANCES AND BODY DIODE ------------------------------
+*
+DBODY       8  11 DBODY
+DGD         3  11 DGD
+CGDMAX      2   3 9e-10
+RGDMAX      2   3 1e+08
+CGS         2   6 3.824e-10 
+*
+*--------------------------------------------------------------------------
+*
+*----------------------- CORE MOSFET --------------------------------------
+*
+M1       5  2  6  6  MAIN
+*
+*--------------------------------------------------------------------------
+*
+*.MODEL RDRAIN  R  (
+*+TC1     = 0.01579
+*+TC2     = 4.41418e-05)
+*
+*.MODEL RSOURCE  R  (
+*+TC1     = -0.006098
+*+TC2     = -7.82742e-06)
+*
+*.MODEL RDBODY  R  (
+*+TC1     = 0.001077
+*+TC2     = -1.19455e-06)
+*
+*
+.MODEL MAIN NMOS  ( 
++LEVEL   = 3
++VTO     = 3.387
++KP      = 4.42
++GAMMA   = 2
++PHI     = 0.6
++LAMBDA  = 0.001
++RD      = 0
++RS      = 0
++CBD     = 0
++CBS     = 0
++IS      = 1e-14
++PB      = 0.8
++CGSO    = 0
++CGDO    = 0
++CGBO    = 0
++RSH     = 0
++CJ      = 0
++MJ      = 0.5
++CJSW    = 0
++MJSW    = 0.33
++JS      = 1e-14
++TOX     = 1e-07
++NSUB    = 1e+15
++NSS     = 0
++NFS     = 3.5e+11
++TPG     = 1
++XJ      = 0
++LD      = 0
++UO      = 600
++UCRIT   = 10000
++UEXP    = 0
++UTRA    = 0
++VMAX    = 0
++NEFF    = 1
++KF      = 0
++AF      = 1
++FC      = 0.5
++DELTA   = 0
++THETA   = 0
++ETA     = 0
++KAPPA   = 0.2)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DGD D  ( 
++IS      = 1e-15
++RS      = 0
++N       = 1000
++TT      = 0
++CJO     = 3.902e-10
++VJ      = 0.1831
++M       = 0.6195
++EG      = 1.11
++XTI     = 3
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 10000
++IBV     = 0.001)
+*
+*--------------------------------------------------------------------------
+*
+.MODEL DBODY D  ( 
++IS      = 2.913e-13
++RS      = 0
++N       = 1.014
++TT      = 5e-08
++CJO     = 4.47e-10
++VJ      = 0.7897
++M       = 0.4506
++EG      = 1.11
++XTI     = 4
++KF      = 0
++AF      = 1
++FC      = 0.5
++BV      = 77.89
++IBV     = 0.00025)
+.ENDS
+
+********************************************************************************************
+*                                                                                          *
+*                     #################################################                    *
+*                     #                                               #                    *
+*                     #           MTB20N20E  BY MOTOROLA              #                    *
+*                     #                                               #                    *
+*                     #           MODEL DEVELOPED BY                  #                    *
+*                     #           ALLIANCE TECHNOLOGIES               #                    *
+*                     #           10510 RESEARCH RD SE                #                    *
+*                     #           ALBUQUERQUE  NM 87123               #                    *
+*                     #           (505) 299-9591                      #                    *
+*                     #           11-25-92 J. DULIERE                 #                    *
+*                     #                                               #                    *
+*                     #################################################                    *
+*                                                                                          *
+********************************************************************************************
+*
+* THE MODEL FOR THIS DEVICE IS A SUBCIRCUIT AND CAN BE USED IN THE FOLLOWING FORMAT
+* IN ANY CIRCUIT SIMULATION:
+* X<name> Nodes<N1, N2, N3> Model_Name
+* where X<name> is the circuit specific name
+* Nodes are 3 for this device, the first is the drain, the second is the gate, and the third
+* is the source.
+* Model_Name is   MTB20N20X  WHERE 'X' IS EITHER C, P, OR G FOR SPICE 3C.1 - 3E.2, PSPICE,
+* AND SPICE 2G.6 RESPECTIVELY
+* Example: X1 10 20 30 MTB20N20C IS USED WITH SPICE 3C.1 COMPATIBALE SIMULATORS
+*                                                                                          
+.SUBCKT MTB20N20C         10 20 30
+*                         |  |  |
+*                         |  |  SOURCE
+*                         |  GATE
+*                         DRAIN
+********************************************************************************************
+*                                                                                          *
+*------------------------------ EXTERNAL PARASITICS OF DEVICE -----------------------------*
+RD1     2       4       54.25E-03 RD
+RD2     4       5       54.25E-03 RD
+RS      3       9       45.20E-03 RS
+RG      1       8       7.25
+LD      5       10      3.5E-9
+LG      8       20      7.5E-9
+LS      9       30      7.5E-9
+********************************************************************************************                                                                                          
+*---------------------------- END EXTERNAL PARASITICS OF DEVICE ---------------------------*
+********************************************************************************************
+********************************************************************************************
+*                                                                                          *
+*--------------------- DRAIN SOURCE CAPACITANCE AND BREAKDOWN CIRCUIT ---------------------*
+DDS     9       11      DDS1     
+RDIO    11      5       9.1E-03   RDIO
+*-------------------- END DRAIN SOURCE CAPACITANCE AND BREAKDOWN CIRCUIT ------------------*
+*                                                                                          *
+********************************************************************************************
+********************************************************************************************
+*                                                                                          *
+*---------------------------- DRAIN GATE CAPACITANCE SIMULATOR ----------------------------*
+*-------------------- FIRST SECTION FOR NON-LINEAR CGD INCLUDES FOLLOWING -----------------*
+********************************************************************************************
+*     VOLTAGE CONTROLLED SWITCHES CAN BE USED IN PLACE OF M2 AND M3 IN THE EVENT           *
+*     THE SIMULATOR SUPPORTS VOLTAGE CONTROLLED SWITCHES.  USE OF VOLTAGE CONTROLLED       *
+*     SWITCHES WILL REDUCE EXECUTION TIME FOR THIS MODEL                                   *
+********************************************************************************************
+*
+DGD     6       4       DGD
+RDGD    4       6       1E10
+M2      6       4       1       100     MSW1                    
+RSUB1   1       100     1E12
+*----------------------------- LAST SECTION FOR CONSTANT CGD  -----------------------------*
+CGDMAX  4       7       1.82E-9
+RCGD    4       7       1E10
+M3      7       4       1       101     MSW2
+RSUB2   1       101     1E12        
+*---------------------------- END GATE CAPACITANCE SIMULATOR ------------------------------*
+*                                                                                          *
+********************************************************************************************
+********************************************************************************************
+*                                                                                          *
+*--------------------------- LEVEL 3 MOS MODEL CORE OF SUBCKT -----------------------------*
+M1      2       1       3       9       MAIN    W=5.36   L=1E-6
+*------------------------------ END LEVEL THREE MOS MODEL ---------------------------------*
+*                                                                                          *
+********************************************************************************************
+*------------------------------ PARAMETER SETS FOR MODELS ---------------------------------*
+.MODEL   MSW1    NMOS    (LEVEL = 1         VTO  = 0       KP    = 1                       )
+.MODEL   MSW2    PMOS    (LEVEL = 1         VTO  = 0       KP    = 1    	           )
+.MODEL   MAIN    NMOS    (LEVEL = 3                 TOX    = 1E-7               
++ NSUB   = 1.85E15         VTO    = 4.472           PHI    = 0.6                
++ UO     = 690.9843806     KAPPA  = 7.131283E-4     THETA  = 6.680866E-3        
++ NFS    = 2.5E12                                                                          )   
+.MODEL   DDS1   D        (                          IS     = 3.908008E-12       
++ N      = 1.012433        BV     = 200             IBV    = 2.5E-4             
++ EG     = 1.11            XTI    = 3.497           TT     = 753E-9               
++ CJO    = 1.662516E-9     VJ     = 0.7407019       M      = 0.4736603          
++ FC     = 0.5                                                                             )
+.MODEL   DGD    D        (                          CJO    = 1.70e-9 
++ VJ     = 0.217           M      = 0.692           FC     = 0.5                           )
+.MODEL   RD     R        ( TC1    = 7.6984E-4       TC2    = 5.43994E-6                    )
+.MODEL   RS     R        ( TC1    = 9.64295E-3      TC2    = 2.3704E-5                     )
+.MODEL   RDIO   R        ( TC1    = 2.06379E-3      TC2    = 6.53716E-7                    )
+.ENDS
+********************************************************************************************
+********************************************************************************************
+
+_***************************************************
+*          TMOS.LIB VERSION 2.0    Thursday, 21 December 1989
+***************************************************
+*
+*     MOTOROLA/LAAS LIBRARY FOR MOTOROLA POWER MOSFET
+*                      (TMOS) SPICE  MODEL
+*
+*           USING SWITCHES FOR THE CGD CAPACITOR
+*
+*       DEVELOPED BY LAAS / MOTOROLA TOULOUSE 1989
+*
+*         COPYING THIS LIBRARY IS WELCOMED AND ENCOURAGED,
+*                      BUT IT IS NOT FOR COMMERCIAL USE
+*
+***************************************************
+*Motorola reserves the right to make changes without further
+*notice to any products herein to improve reliability, function or
+*design.  Motorola does not assume any liability arising out of the
+*application or use of any product or circuit described herein;
+*neither does it convey any license under its patent rights nor the
+*rights of others.  Motorola products are not authorized for use as
+*components in life support devices or systems intended for
+*surgical implant into the body or intended to support or sustain
+*life.  Buyer agrees to notify Motorola of any such intended end
+*use whereupon Motorola shall determine availability and suitability
+*or its product or products for the use intended.  Motorola is a
+*registered trademark of Motorola, Inc.  Motorola, Inc. is an Equal
+*Employment Opportunity/Affirmative Action Employer.
+***************************************************
+*
+*THIS FILE CONTAINS THE MODELS OF SEVERAL TMOS DEVICES
+*LISTED BELOW:
+*MTP3055E  MTP15N06E  MTP25N06L  MTP25N06  IRF541
+*MTP35N06E  MTH40N06  MTH30N20  MTM15N40  MTP4N50
+*MTH13N50  MTP6N60  MTM8N60  MTH8N60  MTP4N85 MTP3N100
+*MTH5N100  MTP12P10  MTP2P50
+*
+*------------------ ADDED TO TMOS.LIB VERSION 1------------
+*MTP25N10 MTP2N50 MTP7N20 MTH7N45  MTD4N20 MTD2N50
+*MTD5N06 MTP25N10E MTM26N40E MTD10N05E MTP15N05E
+*MTP50N05EL MTD3055EL MTP3055EL MTP40N06M MTP40N06M
+*MTM10N100E MTM24N50E MTP50N06E MTD4P06 MTD2955 MTP20P06
+*MTP8P10
+*--------------------------------------------------------
+*
+*IN ORDER TO USE THIS LIBRARY YOU NEED TO PUT IN YOUR  SOURCE FILE
+* XXX.CIR THE COMMAND
+* X1 2 1 3 MTP25N06L TO CALL THAT DEVICE
+* .LIB TMOS.LIB TO CALL THIS LIBRARY
+*
+*--------------------------------------------------------
+*
+*MTP3055E model created using LAAS version.
+*
+*          TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP3055E 10 20 30
+RG 10 1 10
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.32 KP=5.5 THETA=0.058 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 300P
+RD 20 4 0.078
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.42 CJO=600P VJ=0.60)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.1E-11 N=1.03 RS=0.050 TT=200N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 605P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.53 CJO=605P VJ=0.08)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*------------------------------------------------------------
+*
+*MTP15N06E model created using LAAS version.
+*
+*         TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+
+.SUBCKT MTP15N06E 10 20 30
+RG 10 1 10
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.12 KP=7.30 THETA=0.058 VMAX=1.2E5 LEVEL=3)
+CGS 1 3 500P
+RD 20 4 0.09
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.42 CJO=710P VJ=0.7)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.8E-12 N=1.02 RS=0.06 TT=30N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 1000P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.564 CJO=1000P VJ=0.155)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*------------------------------------------------------------
+*
+*MTP25N06L model created using LAAS version.
+*
+*          TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP25N06L 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=1.7 KP=8 THETA=0.12 VMAX=5E6 LEVEL=3)
+CGS 1 3 1130P
+RD 20 4 0.015
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.357 CJO=1200P VJ=0.437)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=9E-12 N=1.03 RS=0.02 TT=18N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3040P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.53 CJO=3040P VJ=0.0774)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTP25N06 model created using LAAS version.
+*
+*          TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP25N06 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.84 KP=7 THETA=0.058 VMAX=2E5 LEVEL=3)
+CGS 1 3 662P
+RD 20 4 0.04
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.3 CJO=1178P VJ=0.29)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=4.5E-12 N=1.02 RS=0.025 TT=22N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 1320P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.548 CJO=1320P VJ=0.36)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*------------------------------------------------------------
+*
+*
+*IRF541 model created using LAAS version.
+*
+*          TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT IRF541 10 20 30
+RG 10 1 9
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.87 KP=11.4 THETA=0.058 VMAX=1.2E5 LEVEL=3)
+CGS 1 3 965P
+RD 20 4 0.03
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.355 CJO=1836P VJ=0.49)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=4E-12 N=1.01 RS=0.05 TT=36N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 4.35N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 2400P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.58 CJO=2400P VJ=0.384)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTP35N06E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP35N06E 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=2.81 KP=30.6 THETA=0.058 VMAX=0.7E5 LEVEL=3)
+CGS 1 3 1070P
+RD 20 4 0.046
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.44 CJO=2637P VJ=0.78)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=8.2E-12 N=1.02 RS=0.05 TT=26N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3780P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.66 CJO=3780P VJ=0.23)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTH40N06 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH40N06 10 20 30
+RG 10 1 12
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.77 KP=27.2 THETA=0.058 VMAX=1E5 LEVEL=3)
+CGS 1 3 1782P
+RD 20 4 0.015
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.364 CJO=4134P VJ=0.558)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2E-11 N=1.03 RS=0.014 TT=26N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 4N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 5840P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.55 CJO=5840P VJ=0.25)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTH30N20 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH30N20 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.74 KP=19.3 THETA=0.058 VMAX=1.4E5 LEVEL=3)
+CGS 1 3 1580P
+RD 20 4 0.062
+DDS 3 4 DDS
+.MODEL DDS D(BV=200 M=0.46 CJO=2594P VJ=0.748)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.1E-11 N=1.03 RS=0.050 TT=200N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 4N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 5850P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.5 CJO=5850P VJ=0.032)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTM15N40 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTM15N40 10 20 30
+RG 10 1 8
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=2.86 KP=12.1 THETA=0.058 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 1300P
+RD 20 4 0.22
+DDS 3 4 DDS
+.MODEL DDS D(BV=400 M=0.41 CJO=989P VJ=0.443)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=6.6E-12 N=1.02 RS=0.028 TT=340N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 10N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 7126P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.61 CJO=7126P VJ=0.071)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*
+*MTP4N50 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP4N50 10 20 30
+RG 10 1 9
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.72 KP=2.86 THETA=0.058 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 540P
+RD 20 4 1.09
+DDS 3 4 DDS
+.MODEL DDS D(BV=500 M=0.47 CJO=376P VJ=0.526)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.2E-11 N=1.05 RS=0.143 TT=1.2U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 1740P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.543 CJO=1740P VJ=0.0132)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTH13N50 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH13N50 10 20 30
+RG 10 1 10
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.46 KP=8.07 THETA=0.058 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 1675P
+RD 20 4 0.25
+DDS 3 4 DDS
+.MODEL DDS D(BV=500 M=0.5 CJO=995P VJ=0.77)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.2E-11 N=1.02 RS=0.025 TT=877N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 8N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 7000P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.54 CJO=7000P VJ=0.021)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTP6N60 model created using LAAS version.
+*
+*          TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP6N60 10 20 30
+RG 10 1 8
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.23 KP=5 THETA=0.058 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 1116P
+RD 20 4 0.885
+DDS 3 4 DDS
+.MODEL DDS D(BV=600 M=0.51 CJO=700P VJ=0.6)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.3E-11 N=1.04 RS=0.214 TT=1.125U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 4N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3550P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.518 CJO=3550P VJ=0.0077)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTM8N60 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTM8N60 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.1 KP=7.6 THETA=0.058 VMAX=2.6E5 LEVEL=3)
+CGS 1 3 2683P
+RD 20 4 0.44
+DDS 3 4 DDS
+.MODEL DDS D(BV=600 M=0.475 CJO=900P VJ=0.73)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=9E-11 N=1.02 RS=0.06 TT=1.5U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 11N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 5800P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.52 CJO=5800P VJ=0.0234)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*------------------------------------------------------------
+*
+*MTH8N60 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH8N60 10 20 30
+RG 10 1 5
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.47 KP=7.43 THETA=0.058 VMAX=1.7E5 LEVEL=3)
+CGS 1 3 1700P
+RD 20 4 0.455
+DDS 3 4 DDS
+.MODEL DDS D(BV=600 M=0.478 CJO=855P VJ=0.69)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.5E-11 N=1.03 RS=0.066 TT=1.6U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 8N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 7700P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.54 CJO=7700P VJ=0.014)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*            END OF SUBCIRCUIT
+*------------------------------------------------------------
+*
+*MTP4N85 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP4N85 10 20 30
+RG 10 1 7
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.36 KP=3.66 LEVEL=1)
+CGS 1 3 1200P
+RD 20 4 2.80
+DDS 3 4 DDS
+.MODEL DDS D(BV=850 M=0.507 CJO=615P VJ=0.428)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2.5E-11 N=1.02 RS=0.041 TT=2.2U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3420P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.45 CJO=3420P VJ=0.001)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTP3N100 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP3N100 10 20 30
+RG 10 1 8
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=2.74 KP=4.7  LEVEL=1)
+CGS 1 3 900P
+RD 20 4 3.5
+DDS 3 4 DDS
+.MODEL DDS D(BV=1000 M=0.507 CJO=625P VJ=0.35)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=5E-11 N=1.02 RS=0.072 TT=1.35U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3230P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.45 CJO=3230P VJ=0.0014)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*MTH5N100 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH5N100 10 20 30
+RG 10 1 5
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.36 KP=3.73 LEVEL=1)
+CGS 1 3 1642P
+RD 20 4 1.50
+DDS 3 4 DDS
+.MODEL DDS D(BV=1000 M=0.48 CJO=873P VJ=0.43)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=3.6E-11 N=1.03 RS=0.057 TT=1U)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 8N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 7500P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.5 CJO=7500P VJ=0.00337)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+*-------------------------------------------------------------
+*
+*---------      Added To version 1.01   -------------------------*
+*
+*MTM26N40E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTM26N40E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.78 KP=24.6 THETA=0.04 VMAX=0.75E5 LEVEL=3)
+CGS 1 3 4000P
+RD 20 4 0.126
+DDS 3 4 DDS
+.MODEL DDS D(BV=400 M=0.54 CJO=2740P VJ=0.75)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=8E-12 N=1.02 RS=0.02 TT=1060N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 12.5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 4000P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.9 CJO=4000P VJ=0.634)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTH7N45 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTH7N45 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.45 KP=5.86 THETA=0.04 VMAX=0.8E5 LEVEL=3)
+CGS 1 3 1150P
+RD 20 4 0.48
+DDS 3 4 DDS
+.MODEL DDS D(BV=450 M=0.45 CJO=684P VJ=0.48)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=4E-12 N=1.03 RS=0.04 TT=1000N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 10N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3800P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.54 CJO=3700P VJ=0.0137)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTP50N05EL model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP50N05EL 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=1.72 KP=43 THETA=0.058 VMAX=2E5 LEVEL=3)
+CGS 1 3 3300P
+RD 20 4 0.017
+DDS 3 4 DDS
+.MODEL DDS D(BV=50 M=0.4 CJO=3070P VJ=0.667)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=3E-11 N=1.07 RS=0.08 TT=130N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 3200P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.6 CJO=3200P VJ=0.188)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTP2N50 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP2N50 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.67 KP=1.59 THETA=0.04 VMAX=1.3E5 LEVEL=3)
+CGS 1 3 500P
+RD 20 4 1.8
+DDS 3 4 DDS
+.MODEL DDS D(BV=500 M=0.52 CJO=210P VJ=0.74)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.3E-12 N=1.03 RS=0.1 TT=880N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 800P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.455 CJO=800P VJ=7.7E-3)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+
+*MTP15N05E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP15N05E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.55 KP=6.87 THETA=0.04 VMAX=1.6E5 LEVEL=3)
+CGS 1 3 550P
+RD 20 4 0.052
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.4 CJO=724P VJ=0.65)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2E-12 N=1.03 RS=0.08 TT=77N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 1100P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.655 CJO=1100P VJ=0.671)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTP25N10E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP25N10E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.64 KP=20.5 THETA=0.04 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 2400P
+RD 20 4 0.04
+DDS 3 4 DDS
+.MODEL DDS D(BV=100 M=0.42 CJO=2620P VJ=0.667)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2.5E-12 N=1.03 RS=0.088 TT=260N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 1900P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.8 CJO=1900P VJ=0.25)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTP3055EL model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP3055EL 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=1.9 KP=7.26 THETA=0.058 VMAX=2.5E5 LEVEL=3)
+CGS 1 3 500P
+RD 20 4 0.085
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.35 CJO=604P VJ=0.39)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=7.5E-13 N=1.02 RS=0.04 TT=45N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 740P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.57 CJO=740P VJ=0.099)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* --------------------------------------------------------
+*MTP7N20 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP7N20 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.70 KP=2.76 THETA=0.04 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 350P
+RD 20 4 0.42
+DDS 3 4 DDS
+.MODEL DDS D(BV=200 M=0.46 CJO=370P VJ=0.676)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=7E-13 N=1.01 RS=0.22 TT=300N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 600P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.84 CJO=600P VJ=0.519)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTD3055EL model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTD3055EL 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=1.72 KP=8.12 THETA=0.058 VMAX=3E5 LEVEL=3)
+CGS 1 3 550P
+RD 20 4  0.12
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.41 CJO=595P VJ=0.63)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.5E-10 N=1.34 RS=0.057 TT=45N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 700P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.58 CJO=700P VJ=0.107)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ---------------------------------------------------------
+*MTD4N20 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTD4N20 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.65 KP=2.26 THETA=0.04 VMAX=1.4E5 LEVEL=3)
+CGS 1 3 380P
+RD 20 4 0.589
+DDS 3 4 DDS
+.MODEL DDS D(BV=200 M=0.48 CJO=375P VJ=0.776)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=8E-13 N=1.03 RS=0.2 TT=340N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 550P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.7 CJO=550P VJ=0.179)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTD5N06 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTD5N06 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.64 KP=1.56 THETA=0.04 VMAX=2E5 LEVEL=3)
+CGS 1 3 200P
+RD 20 4 0.16
+DDS 3 4 DDS
+.MODEL DDS D(BV=50 M=0.37 CJO=300P VJ=0.53)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=4E-12 N=1.08 RS=0.175 TT=50N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 300P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.52 CJO=300P VJ=0.339)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTD10N05E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTD10N05E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.54 KP=8.79 THETA=0.04 VMAX=1.1E5 LEVEL=3)
+CGS 1 3 500P
+RD 20 4 0.075
+DDS 3 4 DDS
+.MODEL DDS D(BV=50 M=0.4 CJO=875P VJ=0.674)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=6.8E-10 N=1.2 RS=0.068 TT=120N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 600P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.6 CJO=600P VJ=0.614)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ----------------------------------------------------
+*MTD2N50 model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTD2N50 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.38 KP=1.51 THETA=0.04 VMAX=1.3E5 LEVEL=3)
+CGS 1 3 450P
+RD 20 4 1.85
+DDS 3 4 DDS
+.MODEL DDS D(BV=500 M=0.5 CJO=220P VJ=0.59)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=5E-12 N=1.08 RS=0.13 TT=880N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 850P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.48 CJO=850P VJ=0.0103)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTP30N08M model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP30N08M 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.57 KP=20.7 THETA=0.04 VMAX=1E5 LEVEL=3)
+CGS 1 3 1300P
+RD 20 4 0.035
+DDS 3 4 DDS
+.MODEL DDS D(BV=80 M=0.43 CJO=1770P VJ=0.657)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2E-12 N=1.01 RS=0.033 TT=780N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 2300P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.63 CJO=2300P VJ=0.368)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTP40N06M model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP40N06M 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.15 KP=25 THETA=0.04 VMAX=1E5 LEVEL=3)
+CGS 1 3 1600P
+RD 20 4 0.023
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.42 CJO=1890P VJ=0.717)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2.3E-12 N=1.01 RS=0.02 TT=190N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 6N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 2500P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.58 CJO=2500P VJ=0.273)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* --------------------------------------------------------
+*MTM10N100E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTM10N100E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.5 KP=15 THETA=0.04 VMAX=1.5E5 LEVEL=3)
+CGS 1 3 3700P
+RD 20 4 1.12
+DDS 3 4 DDS
+.MODEL DDS D(BV=1000 M=0.56 CJO=2358P VJ=0.4055)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1.88E-11 N=1.02 RS=0.017 TT=3040N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 12N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 4500P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.48 CJO=4500P VJ=0.004)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* -------------------------------------------------------
+*MTM24N50E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTM24N50E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.65 KP=20.9 THETA=0.04 VMAX=0.8E5 LEVEL=3)
+CGS 1 3 4000P
+RD 20 4 0.2
+DDS 3 4 DDS
+.MODEL DDS D(BV=500 M=0.56 CJO=3638P VJ=0.395)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=1E-11 N=1.05 RS=0.01 TT=1250N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 12N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 4500P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.69 CJO=4500P VJ=0.14)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+* ------------------------------------------------------
+*MTP50N06E model created using LAAS version.
+*
+*           TMOS MODEL WITH SWITCHES (SUBCIRCUIT)
+*
+.SUBCKT MTP50N06E 10 20 30
+RG 10 1 1
+M1 2 1 3 3 DMOS L=1U W=1U
+.MODEL DMOS NMOS (VTO=3.79 KP=33.5 THETA=0.04 VMAX=0.8E5 LEVEL=3)
+CGS 1 3 1750P
+RD 20 4 0.02
+DDS 3 4 DDS
+.MODEL DDS D(BV=60 M=0.42 CJO=3272P VJ=0.716)
+DBODY 3 20 DBODY
+.MODEL DBODY D(IS=2.4E-12 N=1.02 RS=0.009 TT=150N)
+RA 4 2 1E-3
+RS 3 5 1M
+LS 5 30 5N
+M2 1 8 6 6 INTER
+E2 8 6 4 1 2
+.MODEL INTER NMOS (VTO=0 KP=10 LEVEL=1)
+CGDMAX 7 4 2600P
+RCGD 7 4 1E7
+DGD 6 4 DGD
+RDGD 4 6 1E7
+.MODEL DGD D(M=0.57 CJO=2600P VJ=0.23)
+M3 7 9 1 1 INTER
+E3 9 1 4 1 -2
+.ENDS
+*
+*             END OF SUBCIRCUIT
+

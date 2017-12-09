@@ -1,0 +1,534 @@
+* NDS9400 ELECTRICAL MODEL (SO-8 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9400  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.891792  KP=4.39
++  THETA=0.086  VMAX=5.0E5  LEVEL=3)
+Cgs     1    3    210p
+Rd     20    4    60m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.256   M=0.35  CJO=1000p   VJ=1.0)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    65m 
+Rs      3    5    10m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1130p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=1130p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9400
+**************************************************************************
+* NDS9400A ELECTRICAL MODEL  (SO-8 Single P Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9400A  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL  DMOS PMOS (VTO=-1.792224  KP=4.39
++ THETA=0.086 VMAX=5E5 TOX=4.25E-8 LEVEL=3)
+Cgs     1    3    400p
+Rd     20    4    30m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.384   M=0.3  CJO=300p   VJ=0.9)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=29n)
+Ra      4    2    30m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL  INTER     PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    600p
+Rcgd    7    4    20meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=600p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9400A
+***********************************************************************
+* NDS9405 ELECTRICAL MODEL (SO-8 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9405  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.64406  KP=11.46
++ THETA=0.086 VMAX=2.0E5  LEVEL=3)
+Cgs     1    3    900p
+Rd     20    4    8m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.0352   M=0.35  CJO=1000p   VJ=1.0)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    15m 
+Rs      3    5    10.5m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    2800p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=2800p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9405
+************************************************************************
+* NDS9430 ELECTRICAL MODEL  (SO-8 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9430  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.64406  KP=11.46
++  THETA=0.086  VMAX=2.0E5  LEVEL=3)
+Cgs     1    3    800p
+Rd     20    4    8m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.0352   M=0.35  CJO=1000p   VJ=1.0)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    8m 
+Rs      3    5    11.8m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    2600p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=2600p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9430
+***********************************************************************
+* NDS9435 ELECTRICAL MODEL  (SO-8 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS9435  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.98992  KP=13.96
++  THETA=0.086  VMAX=2.0E5  LEVEL=3)
+Cgs     1    3    400p
+Rd     20    4    10.67m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.006   M=0.35  CJO=1000p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    22m 
+Rs      3    5    11.8m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    2600p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=5000p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS9435
+***********************************************************************
+* NDT2955 ELECTRICAL MODEL  (PowerSOT SOT-223 P Ch DMOS)
+* ------------------------
+.SUBCKT  NDT2955  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL  DMOS PMOS (VTO=-2.591888  KP=4.286
++  THETA=0.086 VMAX=5E5 TOX=4.25E-8 LEVEL=3)
+Cgs     1    3    480p
+Rd     20    4    70m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=60.1152   M=0.3  CJO=300p   VJ=0.9)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=29n)
+Ra      4    2    80m 
+Rs      3    5    1m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL  INTER     PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    880p
+Rcgd    7    4    20meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=880p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDT2955
+***********************************************************************
+* NDT452P ELECTRICAL MODEL  (PowerSOT SOT-223 P-Ch DMOS)
+* -----------------------------------------------
+.SUBCKT  NDT452P  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL  DMOS PMOS (VTO=-1.681568  KP=8.474
++  THETA=0.086  VMAX=5E5 TOX=4.25E-8 LEVEL=3)
+Cgs     1    3    200p
+Rd     20    4    55m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.006   M=0.25  CJO=310p   VJ=0.51)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=90m   TT=29n)
+Ra      4    2    55m 
+Rs      3    5    2m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL  INTER     PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1100p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.31   CJO=600p   VJ=0.18)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDT452P
+*********************************************************************
+* NDT454P ELECTRICAL MODEL  (PowerSOT SOT-223 P-Ch DMOS)
+* -----------------------------------------------
+.SUBCKT  NDT454P  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL  DMOS PMOS (VTO=-1.93986  KP=13.96
++  THETA=0.086  VMAX=5E5 TOX=4.25E-8 LEVEL=3)
+Cgs     1    3    300p
+Rd     20    4    15m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.0384  M=0.25  CJO=310p   VJ=0.51)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=90m   TT=29n)
+Ra      4    2    10m 
+Rs      3    5    2m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL  INTER     PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1700p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.31   CJO=1700p   VJ=0.18)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDT454P
+*************************************************************************
+* NDS352P ELECTRICAL MODEL (SuperSOT-3 SOT-23 P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS352P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-2.291536  KP=1.994
++ THETA=0.096  VMAX=4E5  LEVEL=3)
+Cgs     1    3    170p
+Rd     20    4    30m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.036   M=0.3  CJO=200p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    160m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    230p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=230p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS352P
+*************************************************************************
+* NDS356P ELECTRICAL MODEL (SuperSOT-3 SOT-23 P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS356P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-2.090928  KP=3.69
++  THETA=0.096  VMAX=4E5  LEVEL=3)
+Cgs     1    3    280p
+Rd     20    4    10m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.36   M=0.3  CJO=200p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    65m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    360p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=360p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS356P
+*********************************************************************
+* NDS0605 ELECTRICAL MODEL (SOT-23 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS0605  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.89544  KP=0.2998
++   THETA=0.086 VMAX=3.8E5  LEVEL=3)
+Cgs     1    3    40p
+Rd     20    4    1.4 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=60.1152   M=0.35  CJO=100p   VJ=1.0)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    1.2 
+Rs      3    5    10m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    85p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=85p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS0605
+************************************************************************
+* NDS0610 ELECTRICAL MODEL (SOT-23 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS0610  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.89544  KP=0.2998
++ THETA=0.086  VMAX=3.8E5  LEVEL=3)
+Cgs     1    3    40p
+Rd     20    4    1.4 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=60.1152   M=0.35  CJO=100p   VJ=1.0)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    1.2 
+Rs      3    5    10m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    85p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=85p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS0610
+*******************************************************************
+* NDS8435 ELECTRICAL MODEL  (SO-8 Single P-Ch DMOS)
+* ------------------------
+.SUBCKT  NDS8435  20  10  30
+Rg     10    1    3
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-2.1126  KP=19.46
++  THETA=0.086  VMAX=2.0E5  LEVEL=3)
+Cgs     1    3    800p
+Rd     20    4    8m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.0336   M=0.35  CJO=1000p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1E-12   N=1   RS=12.7m   TT=25n)
+Ra      4    2    5m 
+Rs      3    5    8m
+Ls      5    30   0.9n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    3300p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.55   CJO=3300p   VJ=0.120)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDS8435
+***************************************************************************
+* NDC632P ELECTRICAL MODEL (SuperSOT-6 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDC632P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-0.894528  KP=7.162
++ THETA=0.086  VMAX=4E5  LEVEL=3)
+Cgs     1    3    800p
+Rd     20    4    15m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.0256   M=0.3  CJO=800p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    50m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    900p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=900p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDC632P
+**************************************************************************
+* NDC652P ELECTRICAL MODEL (SuperSOT-6 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDC652P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.842  KP=4.186
++ THETA=0.056  VMAX=4E5  LEVEL=3)
+Cgs     1    3    380p
+Rd     20    4    10m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=30.0384   M=0.3  CJO=380p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    30m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    500p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=900p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDC652P
+***************************************************************************
+* NDC7003P ELECTRICAL MODEL (SuperSOT-6 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDC7003P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-2.69244  KP=0.2138
++ THETA=0.056  VMAX=4E5  LEVEL=3)
+Cgs     1    3    40p
+Rd     20    4    680m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=50.088   M=0.3  CJO=40p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    1050m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    75p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=75p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDC7003P
+**************************************************************************
+* NDH832P ELECTRICAL MODEL (SuperSOT-8 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDH832P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-0.894672  KP=13.96
++ THETA=0.086  VMAX=4E5  LEVEL=3)
+Cgs     1    3    600p
+Rd     20    4    4m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.02496   M=0.3  CJO=600p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    8m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    2500p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=2200p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDH832P
+*********************************************************************
+* NDH8447 ELECTRICAL MODEL (SuperSOT-8 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDH8447  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-1.99168  KP=8.96
++ THETA=0.086  VMAX=4E5  LEVEL=3)
+Cgs     1    3    750p
+Rd     20    4    10m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=20.02496   M=0.3  CJO=750p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    20m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    1000p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=1000p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDH8447
+*********************************************************************
+* NDC7001P ELECTRICAL MODEL (SuperSOT-6 P-Ch DMOS) (Preliminary)
+* ------------------------
+.SUBCKT  NDC7001P  20  10  30
+Rg     10    1    1
+M1      2    1    3    3    DMOS    L=1u   W=1u
+.MODEL DMOS PMOS (VTO=-2.69244  KP=0.2138
++ THETA=0.056  VMAX=4E5  LEVEL=3)
+Cgs     1    3    40p
+Rd     20    4    680m 
+Dds     4    3    DDS
+.MODEL     DDS    D(BV=50.088   M=0.3  CJO=40p   VJ=0.8)
+Dbody   20   3    DBODY
+.MODEL   DBODY    D(IS=1.4E-13   N=1   RS=40m   TT=100n)
+Ra      4    2    1050m 
+Rs      3    5    1m
+Ls      5    30   0.5n
+M2      1    8    6    6   INTER
+E2      8    6    4    1   2
+.MODEL   INTER    PMOS(VTO=0  KP=10   LEVEL=1)
+Cgdmax  7    4    75p
+Rcgd    7    4    10meg
+Dgd     4    6    DGD
+Rdgd    4    6    10meg
+.MODEL     DGD    D(M=0.5   CJO=75p   VJ=0.12)
+M3      7    9    1    1   INTER
+E3      9    1    4    1   -2
+.ENDS NDC7001P
+***************************************************************************
+
+

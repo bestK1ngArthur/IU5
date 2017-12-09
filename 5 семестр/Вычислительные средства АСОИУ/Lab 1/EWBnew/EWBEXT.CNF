@@ -1,0 +1,8 @@
+EwbLoadExtension ("ext\DIGITAL")
+EwbLoadExtension ("ext\ANALOG")
+EwbLoadExtension ("ext\CHIP")
+EwbLoadExtension ("ext\MEP_A")
+EwbLoadExtension ("ext\MEP_B")
+EwbAddMenuExtension ("Import...", "ext\SPICEEWB")
+EwbAddMenuExtension ("Export...", "ext\EWBSPICE")
+EwbAddMenuExtension ("Export...", "ext\EWBTOPCB")
