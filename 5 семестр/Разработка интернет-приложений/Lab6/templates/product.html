@@ -1,0 +1,34 @@
+{% extends 'base_template.html' %}
+
+{% block title %} {% endblock %}
+
+{% block navbar-links %}
+
+    <ul class="nav navbar-nav">
+        <li><a href="/">< back to products</a></li>
+    </ul>
+
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ product.name }}</h1>
+    <div class="media">
+        <div class="media-left">
+           <a href="#">
+               <img class="media-object" src="{{ product.image_url }}" alt="{{ product.name }}" height=500>
+           </a>
+        </div>
+        <div class="media-body">
+            <div class="jumbotron">
+               <h2>{{ product.seller }}</h2>
+            </div>
+            <div class="jumbotron">
+               <p>{{ product.description }}</p>
+            </div>
+            <p><a class="btn btn-lg btn-success" role="button">Buy</a></p>
+        </div>
+    </div>
+
+
+{% endblock %}
