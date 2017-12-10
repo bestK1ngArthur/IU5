@@ -2,12 +2,108 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8c7bd2b6-2a4a-4a09-9520-ad4751715b71" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/Lab5.iml" afterPath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/Lab5.iml" />
-      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/misc.xml" afterPath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/workspace.xml" afterPath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab5/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/Lab5.iml" afterPath="$PROJECT_DIR$/.idea/Lab5.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/Lab6.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources.local.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.keystream" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.keystream.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.values.at" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata_i" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata_i.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/storage.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/.idea/workspace.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/Description.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/Lab6/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/Lab6/settings.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/Lab6/urls.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/Lab6/wsgi.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/apps.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/migrations/0001_initial.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/migrations/0002_auto_20171130_2337.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/migrations/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/models.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap-theme.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap-theme.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap-theme.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/css/bootstrap.min.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/js/bootstrap.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/js/bootstrap.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/static/js/npm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/lab_app/views.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/manage.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/templates/base_template.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/templates/product.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../../Разработка интернет-приложений/Lab6/templates/product_list.html" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/Lab6.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources.local.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.keystream" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.keystream.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata.values.at" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata_i" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/_metadata_/metadata_i.len" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/dataSources/30f9437c-54a7-429e-8182-98a56ab8a40d/storage.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/.idea/workspace.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/Description.pdf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/Lab6/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/Lab6/settings.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/Lab6/urls.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/Lab6/wsgi.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/admin.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/apps.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/migrations/0001_initial.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/migrations/0002_auto_20171130_2337.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/migrations/__init__.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/models.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap-theme.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap-theme.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap-theme.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap-theme.min.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap.min.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/css/bootstrap.min.css.map" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/fonts/glyphicons-halflings-regular.eot" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/fonts/glyphicons-halflings-regular.svg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/fonts/glyphicons-halflings-regular.ttf" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/fonts/glyphicons-halflings-regular.woff" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/fonts/glyphicons-halflings-regular.woff2" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/js/bootstrap.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/js/bootstrap.min.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/static/js/npm.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/lab_app/views.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/manage.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/templates/base_template.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/templates/product.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/../Lab6/templates/product_list.html" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,19 +120,21 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Lab5/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+            <state relative-caret-position="336">
+              <caret line="61" column="20" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Lab5/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
+              <folding>
+                <element signature="e#638#670#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,20 +142,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-              <folding>
-                <element signature="e#24#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wsgi.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Lab5/wsgi.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -66,8 +152,8 @@
       <file leaf-file-name="base_template.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/base_template.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1110">
-              <caret line="74" column="7" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="74" selection-end-column="7" />
+            <state relative-caret-position="135">
+              <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -93,11 +179,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lab_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+            <state relative-caret-position="120">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
               <folding>
                 <element signature="e#24#63#0" expanded="true" />
               </folding>
@@ -110,6 +196,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
               <caret line="29" column="14" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="apps.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lab_app/apps.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -132,12 +228,12 @@
       <list>
         <option value="$PROJECT_DIR$/templates/profile.html" />
         <option value="$PROJECT_DIR$/Lab5/settings.py" />
-        <option value="$PROJECT_DIR$/Lab5/urls.py" />
         <option value="$PROJECT_DIR$/lab_app/models.py" />
         <option value="$PROJECT_DIR$/lab_app/views.py" />
         <option value="$PROJECT_DIR$/templates/product_list.html" />
         <option value="$PROJECT_DIR$/templates/product.html" />
         <option value="$PROJECT_DIR$/templates/base_template.html" />
+        <option value="$PROJECT_DIR$/Lab5/urls.py" />
       </list>
     </option>
   </component>
@@ -147,7 +243,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
+  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
     <option name="width" value="1440" />
     <option name="height" value="900" />
   </component>
@@ -186,8 +282,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -225,6 +319,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -256,8 +352,8 @@
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
-        <env name="DJANGO_SETTINGS_MODULE" value="Lab5.settings" />
         <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="Lab5.settings" />
       </envs>
       <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
       <option name="WORKING_DIRECTORY" value="" />
@@ -293,19 +389,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="2064" height="1440" extended-state="0" />
+    <frame x="0" y="0" width="2560" height="1440" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.328777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20639534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328777" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11601563" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -316,8 +412,8 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Concurrent Activities Diagram" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -331,14 +427,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/templates/product.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="33" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/product_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="493">
@@ -369,7 +457,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -377,9 +467,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -445,7 +533,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -453,9 +543,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -521,7 +609,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
-          <folding />
+          <folding>
+            <element signature="e#638#670#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -537,9 +627,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -668,22 +756,8 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab5/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/Cellar/python3/3.6.2/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django/db/models/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/../Lab6/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/../Lab6/manage.py" />
     <entry file="file://$PROJECT_DIR$/Lab5/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -692,18 +766,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Lab5/urls.py">
+    <entry file="file://$PROJECT_DIR$/lab_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/base_template.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1110">
-          <caret line="74" column="7" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="74" selection-end-column="7" />
+        <state relative-caret-position="135">
+          <caret line="9" column="38" lean-forward="false" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
           <folding />
         </state>
       </provider>
@@ -724,6 +798,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lab_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/product_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
@@ -732,22 +816,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab_app/views.py">
+    <entry file="file://$PROJECT_DIR$/lab_app/apps.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
-          <folding>
-            <element signature="e#24#63#0" expanded="true" />
-          </folding>
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lab_app/models.py">
+    <entry file="file://$PROJECT_DIR$/Lab5/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="5" lean-forward="true" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+        <state relative-caret-position="336">
+          <caret line="61" column="20" lean-forward="false" selection-start-line="61" selection-start-column="20" selection-end-line="61" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Lab5/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="25" selection-end-column="1" />
           <folding>
-            <element signature="e#24#63#0" expanded="true" />
+            <element signature="e#638#670#0" expanded="true" />
           </folding>
         </state>
       </provider>
