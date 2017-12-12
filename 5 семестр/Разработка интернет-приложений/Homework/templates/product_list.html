@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block navbar-items %}
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="/">Store
+                <span class="sr-only">(current)</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <!-- Trigger -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Log in</button>
+        </li>
+    </ul>
+
+    <!-- Log in Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="loginModalLabel">Log in</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="loginInputEmail">Email address</label>
+                  <input type="email" class="form-control" id="loginInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                  <label for="loginInputPassword">Password</label>
+                  <input type="password" class="form-control" id="loginInputPassword" placeholder="Password">
+              </div>
+              <div class="container text-right" style="margin-top: 30px; margin-right: -10px">
+                  <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#signupModal" style="margin-right: 10px">☝️ Sign up</button>
+                  <button type="button" class="btn btn-primary">👌 Log in</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Log in Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" role="dialog" aria-labelledby="signupModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signupModalLabel">Sign up</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                  <label for="signupInputUsername">Username</label>
+                  <input type="username" class="form-control" id="signupInputUsername" placeholder="Enter username">
+              </div>
+              <div class="form-group">
+                  <label for="signupInputEmai">Email address</label>
+                  <input type="email" class="form-control" id="signupInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                  <label for="signupInputPassword">Password</label>
+                  <input type="password" class="form-control" id="signupInputPassword" placeholder="Password">
+              </div>
+              <div class="container text-right" style="margin-top: 30px; margin-right: -10px">
+                  <button type="button" class="btn btn-primary">👌 Sign up</button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+{% block body %}
+
+    <!-- Cards -->
+    <div id="cards" class="container mb-2" style="padding-bottom: 1px">
+        <div class="section-title col-lg-8 col-md-10 ml-auto mr-auto">
+            <h3 class="mb-4">Phones</h3>
+            <p>The phone in the 21st century is everything: a computer, a camera, a diary, a game console. Smartphone determines our status, so it is so important to buy the coolest phone 😎</p>
+        </div>
+
+        {% for row in products %}
+            <div class="row">
+
+                {% for product in row %}
+                    <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                        <div class="card">
+                            <img class="card-img" src="{{ product.image_url }}" alt="{{ product.name }}" style="padding-top: 25px">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ product.name }}</h4>
+                                <p class="card-text">{{ product.short_descrtion }}...</p>
+                                <a href="/product/{{ product.id }}" class="btn btn-primary">Tell me more &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+    {% if is_paginated %}
+
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+
+            <nav aria-label="Page navigation example">
+              <ul class="pagination justify-content-center">
+
+                  {% if page_obj.has_previous %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">← Previous</a>
+                      </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                          <a class="page-link" href="#">← Previous</a>
+                      </li>
+                  {% endif %}
+
+                  {% for i in paginator.page_range %}
+                      {% if page_obj.number == i %}
+                            <li class="page-item active">
+                                <a class="page-link" href="?page={{ i }}">{{ i }}<span class="sr-only">(current)</span></a>
+                            </li>
+                      {% else %}
+                          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                  {% endfor %}
+
+                  {% if page_obj.has_next %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next →</a>
+                      </li>
+                  {% else %}
+                      <li class="page-item disabled">
+                          <a class="page-link" href="#">Next →</a>
+                      </li>
+                  {% endif %}
+
+              </ul>
+            </nav>
+
+          </ul>
+        </nav>
+
+    {% endif %}
+
+
+{% endblock %}
