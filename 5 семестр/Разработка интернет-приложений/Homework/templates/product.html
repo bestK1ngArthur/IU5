@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+
+{% block title %} {% endblock %}
+
+{% block navbar-items %}
+
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Store</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">User</a>
+        </li>
+    </ul>
+
+{% endblock %}
+
+{% block body %}
+
+    <div id="description" class="section py-4">
+        <h3 class="section-title text-center m-5">
+            Description 🍿
+        </h3>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-auto">
+                    <a href="#">
+                       <img class="media-object" src="{{ product.image_url }}" alt="{{ product.name }}" height=500>
+                   </a>
+                </div>
+                <div class="col-6">
+                    <h1>{{ product.name }}</h1>
+                    <h4><span class="badge badge-pill badge-light">{{ product.seller }}</span></h4>
+                    <p>{{ product.description }}</p>
+                     <button type="button" class="btn btn-primary btn-lg">Buy</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="reviews" class="section py-4">
+        <h3 class="section-title text-center m-5">
+            Reviews 🔥
+        </h3>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">@bestK1ng</h5>
+                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">@bestK1ng</h5>
+                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px">
+                <div class="col-6">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">@bestK1ng</h5>
+                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-6" >
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">@bestK1ng</h5>
+                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 30px">
+                <div class="col-6" >
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">@bestK1ng</h5>
+                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="create-review" class="section py-4">
+        <h3 class="section-title text-center m-5">
+            Write review ✍️
+        </h3>
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+
+                <div class="col-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <form>
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="reviewInputText">Review</label>
+                                            <textarea id="reviewInputText" class="form-control mb-4" rows="10" placeholder="Enter your message..."></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Send review">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
