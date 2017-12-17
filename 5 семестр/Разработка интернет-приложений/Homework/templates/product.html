@@ -4,20 +4,6 @@
 
 {% block navbar-items %}
 
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-            <a class="nav-link" href="/">Store</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
-        </li>
-    </ul>
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="#">User</a>
-        </li>
-    </ul>
-
 {% endblock %}
 
 {% block body %}
@@ -50,52 +36,32 @@
         </h3>
 
         <div class="container">
-            <div class="row">
-                <div class="col-6">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">@bestK1ng</h5>
-                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                      </div>
+
+            {% if reviews == None %}
+
+                <p class="section-title text-center m-5">
+                    No reviews
+                </p>
+
+            {% else %}
+
+                {% for row in reviews %}
+                    <div class="row" style="margin-bottom: 30px">
+                        {% for review in row %}
+                            <div class="col-6">
+                                <div class="card">
+                                  <div class="card-body">
+                                    <h5 class="card-title">@{{ review.username }}</h5>
+                                    <p class="card-text">{{ review.description }}</p>
+                                  </div>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">@bestK1ng</h5>
-                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 30px">
-                <div class="col-6">
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">@bestK1ng</h5>
-                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                      </div>
-                    </div>
-                </div>
-                <div class="col-6" >
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">@bestK1ng</h5>
-                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 30px">
-                <div class="col-6" >
-                    <div class="card">
-                      <div class="card-body">
-                        <h5 class="card-title">@bestK1ng</h5>
-                        <p class="card-text">Nice) 👍 He seems sinking under the evidence could not only grieve and a visit. The father is to bless and placed in his length hid...</p>
-                      </div>
-                    </div>
-                </div>
-            </div>
+                {% endfor %}
+
+            {% endif %}
+
         </div>
     </div>
 
