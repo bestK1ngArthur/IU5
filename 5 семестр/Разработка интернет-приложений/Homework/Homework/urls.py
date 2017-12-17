@@ -16,10 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from lab_app.views import ProductView, ListProductView
+from lab_app.views import ProductView, ListProductView, login_user, logout_user, create_user
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^product/(?P<product_id>\d+)', ProductView.as_view()),
     url(r'^$', ListProductView.as_view(), name='base_template'),
+    url(r'^signup/$', create_user, name='signup'),
+    url(r'^login/$', login_user, name='login'),
+    url(r'^logout/$', logout_user, name='logout'),
 ]
