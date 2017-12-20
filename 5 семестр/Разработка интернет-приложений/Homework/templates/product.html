@@ -1,10 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %} {% endblock %}
-
-{% block navbar-items %}
-
-{% endblock %}
+{% block navbar-items %} {% endblock %}
 
 {% block body %}
 
@@ -24,7 +21,7 @@
                     <h1>{{ product.name }}</h1>
                     <h4><span class="badge badge-pill badge-light">{{ product.seller }}</span></h4>
                     <p>{{ product.description }}</p>
-                     <button type="button" class="btn btn-primary btn-lg">Buy</button>
+                    <button type="button" class="btn btn-primary btn-lg">Buy</button>
                 </div>
             </div>
         </div>
@@ -35,20 +32,20 @@
             Reviews 🔥
         </h3>
 
-        <div class="container">
+        <div class="container" id="review-cards">
 
             {% if reviews == None %}
 
-                <p class="section-title text-center m-5">
+                <p class="section-title text-center m-5" id = "no-reviews-title">
                     No reviews
                 </p>
 
             {% else %}
 
                 {% for row in reviews %}
-                    <div class="row" style="margin-bottom: 30px">
+                    <div class="row" id="review-cards-row" style="margin-bottom: 30px">
                         {% for review in row %}
-                            <div class="col-6">
+                            <div class="col-6" id="review-card-container">
                                 <div class="card">
                                   <div class="card-body">
                                     <h5 class="card-title">@{{ review.username }}</h5>
@@ -76,7 +73,8 @@
                 <div class="col-7">
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="/create_review/" method="POST" id="review-form">
+                                {% csrf_token %}
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
@@ -85,8 +83,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <input type="submit" class="btn btn-success btn-pill d-flex ml-auto mr-auto" value="Send review">
+                                <input id="product-id-value" type="hidden" value="{{ product.id }}">
+                                <input id="reviews-count" type="hidden" value="{{ reviews_count }}">
                             </form>
-                            <input class="btn btn-success btn-pill d-flex ml-auto mr-auto" type="submit" value="Send review">
                         </div>
                     </div>
                 </div>
