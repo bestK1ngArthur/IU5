@@ -9,6 +9,9 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from lab_app.models import Product, Review
 
+from django.views.decorators.csrf import csrf_exempt
+
+import json
 
 # Create your views here.
 
@@ -48,6 +51,7 @@ class ProductView(View):
 
         elements_in_row = 2
         reviews = list(Review.objects.filter(product_id=product_id))
+        reviews_count = len(reviews)
 
         index = 1
         rows = []
@@ -68,7 +72,7 @@ class ProductView(View):
         if len(rows) == 0:
             rows = None
 
-        return render(request, 'product.html',  {"product": product, "reviews": rows})
+        return render(request, 'product.html',  {"product": product, "reviews": rows, "reviews_count": reviews_count})
 
 
 def create_user(request):
@@ -105,3 +109,31 @@ def logout_user(request):
     user = request.user
     logout(request)
     return redirect("/")
+
+
+@csrf_exempt
+def create_review(request):
+    if request.method == 'POST':
+        review_text = request.POST.get('review_text')
+        product_id = request.POST.get('product_id')
+
+        # Create and save review
+        review = Review(description=review_text, user_id=request.user.id, product_id=product_id)
+        review.save()
+
+        # Create review json for update page
+        response_data = {}
+        response_data["review_description"] = review.description
+        response_data["product_id"] = review.product_id
+        response_data["user_name"] = review.username()
+        response_data["reviews_count"] = int(request.POST.get('reviews_count')) + 1
+
+        return HttpResponse(
+            json.dumps(response_data),
+            content_type="application/json"
+        )
+    else:
+        return HttpResponse(
+            json.dumps({"nothing to see": "this isn't happening"}),
+            content_type="application/json"
+        )
