@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-auto">
                     <a href="#">
-                       <img class="media-object" src="{{ product.image_url }}" alt="{{ product.name }}" height=500>
+                       <img class="media-object" src="{{ product.image_path }}" alt="{{ product.name }}" height=500>
                    </a>
                 </div>
                 <div class="col-6">
@@ -48,7 +48,7 @@
                             <div class="col-6" id="review-card-container">
                                 <div class="card">
                                   <div class="card-body">
-                                    <h5 class="card-title">@{{ review.username }}</h5>
+                                    <h5 class="card-title">@{{ review.user.username }}</h5>
                                     <p class="card-text">{{ review.description }}</p>
                                   </div>
                                 </div>

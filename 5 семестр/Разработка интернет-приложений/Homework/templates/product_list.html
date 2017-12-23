@@ -21,7 +21,7 @@
                 {% for product in row %}
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="card">
-                            <img class="card-img" src="{{ product.image_url }}" alt="{{ product.name }}" style="padding-top: 25px">
+                            <img class="card-img" src="{{ product.image_path }}" alt="{{ product.name }}" style="padding-top: 25px">
                             <div class="card-body">
                                 <h4 class="card-title">{{ product.name }}</h4>
                                 <p class="card-text">{{ product.short_description }}...</p>
