@@ -16,14 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from lab_app.views import ProductView, ListProductView, login_user, logout_user, create_user, create_review
+from lab_app.views import ProductView, ListProductView, SignUpView, LoginView, LogoutView, create_review
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^$', ListProductView.as_view()),
     url(r'^product/(?P<product_id>\d+)', ProductView.as_view()),
-    url(r'^$', ListProductView.as_view(), name='base_template'),
-    url(r'^signup/$', create_user, name='signup'),
-    url(r'^login/$', login_user, name='login'),
-    url(r'^logout/$', logout_user, name='logout'),
     url(r'^product/create_review/$', create_review, name='create_review'),
+    url(r'^signup/$', SignUpView.as_view()),
+    url(r'^login/$', LoginView.as_view()),
+    url(r'^logout/$', LogoutView.as_view()),
+    url(r'^admin/', admin.site.urls),
 ]
