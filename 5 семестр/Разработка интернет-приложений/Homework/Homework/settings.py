@@ -25,7 +25,7 @@ SECRET_KEY = '7==2hz#hwkd)m@auv!=a8#4rzx3c2gm+y@un!2k^7yf()&__vm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['bestk1ng.ru', 'products.bestk1ng.ru']
 
 
 # Application definition
