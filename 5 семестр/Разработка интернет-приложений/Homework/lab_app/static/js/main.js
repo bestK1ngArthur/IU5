@@ -1,21 +1,21 @@
 
-// Submit review on submit
+// Обработка нажатия на "Отправить отзыв"
 $('#review-form').on('submit', function(event){
     event.preventDefault();
     create_review();
 });
 
-// AJAX for posting
+// AJAX-запрос на создание отзыва
 function create_review() {
-    // Make ajax request
+    // Создаем AJAX-запрос
     $.ajax({
-        url : "create_review/", // the endpoint
-        type : "POST", // http method
-        data : { "review_text" : $('#reviewInputText').val(), "product_id" : $('#product-id-value').val(), "reviews_count" : $('#reviews-count').val()}, // data sent with the post request
+        url : "create_review/", // выход
+        type : "POST", // метод
+        data : { "review_text" : $('#reviewInputText').val(), "product_id" : $('#product-id-value').val(), "reviews_count" : $('#reviews-count').val()}, // json с данными
 
-        // handle a successful response
+        // Обрабатываем success
         success : function(json) {
-            $('#reviewInputText').val(''); // remove the value from the text view
+            $('#reviewInputText').val(''); // очищаем поле ввода
 
             var username = json["user_name"]
             var reviewDescription = json["review_description"]
@@ -44,14 +44,14 @@ function create_review() {
                   "</div>").appendTo($('#review-cards-row:last-child'))
             }
 
-            $('#no-reviews-title').remove() // Remove "No reviews" title
-            $('#reviews-count').val(reviewsCount) // Update reviews count
+            $('#no-reviews-title').remove() // Удаляем "Нет отзывов"
+            $('#reviews-count').val(reviewsCount) // Обновляем количество отзывов
         },
 
-        // Handle a non-successful response
+        // Обрабатываем error
         error : function(xhr,errmsg,err) {
 
-            // Show error alert
+            // Показываем алерт с ошибкой
             $('#review-form').prepend("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"border-radius: 15px\">" +
                 "                          <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">" +
                 "                              <span aria-hidden=\"true\">&times;</span>" +
