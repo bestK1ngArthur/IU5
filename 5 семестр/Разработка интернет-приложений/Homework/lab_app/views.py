@@ -181,6 +181,7 @@ def create_review(request):
             content_type="application/json"
         )
 
+
 class AboutView(View):
 
     def get(self, request):
