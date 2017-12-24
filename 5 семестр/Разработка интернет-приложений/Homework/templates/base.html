@@ -13,6 +13,7 @@
     <!-- CSS Dependencies -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static "css/shards.min.css" %}">
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
 
     <!-- Custom styles for this template -->
     <style>
@@ -69,5 +70,59 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="{% static "js/shards.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
+
+    <!-- Validation Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script>
+        $(document).ready(
+        function () {
+            $('#product-form').validate({
+                rules: {
+                    productName: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 30
+                    },
+                    productDescription: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 35
+                    },
+                    productSeller: {
+                        required: true,
+                        minlength: 2,
+                        maxlength: 30
+                    },
+                    productImage: {
+                        required: true
+                    }
+                },
+                messages: {
+                    productName: {
+                        required: "Enter name",
+                        minlength: "Should be at least 3 characters",
+                        maxlength: "Should be a maximum of 30 characters"
+                    },
+                    productDescription: {
+                        required: "Enter description",
+                        minlength: "Should be at least 5 characters",
+                        maxlength: "Should be a maximum of 35 characters"
+                    },
+                    productSeller: {
+                        required: "Enter seller",
+                        minlength: "Should be at least 2 characters",
+                        maxlength: "Should be a maximum of 30 characters"
+                    },
+                    productImage: {
+                        required: "Select photo"
+                    }
+                },
+                success: function(){
+                    $("#product-form-button").attr('disabled', false);
+                }
+            })
+        });
+    </script>
+
   </body>
 </html>

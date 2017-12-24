@@ -50,7 +50,6 @@ class ListProductView(ListView):
         return render(request, 'product_list.html',  {"products": rows})
 
 
-
 # Страница добавления продукта
 class AddProductView(View):
 
@@ -59,7 +58,7 @@ class AddProductView(View):
             name = request.POST['productName']
             description = request.POST['productDescription']
             seller = request.POST['productSeller']
-            image = request.FILES['image']
+            image = request.FILES['productImage']
 
             product = Product(name=name, description=description, seller=seller, image=image)
             product.save()
