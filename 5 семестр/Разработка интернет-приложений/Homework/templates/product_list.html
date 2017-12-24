@@ -94,9 +94,9 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="product-form" method="post" action="/product/add_product/">
+                    <form id="product-form" method="post" enctype="multipart/form-data" action="/product/add_product/">
                       {% csrf_token %}
-                      {% include "add_product.html" %}
+                      {% include "add_product_form.html" %}
                     </form>
                 </div>
             </div>

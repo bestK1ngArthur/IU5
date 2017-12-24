@@ -18,11 +18,13 @@ class Product(models.Model):
     seller = models.CharField(max_length=255)
 
     # Ссылка на картинку товара
-    image_url = models.URLField(max_length=255)
+    #image_url = models.URLField(max_length=255)
+    image = models.ImageField(upload_to='lab_app/static/product_images',
+                              default='lab_app/static/product_images/default.png')
 
     # Полный путь до картинки товара
     def image_path(self):
-        return settings.STATIC_URL + self.image_url
+        return self.image.name.replace('lab_app/', '')
 
     # Короткое описание товара
     def short_description(self):
