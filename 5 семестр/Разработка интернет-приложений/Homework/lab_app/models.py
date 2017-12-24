@@ -55,6 +55,8 @@ class Review(models.Model):
 
     def __str__(self):
         return ' '.join([
-            'review from user ',
+            'review \'',
+            str(self.description),
+            ' \' from user @',
             str(self.user.username),
         ])
