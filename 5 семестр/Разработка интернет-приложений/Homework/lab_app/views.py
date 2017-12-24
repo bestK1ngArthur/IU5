@@ -11,6 +11,8 @@ from lab_app.models import Product, Review
 from django.views.decorators.csrf import csrf_exempt
 import json
 
+# TODO: Добавить проверку на superuser для отображения кнопки 'Добавить продукт'
+
 
 # Список продуктов
 class ListProductView(ListView):
@@ -42,6 +44,24 @@ class ListProductView(ListView):
         rows.append(row)
 
     queryset = rows
+
+
+# Страница добавления продукта
+class AddProductView(View):
+
+    def post(self, request):
+        if request.POST:
+            name = request.POST['productName']
+            description = request.POST['productDescription']
+            seller = request.POST['productSeller']
+            image_url = '/product_images/iPhoneX.png'
+
+            product = Product(name=name, description=description, seller=seller, image_url=image_url)
+            product.save()
+            if product is not None:
+                return redirect("/")
+
+        return redirect("/invalidProduct")
 
 
 # Страница с информацией о продукте и отзывами
