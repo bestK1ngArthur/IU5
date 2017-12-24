@@ -22,30 +22,33 @@ class ListProductView(ListView):
     context_object_name = 'products'
     paginate_by = 3
 
-    # Количество продуктов в строке
-    elements_in_row = 3
+    def get(self, request):
 
-    products = Product.objects.all()
+        # Количество продуктов в строке
+        elements_in_row = 3
 
-    index = 1
-    rows = []
-    row = []
-    for product in products:
-        row.append(product)
+        products = Product.objects.all()
 
-        print(product.image_path())
+        index = 1
+        rows = []
+        row = []
+        for product in products:
+            row.append(product)
 
-        if index == elements_in_row:
+            print(product.image_path())
+
+            if index == elements_in_row:
+                rows.append(row)
+                row = []
+                index = 1
+            else:
+                index += 1
+
+        if len(row) > 0:
             rows.append(row)
-            row = []
-            index = 1
-        else:
-            index += 1
 
-    if len(row) > 0:
-        rows.append(row)
+        return render(request, 'product_list.html',  {"products": rows})
 
-    queryset = rows
 
 
 # Страница добавления продукта
