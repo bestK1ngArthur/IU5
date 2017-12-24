@@ -28,7 +28,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="formular" method="post" action="/login/">
+                <form id="login-form" method="post" action="/login/">
                   {% csrf_token %}
                   {% include "login_form.html" %}
                 </form>
@@ -49,7 +49,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" action="/signup/">
+                <form id="signup-form" method="post" action="/signup/">
                     {% csrf_token %}
                     {% include "signup_form.html" %}
                 </form>
