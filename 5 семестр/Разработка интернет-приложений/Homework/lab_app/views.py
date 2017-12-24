@@ -38,8 +38,6 @@ class ListProductView(ListView):
         end_index = start_index + elements_on_page
         products = products[start_index:end_index]
 
-        print(products)
-
         index = 1
         rows = []
         row = []
@@ -182,3 +180,11 @@ def create_review(request):
             json.dumps({"nothing to see": "this isn't happening"}),
             content_type="application/json"
         )
+
+class AboutView(View):
+
+    def get(self, request):
+
+        # ..
+
+        return render(request, 'about.html')
