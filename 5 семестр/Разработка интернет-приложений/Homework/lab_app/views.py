@@ -10,6 +10,7 @@ from lab_app.models import Product, Review
 
 from django.views.decorators.csrf import csrf_exempt
 import json
+import math
 
 # TODO: Добавить проверку на superuser для отображения кнопки 'Добавить продукт'
 
@@ -22,20 +23,28 @@ class ListProductView(ListView):
     context_object_name = 'products'
     paginate_by = 3
 
-    def get(self, request):
+    def get(self, request, page=1):
+
+        # Количество продуктов на странице
+        elements_on_page = 9
 
         # Количество продуктов в строке
         elements_in_row = 3
 
         products = Product.objects.all()
+        pages_count = math.ceil(len(products) / elements_on_page)
+
+        start_index = (int(page) - 1)*elements_on_page
+        end_index = start_index + elements_on_page
+        products = products[start_index:end_index]
+
+        print(products)
 
         index = 1
         rows = []
         row = []
         for product in products:
             row.append(product)
-
-            print(product.image_path())
 
             if index == elements_in_row:
                 rows.append(row)
@@ -47,7 +56,7 @@ class ListProductView(ListView):
         if len(row) > 0:
             rows.append(row)
 
-        return render(request, 'product_list.html',  {"products": rows})
+        return render(request, 'product_list.html',  {"products": rows, "page": page, "pages_count": pages_count})
 
 
 # Страница добавления продукта
