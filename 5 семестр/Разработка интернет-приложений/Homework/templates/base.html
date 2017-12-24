@@ -70,12 +70,15 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
     <script src="{% static "js/shards.js" %}"></script>
     <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/infinity.js" %}"></script>
 
     <!-- Validation Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
     <script>
         $(document).ready(
         function () {
+
+            // TODO: Вынести валидацию и бесконечный скролл в отдельные js-файлы
 
             // Валидация страницы добавления продукта
             $('#product-form').validate({
@@ -190,6 +193,26 @@
                 }
             })
         });
+
+
+        // Бесконечная прокрутка
+
+        var pageNumber = {{ page }} // номер страницы
+        var pagesCount = {{ pages_count }} // количество страниц
+
+        //Обнаружение конца страницы и загрузка новых элементов
+        $(window).scroll(
+            function () {
+                if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+
+                    //Подгрузка новых элементов
+                    if (pageNumber < pagesCount) {
+                        pageNumber += 1
+                        loadProducts(pageNumber);
+                    } else {
+                        // конец списка
+                    }
+                }});
     </script>
 
   </body>

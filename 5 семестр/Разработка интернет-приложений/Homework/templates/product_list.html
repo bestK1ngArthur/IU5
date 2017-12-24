@@ -16,8 +16,9 @@
             <p>The phone in the 21st century is everything: a computer, a camera, a diary, a game console. Smartphone determines our status, so it is so important to buy the coolest phone 😎</p>
         </div>
 
-        {% for row in products %}
-            <div class="row">
+        <div id="product-cards">
+            {% for row in products %}
+            <div class="row" id="row">
 
                 {% for product in row %}
                     <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
@@ -33,55 +34,10 @@
                 {% endfor %}
 
             </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 
     </div>
-
-    {% if is_paginated %}
-
-        <nav aria-label="Page navigation example">
-          <ul class="pagination justify-content-center">
-
-            <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-center">
-
-                  {% if page_obj.has_previous %}
-                      <li class="page-item">
-                          <a class="page-link" href="?page={{ page_obj.previous_page_number }}">← Previous</a>
-                      </li>
-                  {% else %}
-                      <li class="page-item disabled">
-                          <a class="page-link" href="#">← Previous</a>
-                      </li>
-                  {% endif %}
-
-                  {% for i in paginator.page_range %}
-                      {% if page_obj.number == i %}
-                            <li class="page-item active">
-                                <a class="page-link" href="?page={{ i }}">{{ i }}<span class="sr-only">(current)</span></a>
-                            </li>
-                      {% else %}
-                          <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
-                      {% endif %}
-                  {% endfor %}
-
-                  {% if page_obj.has_next %}
-                      <li class="page-item">
-                          <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next →</a>
-                      </li>
-                  {% else %}
-                      <li class="page-item disabled">
-                          <a class="page-link" href="#">Next →</a>
-                      </li>
-                  {% endif %}
-
-              </ul>
-            </nav>
-
-          </ul>
-        </nav>
-
-    {% endif %}
 
     <!-- Add Product Modal -->
     <div class="modal fade" id="addProductModal" tabindex="-1" role="dialog" aria-labelledby="addProductModalLabel" aria-hidden="true">
