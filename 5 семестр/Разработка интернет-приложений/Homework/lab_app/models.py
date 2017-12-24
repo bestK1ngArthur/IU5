@@ -1,5 +1,4 @@
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
 # -*- coding: utf-8 -*-
 
@@ -18,7 +17,6 @@ class Product(models.Model):
     seller = models.CharField(max_length=255)
 
     # Ссылка на картинку товара
-    #image_url = models.URLField(max_length=255)
     image = models.ImageField(upload_to='lab_app/static/product_images',
                               default='lab_app/static/product_images/default.png')
 
