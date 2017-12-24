@@ -7,11 +7,14 @@ $('#review-form').on('submit', function(event){
 
 // AJAX-запрос на создание отзыва
 function create_review() {
+    var csrf_token = "{{ csrf_token }}";
+
     // Создаем AJAX-запрос
     $.ajax({
         url : "create_review/", // выход
         type : "POST", // метод
         data : { "review_text" : $('#reviewInputText').val(), "product_id" : $('#product-id-value').val(), "reviews_count" : $('#reviews-count').val()}, // json с данными
+        headers : {'X-CSRFToken': csrf_token}
 
         // Обрабатываем success
         success : function(json) {

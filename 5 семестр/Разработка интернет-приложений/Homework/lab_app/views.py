@@ -33,6 +33,8 @@ class ListProductView(ListView):
     for product in products:
         row.append(product)
 
+        print(product.image_path())
+
         if index == elements_in_row:
             rows.append(row)
             row = []
@@ -54,9 +56,9 @@ class AddProductView(View):
             name = request.POST['productName']
             description = request.POST['productDescription']
             seller = request.POST['productSeller']
-            image_url = '/product_images/iPhoneX.png'
+            image = request.FILES['image']
 
-            product = Product(name=name, description=description, seller=seller, image_url=image_url)
+            product = Product(name=name, description=description, seller=seller, image=image)
             product.save()
             if product is not None:
                 return redirect("/")
