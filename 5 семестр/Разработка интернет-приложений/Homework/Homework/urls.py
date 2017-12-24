@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from lab_app.views import ProductView, ListProductView, AddProductView, SignUpView, LoginView, LogoutView, create_review
+from lab_app.views import ProductView, ListProductView, AddProductView, SignUpView, LoginView, LogoutView, create_review, AboutView
 
 urlpatterns = [
     url(r'^$', ListProductView.as_view()),
@@ -27,5 +27,6 @@ urlpatterns = [
     url(r'^signup/$', SignUpView.as_view()),
     url(r'^login/$', LoginView.as_view()),
     url(r'^logout/$', LogoutView.as_view()),
+    url(r'^about/', AboutView.as_view()),
     url(r'^admin/', admin.site.urls),
 ]
