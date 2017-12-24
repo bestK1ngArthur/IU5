@@ -76,6 +76,8 @@
     <script>
         $(document).ready(
         function () {
+
+            // Валидация страницы добавления продукта
             $('#product-form').validate({
                 rules: {
                     productName: {
@@ -119,6 +121,72 @@
                 },
                 success: function(){
                     $("#product-form-button").attr('disabled', false);
+                }
+            })
+
+            // Валидация страницы регистрации
+            $('#signup-form').validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 30
+                    },
+                    email: {
+                        required: true,
+                        minlength: 5,
+                        maxlength: 30,
+                        email2: true
+                    },
+                    password: {
+                        required: true,
+                        minlength: 8,
+                        maxlength: 30
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Enter username",
+                        minlength: "Should be at least 5 characters",
+                        maxlength: "Should be a maximum of 30 characters"
+                    },
+                    email: {
+                        required: "Enter description",
+                        minlength: "Should be at least 5 characters",
+                        maxlength: "Should be a maximum of 30 characters",
+                        email2: "Invalid e-mail"
+                    },
+                    password: {
+                        required: "Enter password",
+                        minlength: "Should be at least 8 characters",
+                        maxlength: "Should be a maximum of 30 characters"
+                    }
+                },
+                success: function(){
+                    $("#signup-form-button").attr('disabled', false);
+                }
+            })
+
+            // Валидация страницы авторизации
+            $('#login-form').validate({
+                rules: {
+                    username: {
+                        required: true,
+                    },
+                    password: {
+                        required: true,
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Enter username",
+                    },
+                    password: {
+                        required: "Enter password",
+                    }
+                },
+                success: function(){
+                    $("#login-form-button").attr('disabled', false);
                 }
             })
         });
