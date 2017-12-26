@@ -13,7 +13,8 @@
 5. [Лабораторная работа №5](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Lab5)
 6. [Лабораторная работа №6](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Lab6)
 7. [Лабораторная работа №7](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Lab7)
-8. [Домашнее задание](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Homework)
+8. [Лабораторная работа №8](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Lab8)
+9. [Домашнее задание](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/Разработка%20интернет-приложений/Homework)
 
 ## Описание
 #### Лабораторная работа №1 (Когнитивные карты)
