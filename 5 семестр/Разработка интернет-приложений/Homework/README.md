@@ -3,6 +3,9 @@
 Демку можете глянуть на [products.bestK1ng.ru](http://products.bestK1ng.ru), но не уверен, что к этому моменту сервер ещё будет работать.  
 *P.S. В Хроме могут не работать некоторые кнопки и вёрстка тоже иногда едет. Увы. Делал всё под Safari.*
 
+- [x] [Методичка](https://github.com/bestK1ngArthur/IU5/blob/master/5%20семестр/Разработка%20интернет-приложений/Homework/Description.pdf)
+- [x] [Отчёт](https://github.com/bestK1ngArthur/IU5/blob/master/5%20семестр/Разработка%20интернет-приложений/Homework/Review.pdf)
+
 ## Предметная область 
 
 * Субъект - **Пользователь**
