@@ -8,11 +8,12 @@
 * 2016 осень - [3 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/3%20семестр/)
 * 2017 весна - [4 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/4%20семестр/)
 * 2017 осень - [5 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/5%20семестр/)
+* 2018 весна - [6 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/6%20семестр/)
 
 ## #Todo
 - [x] Залить 3 семестр
 - [x] Добавить остальные описания
 - [x] Начать заливать 4 семестр
-- [ ] Добавить новые предметы
+- [x] Добавить новые предметы
 - [ ] Обновить старые описания
 - [ ] :+1:
