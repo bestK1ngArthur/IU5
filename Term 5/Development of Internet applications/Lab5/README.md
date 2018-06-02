@@ -1,4 +1,8 @@
 ## Лабораторная работа №5
+<img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License"> <img src="https://img.shields.io/badge/language-Python-green.svg" alt="Python Language">
 
-- [x] [Методичка](https://github.com/bestK1ngArthur/IU5/blob/master/5%20семестр/Разработка%20интернет-приложений/Lab5/Description.pdf)
-- [x] [Отчёт](https://github.com/bestK1ngArthur/IU5/blob/master/5%20семестр/Разработка%20интернет-приложений/Lab5/Review.pdf)
+Лабораторная работа №5 по РИП
+
+## Задание
+
+В этой ЛР вы создадите Django-проект, покажете пользователю статичную страницу, познакомитесь с конструкциями шаблонизаторов: переменные, теги, наследование шаблонов.
