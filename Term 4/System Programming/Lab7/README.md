@@ -1,4 +1,7 @@
 # Лабораторная работа №7
+<img src="http://img.shields.io/badge/license-MIT-brightgreen.svg" alt="MIT License"> <img src="https://img.shields.io/badge/language-Assembly-green.svg" alt="Assembly Language">
+
+Лабораторная работа №7 по СП
 
 Лабораторную работу можно автоматически скомпилировать и слинковать запустив **RUN.bat**
 
@@ -13,7 +16,3 @@
 ### Дополнительное задание
 
 Предусмотреть ввод длинного адреса (FAR – <сегмент>: <смещение>), в виде двух шестнадцатеричных чисел разделенных знаком “:” (Например – 0099:01AFh).
-
-### Полезные штуки
-- [x] [Методичка](https://github.com/bestK1ngArthur/IU5/blob/master/4%20%D1%81%D0%B5%D0%BC%D0%B5%D1%81%D1%82%D1%80/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%BD%D0%BE%D0%B5%20%D0%BF%D1%80%D0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5/Lab3/Description.pdf)
-- [x] [Отчёт](https://github.com/bestK1ngArthur/IU5/raw/master/4%20семестр/Системное%20программирование/Lab7/Review.doc)
