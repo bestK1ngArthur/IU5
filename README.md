@@ -11,6 +11,7 @@
 * 2017 весна - [4 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%204/)
 * 2017 осень - [5 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%205/)
 * 2018 весна - [6 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%206/)
+* 2018 осень - [7 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%207/)
 
 ## 🥁 #TODO
 - [ ] Добавить недостающие описания для работ
