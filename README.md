@@ -13,7 +13,7 @@
 * 2018 весна - [6 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%206/)
 * 2018 осень - [7 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%207/)
 * 2019 весна - [8 семестр](https://github.com/bestK1ngArthur/IU5/tree/master/Term%208/)
-* 2019 лето - [Экзамен в магиструтуру](https://github.com/bestK1ngArthur/IU5/tree/master/Master%20exam/)
+* 2019 лето - [Экзамен в магистратуру](https://github.com/bestK1ngArthur/IU5/tree/master/Master%20exam/)
 
 ## 🥁 #TODO
 - [ ] Добавить недостающие описания для работ
